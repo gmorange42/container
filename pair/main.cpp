@@ -1,5 +1,6 @@
 #include <iostream>     // std::cout
 #include "Pair.hpp"
+#include "../vector/vector.hpp"
 
 int main ()
 {
