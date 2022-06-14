@@ -20,8 +20,8 @@ int main ()
 	foo2.push (10); foo2.push(20); foo2.push(30);
 	bar2.push (111); bar2.push(222);
 
-//	if (foo1==bar1) std::cout << "foo1 and bar1 are equal\n";
-//	if (foo1!=bar1) std::cout << "foo1 and bar1 are not equal\n";
+	if (foo1==bar1) std::cout << "foo1 and bar1 are equal\n";
+	if (foo1!=bar1) std::cout << "foo1 and bar1 are not equal\n";
 	if (foo1< bar1) std::cout << "foo1 is less than bar1\n";
 	if (foo1> bar1) std::cout << "foo1 is greater than bar1\n";
 	if (foo1<=bar1) std::cout << "foo1 is less than or equal to bar1\n";
