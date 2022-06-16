@@ -22,7 +22,7 @@ namespace ft
 			typedef size_t						size_type;
 
 			public:
-			explicit vector (const allocator_type & alloc = allocator_type()) {}
+			explicit vector (const allocator_type & alloc = allocator_type()) : size_type(0) {}
 
 			explicit vector (size_type n, const value_type & val = value_type(),
 					const allocator_type & alloc = allocator_type());
