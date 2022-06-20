@@ -1,0 +1,68 @@
+(constructor) -> range constructor is missing
+
+Iterators:
+
+begin
+    Return iterator to beginning (public member function )
+
+end
+    Return iterator to end (public member function )
+
+rbegin
+    Return reverse iterator to reverse beginning (public member function )
+
+rend
+    Return reverse iterator to reverse end (public member function )
+
+
+Capacity:
+
+max_size
+    Return maximum size (public member function )
+
+resize
+    Change size (public member function )
+
+empty
+    Test whether vector is empty (public member function )
+
+reserve
+    Request a change in capacity (public member function )
+
+
+Modifiers:
+
+assign
+    Assign vector content (public member function )
+
+insert
+    Insert elements (public member function )
+
+erase
+    Erase elements (public member function )
+
+clear
+    Clear content (public member function )
+
+
+Allocator:
+
+get_allocator
+    Get allocator (public member function )
+
+
+Non-member function overloads
+
+relational operators
+    Relational operators for vector (function template )
+
+swap
+    Exchange contents of vectors (function template )
+
+
+Template specializations
+
+vector<bool>
+    Vector of bool (class template specialization )
+
+

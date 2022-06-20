@@ -8,12 +8,12 @@ int	main(void)
 //		ft::vector<int> bar (5,200);   // five ints with a value of 200
 //
 //		std::cout << "foo contains:";
-//		for (unsigned i=0; i<foo.size(); i++)
+//		for (size_t i=0; i<foo.size(); i++)
 //			std::cout << ' ' << foo[i];
 //		std::cout << " Size{" << foo.size() << "} Capacity{" << foo.capacity() << "}" << '\n';
 //	
 //		std::cout << "bar contains:";
-//		for (unsigned i=0; i<bar.size(); i++)
+//		for (size_t i=0; i<bar.size(); i++)
 //			std::cout << ' ' << bar[i];
 //		std::cout << " Size{" << bar.size() << "} Capacity{" << bar.capacity() << "}" << '\n';
 //		std::cout << '\n';
@@ -21,17 +21,17 @@ int	main(void)
 //		foo.swap(bar);
 //	
 //		std::cout << "foo contains:";
-//		for (unsigned i=0; i<foo.size(); i++)
+//		for (size_t i=0; i<foo.size(); i++)
 //			std::cout << ' ' << foo[i];
 //		std::cout << " Size{" << foo.size() << "} Capacity{" << foo.capacity() << "}" << '\n';
 //	
 //		std::cout << "bar contains:";
-//		for (unsigned i=0; i<bar.size(); i++)
+//		for (size_t i=0; i<bar.size(); i++)
 //			std::cout << ' ' << bar[i];
 //		std::cout << " Size{" << bar.size() << "} Capacity{" << bar.capacity() << "}" << '\n';
 //		foo.push_back(6);
 //		std::cout << "foo contains:";
-//		for (unsigned i=0; i<foo.size(); i++)
+//		for (size_t i=0; i<foo.size(); i++)
 //			std::cout << ' ' << foo[i];
 //		std::cout << " Size{" << foo.size() << "} Capacity{" << foo.capacity() << "}" << '\n';
 
@@ -56,7 +56,7 @@ int	main(void)
 //		hey.pop_back();
 //		std::cout << "size : " << hey.size() << std::endl;
 //		std::cout << "capacity : " << hey.capacity() << std::endl << std::endl;
-//		for (int i = 0; i <  hey.size(); ++i)
+//		for (size_t i = 0; i <  hey.size(); ++i)
 //			std::cout << "hey : " << hey[i] << std::endl;
 
 		ft::vector<int> plop;
@@ -124,7 +124,7 @@ int	main(void)
 		std::cout << plop.size() << std::endl;
 		std::cout << plop.capacity() << std::endl << std::endl;
 
-		for (int i = 0; i <  plop.size(); ++i)
+		for (size_t i = 0; i <  plop.size(); ++i)
 			std::cout << "plop : " << plop[i] << std::endl;
 
 	return (0);
