@@ -25,32 +25,31 @@ namespace ft
 
 			public:
 			value_type*	_arr;
-			Alloc		_alloc;
+			allocator_type	_alloc;
 			size_type	_size;
 			size_type	_capacity;
 
 
-//----------------------CONTRUCTORS----------------------
+			//----------------------CONTRUCTORS----------------------
 
 			explicit vector(const allocator_type& alloc = allocator_type()) : _arr(0), _alloc(alloc), _size(0), _capacity(0) {}
 
-			explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : _size(n), _capacity(n)
+			explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : _alloc(alloc), _size(n), _capacity(n)
 			{
-				this->_alloc = alloc;
 				this->_arr = this->_alloc.allocate(n);
 				for (size_type i = 0; i < this->_size; ++i)
 					this->_alloc.construct(this->_arr + i, val);
 			}
 
-/*to implement*/
-			template <class InputIterator>
-				vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type());
+			/*to implement*/
+		//	template <class InputIterator>
+		//		vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type());
 
 			vector(const vector& x)
 			{
 				*this = x;
 			}
-			
+
 			vector&	operator=(const vector& x)
 			{
 				this->_size = x._size;
@@ -65,7 +64,7 @@ namespace ft
 				return (*this);
 			}
 
-//----------------------DESTRUCTOR----------------------
+			//----------------------DESTRUCTOR----------------------
 
 			~vector()
 			{
@@ -74,7 +73,7 @@ namespace ft
 				_alloc.deallocate(_arr, _size);
 			}
 
-//----------------------CAPACITY----------------------
+			//----------------------CAPACITY----------------------
 
 			size_type	size(void) const
 			{
@@ -99,20 +98,44 @@ namespace ft
 						_alloc.destroy(this->_arr + i);
 					this->_size = n;
 				}
-				(void) val;
+				if (n >= this->_size)
+				{
+					if (n >= this->_capacity)
+					{
+						this->_capacity = n;
+						ft_reallocate();
+					}
+					for (size_type i = this->_size; i < n; ++i)
+						this->push_back(val);
+				}
 			}
 
-//----------------------MODIFIERS----------------------
+			bool		empty(void) const
+			{
+				return (this->_size == 0);
+			}
+
+			void		reserve(size_type n)
+			{
+				if (n > this->_capacity)
+				{
+					this->_capacity = n;
+					ft_reallocate();
+				}
+			}
+
+			//----------------------MODIFIERS----------------------
 
 			void	swap(vector<value_type> & rhs)
 			{
 				value_type*	temp__arr = _alloc.allocate(this->_capacity);
 				int	temp__size = this->_size;
 				int	temp__capacity = this->_capacity;
-				for (size_type i = 0; i < this->size(); ++i)
-					_alloc.construct(temp__arr + i, this->_arr[i]);
 				for (size_type i = 0; i < this->_size; ++i)
+				{
+					_alloc.construct(temp__arr + i, this->_arr[i]);
 					_alloc.destroy(this->_arr + i);
+				}
 				_alloc.deallocate(this->_arr, this->_size);
 				this->_arr = rhs._arr;
 				this->_size = rhs._size;
@@ -122,29 +145,38 @@ namespace ft
 				rhs._capacity = temp__capacity;
 			}
 
-			void	push_back(value_type elem)
+			void	ft_reallocate(void)
 			{
-				if (_capacity == 0)
-				{
-					++_capacity;
-					this->_arr = _alloc.allocate(_capacity);
-					_alloc.construct(this->_arr, elem);
-				}
-				else if (_size == _capacity)
-				{
-					this->_capacity *= 2;
-					value_type*	new__arr;
+					value_type*	new_arr;
 
-					new__arr = this->_alloc.allocate(this->_capacity);
+					new_arr = this->_alloc.allocate(this->_capacity);
+
 					for (size_type i = 0; i < this->_size; ++i)
-						_alloc.construct(new__arr + i, this->_arr[i]);
-					_alloc.construct(new__arr + this->_size, elem);
-					
-					for (size_type i = 0; i < this->_size; ++i)
+					{
+						this->_alloc.construct(new_arr + i, this->_arr[i]);
 						this->_alloc.destroy(this->_arr + i);
+					}
+
 					this->_alloc.deallocate(this->_arr, this->_size);
 
-					this->_arr = new__arr;
+					this->_arr = new_arr;
+			}
+
+			void	push_back(value_type elem)
+			{
+				if (this->_capacity == 0)
+				{
+					++this->_capacity;
+					this->_arr = _alloc.allocate(this->_capacity);
+					this->_alloc.construct(this->_arr, elem);
+				}
+				else if (_size == this->_capacity)
+				{
+					this->_capacity *= 2;
+					
+					ft_reallocate();
+
+					this->_alloc.construct(this->_arr+ this->_size, elem);
 				}
 				else
 				{
@@ -160,7 +192,7 @@ namespace ft
 				_alloc.destroy(this->_arr + this->_size);
 			}
 
-//----------------------OPERATORS----------------------
+			//----------------------OPERATORS----------------------
 
 			reference	operator[](size_type n)
 			{

@@ -52,6 +52,11 @@ int	main(void)
 	std::cout << "REAL CAPACITY: " << real.capacity() << std::endl;
 	std::cout << "MINE SIZE : " << mine.size() << std::endl;
 	std::cout << "MINE CAPACITY: " << mine.capacity() << std::endl;
+	for (std::vector<int>::size_type i = 0; i < real.size(); ++i)
+		std::cout << "REAL : " << real[i] << std::endl;
+	for (std::vector<int>::size_type i = 0; i < mine.size(); ++i)
+		std::cout << "MINE : " << mine[i] << std::endl;
+	std::cout << std::endl;
 
 	real.resize(4, -2);
 	mine.resize(4, -2);
@@ -59,14 +64,126 @@ int	main(void)
 	std::cout << "REAL CAPACITY: " << real.capacity() << std::endl;
 	std::cout << "MINE SIZE : " << mine.size() << std::endl;
 	std::cout << "MINE CAPACITY: " << mine.capacity() << std::endl;
-	std::cout << "AFTER REAL : " << real[real.size() + 1] << std::endl;
-	std::cout << "AFTER MINE : " << mine[mine.size() + 1] << std::endl;
-
-	real.resize(20);
-	std::cout << "REAL SIZE : " << real.size() << std::endl;
-	std::cout << "REAL CAPACITY: " << real.capacity() << std::endl;
-
 	for (std::vector<int>::size_type i = 0; i < real.size(); ++i)
 		std::cout << "REAL : " << real[i] << std::endl;
+	for (std::vector<int>::size_type i = 0; i < mine.size(); ++i)
+		std::cout << "MINE : " << mine[i] << std::endl;
+	std::cout << std::endl;
+
+	real.resize(20);
+	mine.resize(20);
+	std::cout << "REAL SIZE : " << real.size() << std::endl;
+	std::cout << "REAL CAPACITY: " << real.capacity() << std::endl;
+	std::cout << "MINE SIZE : " << mine.size() << std::endl;
+	std::cout << "MINE CAPACITY: " << mine.capacity() << std::endl;
+	for (std::vector<int>::size_type i = 0; i < real.size(); ++i)
+		std::cout << "REAL : " << real[i] << std::endl;
+	for (std::vector<int>::size_type i = 0; i < mine.size(); ++i)
+		std::cout << "MINE : " << mine[i] << std::endl;
+	std::cout << std::endl;
+
+	real.push_back(4);
+	mine.push_back(4);
+	std::cout << "REAL SIZE : " << real.size() << std::endl;
+	std::cout << "REAL CAPACITY: " << real.capacity() << std::endl;
+	std::cout << "MINE SIZE : " << mine.size() << std::endl;
+	std::cout << "MINE CAPACITY: " << mine.capacity() << std::endl;
+	for (std::vector<int>::size_type i = 0; i < real.size(); ++i)
+		std::cout << "REAL : " << real[i] << std::endl;
+	for (std::vector<int>::size_type i = 0; i < mine.size(); ++i)
+		std::cout << "MINE : " << mine[i] << std::endl;
+	std::cout << std::endl;
+
+	real.resize(4);
+	mine.resize(4);
+	std::cout << "REAL SIZE : " << real.size() << std::endl;
+	std::cout << "REAL CAPACITY: " << real.capacity() << std::endl;
+	std::cout << "MINE SIZE : " << mine.size() << std::endl;
+	std::cout << "MINE CAPACITY: " << mine.capacity() << std::endl;
+	for (std::vector<int>::size_type i = 0; i < real.size(); ++i)
+		std::cout << "REAL : " << real[i] << std::endl;
+	for (std::vector<int>::size_type i = 0; i < mine.size(); ++i)
+		std::cout << "MINE : " << mine[i] << std::endl;
+	std::cout << std::endl;
+
+	real.resize(7, -1);
+	mine.resize(7, -1);
+	std::cout << "REAL SIZE : " << real.size() << std::endl;
+	std::cout << "REAL CAPACITY: " << real.capacity() << std::endl;
+	std::cout << "MINE SIZE : " << mine.size() << std::endl;
+	std::cout << "MINE CAPACITY: " << mine.capacity() << std::endl;
+	for (std::vector<int>::size_type i = 0; i < real.size(); ++i)
+		std::cout << "REAL : " << real[i] << std::endl;
+	for (std::vector<int>::size_type i = 0; i < mine.size(); ++i)
+		std::cout << "MINE : " << mine[i] << std::endl;
+	std::cout << std::endl;
+
+	real.resize(0);
+	mine.resize(0);
+	std::cout << "REAL SIZE : " << real.size() << std::endl;
+	std::cout << "REAL CAPACITY: " << real.capacity() << std::endl;
+	std::cout << "MINE SIZE : " << mine.size() << std::endl;
+	std::cout << "MINE CAPACITY: " << mine.capacity() << std::endl;
+	for (std::vector<int>::size_type i = 0; i < real.size(); ++i)
+		std::cout << "REAL : " << real[i] << std::endl;
+	for (std::vector<int>::size_type i = 0; i < mine.size(); ++i)
+		std::cout << "MINE : " << mine[i] << std::endl;
+	std::cout << std::endl;
+
+//	real.resize(-1);
+//	mine.resize(-1);
+//	std::cout << "REAL SIZE : " << real.size() << std::endl;
+//	std::cout << "REAL CAPACITY: " << real.capacity() << std::endl;
+//	std::cout << "MINE SIZE : " << mine.size() << std::endl;
+//	std::cout << "MINE CAPACITY: " << mine.capacity() << std::endl;
+//	for (std::vector<int>::size_type i = 0; i < real.size(); ++i)
+//		std::cout << "REAL : " << real[i] << std::endl;
+//	for (std::vector<int>::size_type i = 0; i < mine.size(); ++i)
+//		std::cout << "MINE : " << mine[i] << std::endl;
+//	std::cout << std::endl;
+	
+	if (real.empty())
+		std::cout << "REAL IS EMPTY" << std::endl;
+	else
+		std::cout << "REAL IS NOT EMPTY" << std::endl;
+
+	if (mine.empty())
+		std::cout << "MINE IS EMPTY" << std::endl;
+	else
+		std::cout << "MINE IS NOT EMPTY" << std::endl;
+
+
+	real.resize(1);
+	mine.resize(1);
+	if (real.empty())
+		std::cout << "REAL IS EMPTY" << std::endl;
+	else
+		std::cout << "REAL IS NOT EMPTY" << std::endl;
+
+	if (mine.empty())
+		std::cout << "MINE IS EMPTY" << std::endl;
+	else
+		std::cout << "MINE IS NOT EMPTY" << std::endl;
+	std::cout << std::endl;
+
+	real.reserve(50);
+	mine.reserve(50);
+	std::cout << "REAL SIZE : " << real.size() << std::endl;
+	std::cout << "REAL CAPACITY: " << real.capacity() << std::endl;
+	std::cout << "MINE SIZE : " << mine.size() << std::endl;
+	std::cout << "MINE CAPACITY: " << mine.capacity() << std::endl;
+	for (std::vector<int>::size_type i = 0; i < real.size(); ++i)
+		std::cout << "REAL : " << real[i] << std::endl;
+	for (std::vector<int>::size_type i = 0; i < mine.size(); ++i)
+		std::cout << "MINE : " << mine[i] << std::endl;
+	std::cout << std::endl;
+
+	for (std::vector<int>::size_type i = 0; i < mine.size(); ++i)
+		std::cout << "MINE : " << mine[i] << std::endl;
+	for (std::vector<int>::size_type i = 0; i < 50; ++i)
+		mine._alloc.construct(mine._arr, 4);
+	for (std::vector<int>::size_type i = 0; i < mine.size(); ++i)
+		std::cout << "MINE : " << mine[i] << std::endl;
+
 	return (0);
 }
