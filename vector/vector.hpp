@@ -42,8 +42,8 @@ namespace ft
 			}
 
 			/*to implement*/
-		//	template <class InputIterator>
-		//		vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type());
+			//	template <class InputIterator>
+			//		vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type());
 
 			vector(const vector& x)
 			{
@@ -145,23 +145,6 @@ namespace ft
 				rhs._capacity = temp__capacity;
 			}
 
-			void	ft_reallocate(void)
-			{
-					value_type*	new_arr;
-
-					new_arr = this->_alloc.allocate(this->_capacity);
-
-					for (size_type i = 0; i < this->_size; ++i)
-					{
-						this->_alloc.construct(new_arr + i, this->_arr[i]);
-						this->_alloc.destroy(this->_arr + i);
-					}
-
-					this->_alloc.deallocate(this->_arr, this->_size);
-
-					this->_arr = new_arr;
-			}
-
 			void	push_back(value_type elem)
 			{
 				if (this->_capacity == 0)
@@ -173,7 +156,7 @@ namespace ft
 				else if (_size == this->_capacity)
 				{
 					this->_capacity *= 2;
-					
+
 					ft_reallocate();
 
 					this->_alloc.construct(this->_arr+ this->_size, elem);
@@ -190,6 +173,13 @@ namespace ft
 			{
 				--this->_size;
 				_alloc.destroy(this->_arr + this->_size);
+			}
+
+			void	clear(void)
+			{
+				for (size_type i = 0; i < this->_size; ++i)
+					this->_alloc.destroy(_arr + i);
+				this->_size = 0;
 			}
 
 			//----------------------OPERATORS----------------------
@@ -236,6 +226,25 @@ namespace ft
 			const_reference	back(void) const
 			{
 				return (this->_arr[this->_size - 1]);
+			}
+
+			private:
+
+			void	ft_reallocate(void)
+			{
+				value_type*	new_arr;
+
+				new_arr = this->_alloc.allocate(this->_capacity);
+
+				for (size_type i = 0; i < this->_size; ++i)
+				{
+					this->_alloc.construct(new_arr + i, this->_arr[i]);
+					this->_alloc.destroy(this->_arr + i);
+				}
+
+				this->_alloc.deallocate(this->_arr, this->_size);
+
+				this->_arr = new_arr;
 			}
 		};
 }

@@ -15,22 +15,8 @@ rend
     Return reverse iterator to reverse end (public member function )
 
 
-Capacity:
-
-max_size
-    Return maximum size (public member function )
-
-resize
-    Change size (public member function )
-
-empty
-    Test whether vector is empty (public member function )
-
-reserve
-    Request a change in capacity (public member function )
-
-
 Modifiers:
+
 
 assign
     Assign vector content (public member function )
