@@ -9,7 +9,7 @@ int main(void)
 
 	real.push_back(real_test);
 
-	for (size_t i = 0; i < real::real_test->size(); ++i)
-		std::cout << real::real_test[i] << std::endl;
+	for (size_t i = 0; i < real[0].size(); ++i)
+		std::cout << real[0][i] << std::endl;
 	return (0);
 }
