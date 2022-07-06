@@ -42,8 +42,8 @@ namespace ft
 			}
 
 			/*to implement*/
-			//	template <class InputIterator>
-			//		vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type());
+				template <class InputIterator/*, class = typename std::enable_if< !is_integral<InputIterator>::value>::type*/>
+					vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type());
 
 			vector(const vector& x)
 			{
