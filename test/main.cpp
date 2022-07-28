@@ -1,63 +1,24 @@
 #include <iostream>
+#include <type_traits>
+#include "../is_integral/is_integral.hpp"
 
-class MaClasse
-{
-	public:
-		typedef int value_type;
+int main() {
+//  std::cout << "float: " << std::is_integral<float>::type << std::endl;
+	std::is_integral<int>::type int_test;
+  std::cout << "int_test: " << int_test << std::endl;
+	std::is_integral<char>::type char_test;
+  std::cout << "char_test: " << char_test << std::endl;
+	std::is_integral<float>::type float_test;
+  std::cout << "float_test: " << float_test << std::endl;
+	std::is_integral<std::string>::type string_test;
+  std::cout << "std::string_test: " << string_test << std::endl;
+	std::is_integral<char16_t>::type char16_t_test;
+  std::cout << "char16_t_test: " << char16_t_test << std::endl;
 
-		value_type i;
-};
-
-template <typename T>
-struct ValeurNulle;
-
-template<>
-struct ValeurNulle<int>
-{
-	static int	Zero(void)
-	{
-		return 0;
-	}
-};
-
-template<>
-struct ValeurNulle<std::string>
-{
-	static std::string	Zero(void)
-	{
-		return "";
-	}
-};
-
-template<>
-struct ValeurNulle<MaClasse>
-{
-	static MaClasse	Zero(void)
-	{
-		return MaClasse(-1);
-	}
-};
-
-
-int	main(void)
-{
-	int t = 7;
-	std::cout << t << std::endl;
-
-	t = ValeurNulle<int>::Zero();
-	std::cout << t << std::endl;
-
-	std::string str = "Je suis une banane.";
-	std::cout << str << std::endl;
-
-	str = ValeurNulle<std::string>::Zero();
-	std::cout << str << std::endl;
-
-	MaClasse pouet;
-	pouet.i = 7;
-	std::cout << pouet.i << std::endl;
-	pouet.i = ValeurNulle<MaClasse>::Zero();
-	std::cout << pouet.i << std::endl;
-
-	return (0);
+  std::cout << std::boolalpha;
+  std::cout << "is_integral:" << std::endl;
+  std::cout << "char: " << std::is_integral<char>::value << std::endl;
+  std::cout << "int: " << std::is_integral<int>::value << std::endl;
+  std::cout << "float: " << std::is_integral<float>::value << std::endl;
+  return 0;
 }

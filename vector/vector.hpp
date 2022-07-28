@@ -4,20 +4,24 @@
 #include <iostream>
 #include <stdexcept>
 #include <vector>
+#include "../is_integral/is_integral.hpp"
 
 namespace ft
 {
 	template <class T, class Alloc = std::allocator<T> >
 		class	vector 
 		{
+			public:
 			typedef T						value_type;
 			typedef Alloc                                           allocator_type;
 			typedef typename allocator_type::reference              reference;
 			typedef typename allocator_type::const_reference        const_reference;
 			typedef typename allocator_type::pointer                pointer;
 			typedef typename allocator_type::const_pointer          const_pointer;
-			typedef typename std::random_access_iterator_tag        iterator;
-			typedef typename std::random_access_iterator_tag        const const_iterator;
+//			typedef typename std::random_access_iterator_tag        iterator;
+//			typedef typename std::random_access_iterator_tag        const const_iterator;
+			typedef typename std::vector<T>::iterator	        iterator;
+			typedef typename std::vector<T>::const_iterator         const_iterator;
 			typedef typename std::reverse_iterator<iterator>        reverse_iterator;
 			typedef typename std::reverse_iterator<const_iterator>  const_reverse_iterator;
 			typedef std::ptrdiff_t                                  difference_type;
@@ -28,6 +32,23 @@ namespace ft
 			allocator_type	_alloc;
 			size_type	_size;
 			size_type	_capacity;
+
+			//	pointer		_begin;
+			//	pointer		_end;
+			//	pointer		_capacity;
+			
+			//	size_type	size(void) const
+			//	{
+			//		return (_end - _begin);
+			//	}
+			//	size_type	capacity(void) const
+			//	{
+			//		return (_capacity - _begin);
+			//	}
+			//	bool		empty(void) const
+			//	{
+			//		return (_begin == _end);
+			//	}
 
 
 			//----------------------CONTRUCTORS----------------------
@@ -41,9 +62,22 @@ namespace ft
 					this->_alloc.construct(this->_arr + i, val);
 			}
 
-			/*to implement*/
-				template <class InputIterator/*, class = typename std::enable_if< !is_integral<InputIterator>::value>::type*/>
-					vector(InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type());
+			template <class InputIterator>
+				vector (typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type first,
+						InputIterator last, const allocator_type& alloc = allocator_type()) :
+					_alloc(alloc),
+					_size(last - first),
+					_capacity(_size)
+			{
+				this->_arr = this->_alloc.allocate(this->_size);
+				int i = 0;
+				while (first != last)
+				{
+					this->_alloc.construct(this->_arr + i, *first);
+					++first;
+					++i;
+				}
+			}
 
 			vector(const vector& x)
 			{
@@ -143,6 +177,23 @@ namespace ft
 				rhs._arr = temp__arr;
 				rhs._size = temp__size;
 				rhs._capacity = temp__capacity;
+
+				/*
+				pointer	tmp;
+
+				tmp_arr = _arr;
+				tmp_end = _end;
+				tmp_cpct = _cpct;
+				_arr = rhs._arr;
+				_end = rhs._end;
+				_cpct = rhs._cpct;
+				rhs._arr = tmp_arr;
+				rhs._end = tmp_end;
+				rhs._cpct = tmp_cpct;
+
+				pareil pour size
+				pareil pour capacity
+				*/
 			}
 
 			void	push_back(value_type elem)
@@ -226,6 +277,31 @@ namespace ft
 			const_reference	back(void) const
 			{
 				return (this->_arr[this->_size - 1]);
+			}
+
+			//---------------------ITERATORS----------------------
+
+			iterator	begin(void)
+			{
+				iterator	it(_arr);
+				return (it);
+			}
+			iterator	end(void)
+			{
+				iterator	it(_arr + _size);
+				return (it);
+			}
+
+			reverse_iterator rbegin(void)
+			{
+				reverse_iterator	it(this->end());
+				return (it);
+			}
+
+			reverse_iterator rend(void)
+			{
+				reverse_iterator	it(this->begin());
+				return (it);
 			}
 
 			private:
