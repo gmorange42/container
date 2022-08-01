@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <vector>
 #include "../is_integral/is_integral.hpp"
+#include "../enable_if/enable_if.hpp"
 
 namespace ft
 {
@@ -63,7 +64,7 @@ namespace ft
 			}
 
 			template <class InputIterator>
-				vector (typename std::enable_if<!std::is_integral<InputIterator>::value, InputIterator>::type first,
+				vector (typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type first,
 						InputIterator last, const allocator_type& alloc = allocator_type()) :
 					_alloc(alloc),
 					_size(last - first),
@@ -159,6 +160,30 @@ namespace ft
 			}
 
 			//----------------------MODIFIERS----------------------
+
+
+			template<class InputIterator>
+				void assign (typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type first, InputIterator last)
+				{
+					if (last - first > this->_capacity)
+						reserve(last - first);
+					else
+						clear();
+
+					for (;first != last; ++first)
+						push_back(*first);
+				}
+
+			void assign (size_type n, const value_type& val)
+			{
+				if (n > this->_capacity)
+					reserve(n);
+				else
+					clear();
+
+				for (size_type i = 0; i < n; ++i)
+					push_back(val);
+			}
 
 			void	swap(vector<value_type> & rhs)
 			{
