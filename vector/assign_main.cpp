@@ -73,6 +73,40 @@ int	main(void)
 	print(third);
 	print(mthird);
 
+	std::vector<std::string>	fourth;
+	ft::vector<std::string>		mfourth;
+	std::vector<std::string>	fifth;
+	ft::vector<std::string>		mfifth;
+
+	fourth.assign(3, "Hello !");
+	print(fourth);
+
+	mfourth.assign(3, "Hello !");
+	print(mfourth);
+
+	std::vector<std::string>::const_iterator cit = fourth.begin();
+	std::vector<std::string>::const_iterator cite = fourth.end();
+	ft::vector<std::string>::const_iterator mcit = mfourth.begin();
+	ft::vector<std::string>::const_iterator mcite = mfourth.end();
+
+	std::vector<std::string>::iterator it = fourth.begin();
+	std::vector<std::string>::iterator ite = fourth.end();
+	ft::vector<std::string>::iterator mit = mfourth.begin();
+	ft::vector<std::string>::iterator mite = mfourth.end();
+
+	fifth.assign(cit, cite);
+	mfifth.assign(mcit, mcite);
+	print(fifth);
+	print(mfifth);
+
+	it = fifth.begin();
+	*it = "HIHI";
+	mit = mfifth.begin();
+	*mit = "HIHI";
+	print(fifth);
+	print(mfifth);
+
+
 //	std::cout << "Size of first : " << first.size() << std::endl;
 //	first.assign (7, 100);
 //	std::cout << "Size of first : " << first.size() << std::endl << std::endl;

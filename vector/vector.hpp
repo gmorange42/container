@@ -185,6 +185,68 @@ namespace ft
 					push_back(val);
 			}
 
+			void	push_back(value_type elem)
+			{
+				if (this->_capacity == 0)
+				{
+					++this->_capacity;
+					this->_arr = _alloc.allocate(this->_capacity);
+					this->_alloc.construct(this->_arr, elem);
+				}
+				else if (_size == this->_capacity)
+				{
+					this->_capacity *= 2;
+
+					ft_reallocate();
+
+					this->_alloc.construct(this->_arr+ this->_size, elem);
+				}
+				else
+				{
+					if (this->_size < this->_capacity)
+						_alloc.construct(this->_arr + this->_size, elem);
+				}
+				++this->_size;
+			}
+
+			void	pop_back(void)
+			{
+				--this->_size;
+				_alloc.destroy(this->_arr + this->_size);
+			}
+
+			iterator	erase(iterator position)
+			{
+				if (position == end() - 1)
+				{
+					this->_alloc.destroy(_arr + (begin() - position));
+					--this->_size;
+					return(position);
+				}
+				else
+				{
+					size_type i = 0;
+					size_type to_ret = position - begin();
+					value_type*	temp_arr = _alloc.allocate(this->_capacity);
+					const_iterator it = begin();
+					for (; it < end(); ++it)
+					{
+						if (it != position)
+						{
+							_alloc.construct(temp_arr + i, *it);
+							++i;
+						}
+					}
+					clear();
+					_size = i;
+					this->_alloc.deallocate(this->_arr, this->_size);
+					this->_arr = temp_arr;
+					return(begin() + to_ret);
+				}
+			}
+
+			iterator	erase(iterator first, iterator last);
+
 			void	swap(vector<value_type> & rhs)
 			{
 				value_type*	temp__arr = _alloc.allocate(this->_capacity);
@@ -219,36 +281,6 @@ namespace ft
 				pareil pour size
 				pareil pour capacity
 				*/
-			}
-
-			void	push_back(value_type elem)
-			{
-				if (this->_capacity == 0)
-				{
-					++this->_capacity;
-					this->_arr = _alloc.allocate(this->_capacity);
-					this->_alloc.construct(this->_arr, elem);
-				}
-				else if (_size == this->_capacity)
-				{
-					this->_capacity *= 2;
-
-					ft_reallocate();
-
-					this->_alloc.construct(this->_arr+ this->_size, elem);
-				}
-				else
-				{
-					if (this->_size < this->_capacity)
-						_alloc.construct(this->_arr + this->_size, elem);
-				}
-				++this->_size;
-			}
-
-			void	pop_back(void)
-			{
-				--this->_size;
-				_alloc.destroy(this->_arr + this->_size);
 			}
 
 			void	clear(void)
