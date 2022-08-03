@@ -215,7 +215,47 @@ namespace ft
 				_alloc.destroy(this->_arr + this->_size);
 			}
 
-			iterator	insert (iterator position, const value_type& val);
+			iterator	insert (iterator position, const value_type& val)
+			{
+				size_type	to_add = position - begin();
+
+				if (_size == _capacity || position == end())
+				{
+					_capacity *= 2;
+					ft_reallocate();
+					position = begin() + to_add;
+				}
+
+				if (position == end())
+				{
+					_alloc.construct(this->_arr + this->_size, val);
+					++_size;
+				}
+				else
+				{
+					size_type	i = 0;
+					value_type*	temp_arr = _alloc.allocate(this->_capacity + 1);
+					for (iterator it = begin(); it < position; ++it)
+					{
+						_alloc.construct(temp_arr + i, *it);
+						++i;
+					}
+
+					_alloc.construct(temp_arr + i++, val);
+
+					for (iterator it = position; it < end(); ++it)
+					{
+						_alloc.construct(temp_arr + i, *it);
+						++i;
+					}
+					clear();
+					_alloc.deallocate(_arr, _size);
+					_arr = temp_arr;
+					position = begin() + to_add;
+					_size = i;
+				}
+				return (position);
+			}
 
 			void		insert (iterator position, size_type n, const value_type& val);
 
@@ -226,7 +266,6 @@ namespace ft
 			{
 				if (position == end() - 1)
 				{
-					//this->_alloc.destroy(_arr + (begin() - position));
 					this->_alloc.destroy(&position);
 					--this->_size;
 					return(position);
