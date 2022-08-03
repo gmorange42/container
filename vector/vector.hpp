@@ -215,11 +215,19 @@ namespace ft
 				_alloc.destroy(this->_arr + this->_size);
 			}
 
+			iterator	insert (iterator position, const value_type& val);
+
+			void		insert (iterator position, size_type n, const value_type& val);
+
+			template<class InputIterator>
+				void	insert (iterator position, InputIterator first, InputIterator last);
+
 			iterator	erase(iterator position)
 			{
 				if (position == end() - 1)
 				{
-					this->_alloc.destroy(_arr + (begin() - position));
+					//this->_alloc.destroy(_arr + (begin() - position));
+					this->_alloc.destroy(&position);
 					--this->_size;
 					return(position);
 				}
@@ -238,14 +246,48 @@ namespace ft
 						}
 					}
 					clear();
-					_size = i;
 					this->_alloc.deallocate(this->_arr, this->_size);
+					_size = i;
 					this->_arr = temp_arr;
 					return(begin() + to_ret);
 				}
 			}
 
-			iterator	erase(iterator first, iterator last);
+			iterator	erase(iterator first, iterator last)
+			{
+				if (last == end())
+				{
+					this->_size -= last - first;
+					for (const_iterator it = begin(); it < end(); ++it)
+					{
+						this->_alloc.destroy(&it);
+					}
+					return (end() + 1);
+				}
+				else
+				{
+					size_type	ret = first - begin();
+					size_type	i = 0;
+					value_type*	temp_arr = _alloc.allocate(this->_capacity);
+
+					for (iterator it = begin(); it < first; ++it)
+					{
+						_alloc.construct(temp_arr + i, *it);
+						++i;
+					}
+					for (iterator it = last; it < end(); ++it)
+					{
+						_alloc.construct(temp_arr + i, *it);
+						++i;
+					}
+
+					clear();
+					this->_alloc.deallocate(this->_arr, this->_size);
+					_size = i;
+					this->_arr = temp_arr;
+					return (begin() + ret);
+				}
+			}
 
 			void	swap(vector<value_type> & rhs)
 			{
