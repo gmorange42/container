@@ -219,22 +219,28 @@ namespace ft
 			{
 				size_type	to_add = position - begin();
 
+//					std::cout << "HERE A : " << position - begin() << std::endl;
 				if (_size == _capacity || position == end())
 				{
-					_capacity *= 2;
+					if (_capacity != 0)
+						_capacity *= 2;
+					else
+						++_capacity;
 					ft_reallocate();
 					position = begin() + to_add;
 				}
 
 				if (position == end())
 				{
-					_alloc.construct(this->_arr + this->_size, val);
-					++_size;
+					push_back(val);
+//					std::cout << "HERE B : " << position - begin() << std::endl;
 				}
 				else
 				{
+//					std::cout << "HERE C : " << position - begin() << std::endl;
 					size_type	i = 0;
 					value_type*	temp_arr = _alloc.allocate(this->_capacity + 1);
+					iterator it = begin();
 					for (iterator it = begin(); it < position; ++it)
 					{
 						_alloc.construct(temp_arr + i, *it);
@@ -257,10 +263,25 @@ namespace ft
 				return (position);
 			}
 
-			void		insert (iterator position, size_type n, const value_type& val);
+			void		insert (iterator position, size_type n, const value_type& val)
+			{
+				if (_size + n >= _capacity)
+				{
+					std::cout << "HERE 1" << std::endl;
+					size_type	to_add = position - begin();
+					reserve(_size + n);
+					position = begin() + to_add;
+				}
+				for (size_type i = 0; i < n; ++i)
+				{
+//					std::cout << "HERE 1 : " << position - begin() << " i : " << i << std::endl;
+					position  = insert(position, val);
+//					std::cout << "HERE 2 : " << position - begin() << std::endl << std::endl;
+				}
+			}
 
 			template<class InputIterator>
-				void	insert (iterator position, InputIterator first, InputIterator last);
+				void	insert (iterator position, typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type first, InputIterator last);
 
 			iterator	erase(iterator position)
 			{
