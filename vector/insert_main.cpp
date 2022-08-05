@@ -134,9 +134,14 @@ int main (void)
 	print(first);
 	print(mfirst);
 
-//	it = first.insert(first.end(), 3);
-//	std::cout << "IT " << *it << std::endl;
-//	print(first);
+	try
+	{
+		first.insert(first.end(), array + 3, array + 2);
+		mfirst.insert(mfirst.end(), array + 3, array + 2);
+		print(first);
+		print(mfirst);
+	}
+	catch(std::exception &e){std::cout << e.what() << std::endl;}
 
 	return (0);
 }

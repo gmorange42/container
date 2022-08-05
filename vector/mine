@@ -1,0 +1,88 @@
+-----1-----
+ELEM : 100
+ELEM : 100
+ELEM : 100
+ELEM : 100
+ELEM : 100
+ELEM : 100
+ELEM : 100
+SIZE 7 CAPACITY 7
+
+
+ELEM : 100
+ELEM : 100
+ELEM : 100
+ELEM : 100
+ELEM : 100
+ELEM : 100
+ELEM : 100
+SIZE 7 CAPACITY 7
+
+
+-----2-----
+ELEM : 100
+ELEM : 9
+ELEM : 100
+ELEM : 100
+ELEM : 100
+ELEM : 100
+ELEM : 100
+SIZE 7 CAPACITY 7
+
+
+ELEM : 100
+ELEM : 9
+SIZE 2 CAPACITY 7
+
+
+-----3-----
+ELEM : 10
+ELEM : 10
+ELEM : 10
+ELEM : 10
+SIZE 4 CAPACITY 7
+
+
+-----4-----
+Size of mthird : 0
+Size of mthird : 5 5
+
+ELEM : 100
+ELEM : 9
+ELEM : 100
+ELEM : 100
+ELEM : 100
+ELEM : 100
+ELEM : 100
+SIZE 7 CAPACITY 7
+
+
+ELEM : 1
+ELEM : 2
+ELEM : 3
+ELEM : 4
+ELEM : 5
+SIZE 5 CAPACITY 5
+
+
+-----5-----
+ELEM : Hello !
+ELEM : Hello !
+ELEM : Hello !
+SIZE 3 CAPACITY 3
+
+
+-----6-----
+ELEM : Hello !
+ELEM : Hello !
+ELEM : Hello !
+SIZE 3 CAPACITY 3
+
+
+-----7-----
+ELEM : HIHI
+ELEM : Hello !
+ELEM : Hello !
+SIZE 3 CAPACITY 3
+
+

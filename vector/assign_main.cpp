@@ -1,109 +1,57 @@
 #include "vector.hpp"
-
-template <typename T>
-void print(std::vector< T>& a)
-{
-	for (typename std::vector<T>::iterator it = a.begin(); it != a.end(); ++it)
-		std::cout << "REAL : " << *it << std::endl;
-	std::cout << "SIZE " << a.size() << " CAPACITY " << a.capacity() << std::endl << std::endl;
-	std::cout << std::endl;
-}
-
-template <typename T>
-void print(ft::vector< T>& a)
-{
-	for (typename ft::vector<T>::iterator it = a.begin(); it != a.end(); ++it)
-		std::cout << "MINE : " << *it << std::endl;
-	std::cout << "SIZE " << a.size() << " CAPACITY " << a.capacity() <<  std::endl << std::endl;
-	std::cout << std::endl;
-}
+#include "print.cpp"
 
 int	main(void)
 {
-	std::vector<int> first;
-	std::vector<int> second;
-	std::vector<int> third;
-
-	ft::vector<int> mfirst;
-	ft::vector<int> msecond;
-	std::vector<int> mthird;
+	NAMESPACE::vector<int> mfirst;
+	NAMESPACE::vector<int> msecond;
+	NAMESPACE::vector<int> mthird;
 
 
-	first.assign(7, 100);
 	mfirst.assign(7, 100);
-	second.assign(first.begin(), first.end());
-	msecond.assign(first.begin(), first.end());
+	msecond.assign(mfirst.begin(), mfirst.end());
 
-	print(first);
+	std::cout <<"-----1-----"<< std::endl;
 	print(mfirst);
-	print(second);
 	print(msecond);
 
-	second[1] = 9;
+	std::cout <<"-----2-----"<< std::endl;
 	msecond[1] = 9;
-
-	print(second);
 	print(msecond);
-//	print(second);
-
-	first.assign(second.begin(), second.begin() + 2);
 	mfirst.assign(msecond.begin(), msecond.begin() + 2);
-
-	print(first);
 	print(mfirst);
 
-	first.assign(4, 10);
+	std::cout <<"-----3-----"<< std::endl;
 	mfirst.assign(4, 10);
-	print(first);
 	print(mfirst);
 
 
 
+	std::cout <<"-----4-----"<< std::endl;
 	int	myints[] = {1, 2, 3, 4, 5};
-	std::cout << "Size of third : " << third.size() << std::endl;
-	third.assign (myints, myints + 6);
-	std::cout << "Size of third : " << third.size() << ' ' << third.capacity() << std::endl << std::endl;
-
 	std::cout << "Size of mthird : " << mthird.size() << std::endl;
-	mthird.assign (myints, myints + 6);
+	mthird.assign (myints, myints + 5);
 	std::cout << "Size of mthird : " << mthird.size() << ' ' << mthird.capacity() << std::endl << std::endl;
-
-	print(second);
 	print(msecond);
-	print(third);
 	print(mthird);
 
-	std::vector<std::string>	fourth;
-	ft::vector<std::string>		mfourth;
-	std::vector<std::string>	fifth;
-	ft::vector<std::string>		mfifth;
-
-	fourth.assign(3, "Hello !");
-	print(fourth);
-
+	std::cout <<"-----5-----"<< std::endl;
+	NAMESPACE::vector<std::string>		mfourth;
+	NAMESPACE::vector<std::string>		mfifth;
 	mfourth.assign(3, "Hello !");
 	print(mfourth);
 
-	std::vector<std::string>::const_iterator cit = fourth.begin();
-	std::vector<std::string>::const_iterator cite = fourth.end();
-	ft::vector<std::string>::const_iterator mcit = mfourth.begin();
-	ft::vector<std::string>::const_iterator mcite = mfourth.end();
-
-	std::vector<std::string>::iterator it = fourth.begin();
-	std::vector<std::string>::iterator ite = fourth.end();
-	ft::vector<std::string>::iterator mit = mfourth.begin();
-	ft::vector<std::string>::iterator mite = mfourth.end();
-
-	fifth.assign(cit, cite);
+	std::cout <<"-----6-----"<< std::endl;
+	NAMESPACE::vector<std::string>::const_iterator mcit = mfourth.begin();
+	NAMESPACE::vector<std::string>::const_iterator mcite = mfourth.end();
+	NAMESPACE::vector<std::string>::iterator mit = mfourth.begin();
+	NAMESPACE::vector<std::string>::iterator mite = mfourth.end();
 	mfifth.assign(mcit, mcite);
-	print(fifth);
 	print(mfifth);
 
-	it = fifth.begin();
-	*it = "HIHI";
+	std::cout <<"-----7-----"<< std::endl;
 	mit = mfifth.begin();
 	*mit = "HIHI";
-	print(fifth);
 	print(mfifth);
 
 
