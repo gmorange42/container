@@ -426,7 +426,7 @@ namespace ft
 					{
 						_alloc.destroy(&it);
 					}
-					return (end() + 1);
+					return (end());
 				}
 				else
 				{

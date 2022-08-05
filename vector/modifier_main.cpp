@@ -1,240 +1,265 @@
 #include "vector.hpp"
+#include "print.cpp"
 
 int	main(void)
 {
-		ft::vector<int> foo(3,100);   // three ints with a value of 100
-		ft::vector<int> bar(5,200);   // five ints with a value of 200
 
-		std::cout << "foo contains:";
-		for (size_t i=0; i<foo.size(); i++)
-			std::cout << ' ' << foo[i];
-		std::cout << " Size{" << foo.size() << "} Capacity{" << foo.capacity() << "}" << '\n';
-	
-		std::cout << "bar contains:";
-		for (size_t i=0; i<bar.size(); i++)
-			std::cout << ' ' << bar[i];
-		std::cout << " Size{" << bar.size() << "} Capacity{" << bar.capacity() << "}" << '\n';
-		std::cout << '\n';
-	
-		foo.swap(bar);
-	
-		std::cout << "foo contains:";
-		for (size_t i=0; i<foo.size(); i++)
-			std::cout << ' ' << foo[i];
-		std::cout << " Size{" << foo.size() << "} Capacity{" << foo.capacity() << "}" << '\n';
-	
-		std::cout << "bar contains:";
-		for (size_t i=0; i<bar.size(); i++)
-			std::cout << ' ' << bar[i];
-		std::cout << " Size{" << bar.size() << "} Capacity{" << bar.capacity() << "}" << '\n';
-		foo.push_back(6);
-		std::cout << "foo contains:";
-		for (size_t i=0; i<foo.size(); i++)
-			std::cout << ' ' << foo[i];
-		std::cout << " Size{" << foo.size() << "} Capacity{" << foo.capacity() << "}" << '\n';
-		std::cout << '\n';
-		std::cout << '\n';
-		std::vector<int> real_foo(3,100);   // three ints with a value of 100
-		std::vector<int> real_bar(5,200);   // five ints with a value of 200
+	std::cout << "--PUSH_BACK-&&-POP_BACK--" << std::endl;
+	NAMESPACE::vector<int> first;
+	print(first, "first");
 
-		std::cout << "real_foo contains:";
-		for (size_t i=0; i<real_foo.size(); i++)
-			std::cout << ' ' << real_foo[i];
-		std::cout << " Size{" << real_foo.size() << "} Capacity{" << real_foo.capacity() << "}" << '\n';
-	
-		std::cout << "real_bar contains:";
-		for (size_t i=0; i<real_bar.size(); i++)
-			std::cout << ' ' << real_bar[i];
-		std::cout << " Size{" << real_bar.size() << "} Capacity{" << real_bar.capacity() << "}" << '\n';
-		std::cout << '\n';
-	
-		real_foo.swap(real_bar);
-	
-		std::cout << "real_foo contains:";
-		for (size_t i=0; i<real_foo.size(); i++)
-			std::cout << ' ' << real_foo[i];
-		std::cout << " Size{" << real_foo.size() << "} Capacity{" << real_foo.capacity() << "}" << '\n';
-	
-		std::cout << "real_bar contains:";
-		for (size_t i=0; i<real_bar.size(); i++)
-			std::cout << ' ' << real_bar[i];
-		std::cout << " Size{" << real_bar.size() << "} Capacity{" << real_bar.capacity() << "}" << '\n';
-		real_foo.push_back(6);
-		std::cout << "real_foo contains:";
-		for (size_t i=0; i<real_foo.size(); i++)
-			std::cout << ' ' << real_foo[i];
-		std::cout << " Size{" << real_foo.size() << "} Capacity{" << real_foo.capacity() << "}" << '\n';
+	first.push_back(9);
+	print(first, "first");
 
-//		std::vector<int> real;
-//		ft::vector<int> mine;
-//		std::cout << "size : " << real.size() << std::endl;
-//		std::cout << "capacity : " << real.capacity() << std::endl << std::endl;
-//		std::cout << "size : " << mine.size() << std::endl;
-//		std::cout << "capacity : " << mine.capacity() << std::endl << std::endl;
-//		std::cout << std::endl;
-//
-//		mine.push_back(9);
-//		real.push_back(9);
-//		std::cout << "size : " << real.size() << std::endl;
-//		std::cout << "capacity : " << real.capacity() << std::endl << std::endl;
-//		std::cout << "size : " << mine.size() << std::endl;
-//		std::cout << "capacity : " << mine.capacity() << std::endl << std::endl;
-//		std::cout << std::endl;
-//
-//		mine.push_back(7);
-//		real.push_back(7);
-//		std::cout << "size : " << real.size() << std::endl;
-//		std::cout << "capacity : " << real.capacity() << std::endl << std::endl;
-//		std::cout << "size : " << mine.size() << std::endl;
-//		std::cout << "capacity : " << mine.capacity() << std::endl << std::endl;
-//		std::cout << std::endl;
-//
-//		mine.push_back(5);
-//		real.push_back(5);
-//		std::cout << "size : " << real.size() << std::endl;
-//		std::cout << "capacity : " << real.capacity() << std::endl << std::endl;
-//		std::cout << "size : " << mine.size() << std::endl;
-//		std::cout << "capacity : " << mine.capacity() << std::endl << std::endl;
-//		std::cout << std::endl;
-//
-//		mine.push_back(3);
-//		real.push_back(3);
-//		std::cout << "size : " << real.size() << std::endl;
-//		std::cout << "capacity : " << real.capacity() << std::endl << std::endl;
-//		std::cout << "size : " << mine.size() << std::endl;
-//		std::cout << "capacity : " << mine.capacity() << std::endl << std::endl;
-//		std::cout << std::endl;
-//
-//		mine.push_back(4);
-//		real.push_back(4);
-//		std::cout << "size : " << real.size() << std::endl;
-//		std::cout << "capacity : " << real.capacity() << std::endl << std::endl;
-//		std::cout << "size : " << mine.size() << std::endl;
-//		std::cout << "capacity : " << mine.capacity() << std::endl << std::endl;
-//		std::cout << std::endl;
-//
-//		mine.pop_back();
-//		real.pop_back();
-//		std::cout << "size : " << real.size() << std::endl;
-//		std::cout << "capacity : " << real.capacity() << std::endl << std::endl;
-//		std::cout << "size : " << mine.size() << std::endl;
-//		std::cout << "capacity : " << mine.capacity() << std::endl << std::endl;
-//		std::cout << std::endl;
-//
-//		for (size_t i = 0; i <  mine.size(); ++i)
-//			std::cout << "mine : " << mine[i] << std::endl;
-//		for (size_t i = 0; i <  real.size(); ++i)
-//			std::cout << "real : " << real[i] << std::endl;
+	first.push_back(7);
+	print(first, "first");
 
-//		ft::vector<int> mine;
-//		std::vector<int> real;
-//	
-//		std::cout << real.size() << std::endl;
-//		std::cout << real.capacity() << std::endl << std::endl;
-//		std::cout << mine.size() << std::endl;
-//		std::cout << mine.capacity() << std::endl << std::endl;
-//	
-//		std::cout << "PUSH" << std::endl;
-//		real.push_back(6);
-//		mine.push_back(6);
-//		std::cout << real.size() << std::endl;
-//		std::cout << real.capacity() << std::endl << std::endl;
-//		std::cout << mine.size() << std::endl;
-//		std::cout << mine.capacity() << std::endl << std::endl;
-//	
-//		std::cout << "PUSH" << std::endl;
-//		real.push_back(6);
-//		mine.push_back(6);
-//		std::cout << real.size() << std::endl;
-//		std::cout << real.capacity() << std::endl << std::endl;
-//		std::cout << mine.size() << std::endl;
-//		std::cout << mine.capacity() << std::endl << std::endl;
-//	
-//		std::cout << "PUSH" << std::endl;
-//		real.push_back(6);
-//		mine.push_back(6);
-//		std::cout << real.size() << std::endl;
-//		std::cout << real.capacity() << std::endl << std::endl;
-//		std::cout << mine.size() << std::endl;
-//		std::cout << mine.capacity() << std::endl << std::endl;
-//	
-//		std::cout << "POP" << std::endl;
-//		real.pop_back();
-//		mine.pop_back();
-//		std::cout << real.size() << std::endl;
-//		std::cout << real.capacity() << std::endl << std::endl;
-//		std::cout << mine.size() << std::endl;
-//		std::cout << mine.capacity() << std::endl << std::endl;
-//	
-//		std::cout << "POP" << std::endl;
-//		real.pop_back();
-//		mine.pop_back();
-//		std::cout << real.size() << std::endl;
-//		std::cout << real.capacity() << std::endl << std::endl;
-//		std::cout << mine.size() << std::endl;
-//		std::cout << mine.capacity() << std::endl << std::endl;
-//	
-//		std::cout << "POP" << std::endl;
-//		real.pop_back();
-//		mine.pop_back();
-//		std::cout << real.size() << std::endl;
-//		std::cout << real.capacity() << std::endl << std::endl;
-//		std::cout << mine.size() << std::endl;
-//		std::cout << mine.capacity() << std::endl << std::endl;
-//	
-//		std::cout << "POP" << std::endl;
-//		real.pop_back();
-//		mine.pop_back();
-//		std::cout << real.size() << std::endl;
-//		std::cout << real.capacity() << std::endl << std::endl;
-//		std::cout << mine.size() << std::endl;
-//		std::cout << mine.capacity() << std::endl << std::endl;
-//	
-//		std::cout << "POP" << std::endl;
-//		real.pop_back();
-//		mine.pop_back();
-//		std::cout << real.size() << std::endl;
-//		std::cout << real.capacity() << std::endl << std::endl;
-//		std::cout << mine.size() << std::endl;
-//		std::cout << mine.capacity() << std::endl << std::endl;
-//
-////		real.resize(0); // real abort when _size is 'under' 0, so need to resize it
-//		std::cout << "PUSH" << std::endl;
-//		real.push_back(6);
-//		mine.push_back(6);
-//		std::cout << real.size() << std::endl;
-//		std::cout << real.capacity() << std::endl << std::endl;
-//		std::cout << mine.size() << std::endl;
-//		std::cout << mine.capacity() << std::endl << std::endl;
-//	
-//		std::cout << "PUSH" << std::endl;
-//		real.push_back(6);
-//		mine.push_back(6);
-//		std::cout << real.size() << std::endl;
-//		std::cout << real.capacity() << std::endl << std::endl;
-//		std::cout << mine.size() << std::endl;
-//		std::cout << mine.capacity() << std::endl << std::endl;
-//	
-//		std::cout << "PUSH" << std::endl;
-//		real.push_back(6);
-//		mine.push_back(6);
-//		std::cout << real.size() << std::endl;
-//		std::cout << real.capacity() << std::endl << std::endl;
-//		std::cout << mine.size() << std::endl;
-//		std::cout << mine.capacity() << std::endl << std::endl;
-//
-//		std::cout << "PUSH" << std::endl;
-//		real.push_back(6);
-//		mine.push_back(6);
-//		std::cout << real.size() << std::endl;
-//		std::cout << real.capacity() << std::endl << std::endl;
-//		std::cout << mine.size() << std::endl;
-//		std::cout << mine.capacity() << std::endl << std::endl;
-//
-//		for (size_t i = 0; i <  real.size(); ++i)
-//			std::cout << "real : " << real[i] << std::endl;
-//		for (size_t i = 0; i <  mine.size(); ++i)
-//			std::cout << "mine : " << mine[i] << std::endl;
+	first.push_back(5);
+	print(first, "first");
+
+	first.push_back(3);
+	print(first, "first");
+
+	first.push_back(4);
+	print(first, "first");
+
+	first.pop_back();
+	print(first, "first");
+
+	first.pop_back();
+	print(first, "first");
+
+	first.pop_back();
+	print(first, "first");
+
+	first.pop_back();
+	print(first, "first");
+
+	first.pop_back();
+	print(first, "first");
+
+	first.push_back(6);
+	print(first, "first");
+
+	first.push_back(66);
+	print(first, "first");
+
+	first.push_back(666);
+	print(first, "first");
+
+	first.push_back(6666);
+	print(first, "first");
+
+
+	std::cout << "--ASSIGN--" << std::endl;
+	NAMESPACE::vector<int> second;
+	NAMESPACE::vector<int> third;
+
+	first.assign(7, 100);
+	second.assign(first.begin(), first.end());
+
+	std::cout <<"-----1-----"<< std::endl;
+	print(first, "first");
+	print(second, "second");
+
+	std::cout <<"-----2-----"<< std::endl;
+	second[1] = 9;
+	print(second, "second");
+	first.assign(second.begin(), second.begin() + 2);
+	print(first, "first");
+
+	std::cout <<"-----3-----"<< std::endl;
+	first.assign(4, 10);
+	print(first, "first");
+
+
+
+	std::cout <<"-----4-----"<< std::endl;
+	int	myints[] = {1, 2, 3, 4, 5};
+	std::cout << "Size of third : " << third.size() << std::endl;
+	third.assign (myints, myints + 5);
+	std::cout << "Size of third : " << third.size() << ' ' << third.capacity() << std::endl << std::endl;
+	print(second, "second");
+	print(third, "third");
+
+	std::cout <<"-----5-----"<< std::endl;
+	NAMESPACE::vector<std::string>		fourth;
+	NAMESPACE::vector<std::string>		fifth;
+	fourth.assign(3, "Hello !");
+	print(fourth, "fourth");
+
+	std::cout <<"-----6-----"<< std::endl;
+	NAMESPACE::vector<std::string>::const_iterator scit = fourth.begin();
+	NAMESPACE::vector<std::string>::const_iterator scite = fourth.end();
+	NAMESPACE::vector<std::string>::iterator sit = fourth.begin();
+	NAMESPACE::vector<std::string>::iterator site = fourth.end();
+	fifth.assign(scit, scite);
+	print(fifth, "fifth");
+
+	std::cout <<"-----7-----"<< std::endl;
+	sit = fifth.begin();
+	*sit = "HIHI";
+	print(fifth, "fifth");
+
+
+	std::cout <<"-----8-----"<< std::endl;
+	first.assign (7, 100);
+	print(first, "first");
+	
+	std::cout <<"-----9-----"<< std::endl;
+	second.assign (first.begin() + 1, first.end() - 2);
+	print(second, "second");
+	
+	std::cout <<"-----10----"<< std::endl;
+	third.assign (myints, myints + 5);
+	print(third, "third");
+
+	std::cout <<"-----11----"<< std::endl;
+	first.assign(third.begin(), third.end() - 3);
+	print(first, "first");
+
+	std::cout <<"-----12----"<< std::endl;
+	third.assign(first.begin(), first.end());
+	print(third, "third");
+
+
+	std::cout << "--INSERT--" << std::endl;
+	NAMESPACE::vector<int>::iterator	it = first.begin();
+	NAMESPACE::vector<int>::iterator	ite = first.begin();
+	it = first.begin();
+
+	std::cout << "-----1-----" << std::endl;
+	it = first.insert(first.end(), 100);
+	std::cout << "IT " << *it << std::endl;
+	print(first, "first");
+
+	std::cout << "MIT " << *it << std::endl;
+
+	std::cout << "-----2-----" << std::endl;
+	it = first.insert(first.begin(), 200);
+	std::cout << "IT " << *it << std::endl;
+	print(first, "first");
+
+	std::cout << "MIT " << *it << std::endl;
+
+	std::cout << "-----3-----" << std::endl;
+	it = first.insert(first.begin() + 2, 300);
+	std::cout << "IT " << *it << std::endl;
+	print(first, "first");
+
+	std::cout << "MIT " << *it << std::endl;
+
+	std::cout << "-----4-----" << std::endl;
+	it = first.insert(first.begin() + 2, 400);
+	std::cout << "IT " << *it << std::endl;
+	print(first, "first");
+
+	std::cout << "MIT " << *it << std::endl;
+
+	std::cout << "-----5-----" << std::endl;
+	first.insert(first.begin(), 3, 600);
+	print(first, "first");
+
+
+	std::cout << "-----6-----" << std::endl;
+	first.insert(first.begin() + 3, 3 , 700);
+	print(first, "first");
+
+
+	std::cout << "-----7-----" << std::endl;
+	first.insert(first.end(), 3 , 800);
+	print(first, "first");
+
+	int i = 0;
+
+	std::cout << "-----8-----" << std::endl;
+	for (; i < 3; ++i)
+		second.push_back(i);
+	first.insert(first.begin(), second.begin(), second.end());
+	print(first, "first");
+
+	std::cout << "-----9-----" << std::endl;
+	second.clear();
+	for (; i < 6; ++i)
+		second.push_back(i);
+	first.insert(first.begin() + 3, second.begin(), second.end());
+	print(first, "first");
+
+	std::cout << "-----10----" << std::endl;
+	second.clear();
+	for(; i < 9;++i)
+		second.push_back(i);
+	first.insert(first.end(), second.begin(), second.end());
+	print(first, "first");
+
+	int	array [] = {501, 502, 503};
+
+	first.insert(first.begin(), array, array + 3);
+	print(first, "first");
+
+	try
+	{
+		first.insert(first.end(), array + 3, array + 2);
+		print(first, "first");
+	}
+	catch(std::exception &e){std::cout << e.what() << std::endl;}
+
+
+	std::cout << "--ERASE--" << std::endl;
+	NAMESPACE::vector<int>::iterator test;
+
+	print(first, "first");
+
+	std::cout << "1" << std::endl;
+	test = first.erase(first.begin());
+	std::cout << "TEST " << *test << std::endl;
+	print(first, "first");
+
+	std::cout << "2" << std::endl;
+	test = first.erase(first.end() - 1);
+	std::cout << "TEST " << *test << std::endl;
+	print(first, "first");
+
+	std::cout << "3" << std::endl;
+	test = first.erase(first.begin() + 3);
+	std::cout << "TEST " << *test << std::endl;
+	print(first, "first");
+
+	std::cout << "4" << std::endl;
+	test = first.erase(first.begin() + 7, first.end());
+	std::cout << "TEST " << *test << std::endl;
+	print(first, "first");
+
+	std::cout << "5" << std::endl;
+	test = first.erase(first.begin(), first.begin() + 3);
+	std::cout << "TEST " << *test << std::endl;
+	print(first, "first");
+
+	std::cout << "6" << std::endl;
+	test = first.erase(first.begin() + 1, first.begin() + 1);
+	std::cout << "TEST " << *test << std::endl;
+	print(first, "first");
+
+	std::cout << "7" << std::endl;
+	test = first.erase(first.begin() + 3, first.begin());
+	std::cout << "TEST " << *test << std::endl;
+	print(first, "first");
+
+
+	std::cout << "--SWAP--" << std::endl;
+	first.swap(second);
+	print(first, "first");
+	print(second, "second");
+
+	fifth.swap(fourth);
+	print(fourth, "fourth");
+	print(fifth, "fifth");
+
+	first.clear();
+	second.clear();
+	third.clear();
+	fourth.clear();
+	fifth.clear();
 
 	return (0);
 }

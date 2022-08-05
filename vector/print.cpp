@@ -1,20 +1,14 @@
 #include "vector.hpp"
 
 
-template <typename T>
-void print(std::vector< T>& a)
+	template <typename T>
+void print(NAMESPACE::vector< T>& a, std::string name)
 {
-	for (typename std::vector<T>::iterator it = a.begin(); it != a.end(); ++it)
-		std::cout << "ELEM : " << *it << std::endl;
-	std::cout << "SIZE " << a.size() << " CAPACITY " << a.capacity() << std::endl << std::endl;
-	std::cout << std::endl;
-}
-
-template <typename T>
-void print(ft::vector< T>& a)
-{
-	for (typename ft::vector<T>::iterator it = a.begin(); it != a.end(); ++it)
-		std::cout << "ELEM : " << *it << std::endl;
-	std::cout << "SIZE " << a.size() << " CAPACITY " << a.capacity() <<  std::endl << std::endl;
+	if (a.begin() < a.end())
+	{
+		for (typename NAMESPACE::vector<T>::iterator it = a.begin(); it != a.end(); ++it)
+			std::cout << name << " : " << *it << std::endl;
+		std::cout << "[SIZE " << a.size() << "] [CAPACITY " << a.capacity() << "] [MAX_SIZE " << a.max_size() << ']' << std::endl << std::endl;
+	}
 	std::cout << std::endl;
 }
