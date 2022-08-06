@@ -12,11 +12,11 @@ int	main(void)
 		real.push_back(i);
 
 	p = real.get_allocator().allocate(5);
-	print(real);
+	print(real, "real");
 
 	for (i = 0; i < 5; ++i)
 		real.get_allocator().construct(&p[i], i);
-	print(real);
+	print(real, "real");
 	for (i = 0; i < 5; ++i)
 		std::cout << p[i] << ' ' << std::endl;
 

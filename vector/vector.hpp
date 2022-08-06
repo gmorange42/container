@@ -506,5 +506,10 @@ namespace ft
 				_arr = new_arr;
 			}
 		};
+	template <class T, class Alloc>
+		void	swap(vector<T, Alloc>& x, vector<T, Alloc>& y)
+		{
+			x.swap(y);
+		}
 }
 #endif

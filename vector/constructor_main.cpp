@@ -1,40 +1,19 @@
 #include "vector.hpp"
 
-int main(void)
+int main ()
 {
-//	std::vector<int>	real;
-//
-//	for (int i = 0; i < 4; ++i)
-//		real.push_back(i);
-//
-//	std::vector<int>	cpy_real(real);
-//	
-//	real.front() = 6;
-//	real.back() = 7;
-//
-//	for (std::vector<int>::size_type i = 0; i < real.size(); ++i)
-//		std::cout << real.at(i) << std::endl;
-//
-//	for (std::vector<int>::size_type i = 0; i < cpy_real.size(); ++i)
-//		std::cout << cpy_real.at(i) << std::endl;
+	NAMESPACE::vector<int> first;
+	NAMESPACE::vector<int> second (4,100);
+	NAMESPACE::vector<int> third (second.begin(),second.end());
+	NAMESPACE::vector<int> fourth (third);
 
+	int myints[] = {16,2,77,29};
+	NAMESPACE::vector<int> fifth (myints, myints + sizeof(myints) / sizeof(int) );
 
-	ft::vector<std::string>	real;
+	std::cout << "The contents of fifth are:";
+	for (NAMESPACE::vector<int>::iterator it = fifth.begin(); it != fifth.end(); ++it)
+		std::cout << ' ' << *it;
+	std::cout << '\n';
 
-	real.push_back("ZERO");
-	real.push_back("ONE");
-	real.push_back("TWO");
-	real.push_back("THREE");
-
-const	ft::vector<std::string>	cpy_real(real);
-	
-	real.front() = "PONEY";
-	real.back() = "MANGO";
-
-	for (std::vector<std::string>::size_type i = 0; i < real.size(); ++i)
-		std::cout << real.at(i) << std::endl;
-
-	for (std::vector<std::string>::size_type i = 0; i < cpy_real.size(); ++i)
-		std::cout << cpy_real.at(i) << std::endl;
-	return (0);
+	return 0;
 }
