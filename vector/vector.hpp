@@ -506,6 +506,46 @@ namespace ft
 				_arr = new_arr;
 			}
 		};
+
+	template <class T, class Alloc>
+		bool	operator==(const vector<T, Alloc>& lhs, const vector <T, Alloc>& rhs)
+		{
+			typename ft::vector<T>::const_iterator	lhs_it = lhs.begin();
+			typename ft::vector<T>::const_iterator	rhs_it = rhs.begin();
+
+			while (lhs_it != lhs.end() && rhs_it != rhs.end())
+			{
+				if (*lhs_it == *rhs_it)
+				{
+					++lhs_it;
+					++rhs_it;
+				}
+				else
+					return (false);
+			}
+			if (lhs_it == lhs.end() && rhs_it == rhs.end())
+				return (true);
+			return (false);
+		}
+
+	template <class T, class Alloc>
+		bool	operator!=(const vector<T, Alloc>& lhs, const vector <T, Alloc>& rhs)
+		{
+			return (!(lhs == rhs));
+		}
+
+	template <class T, class Alloc>
+		bool	operator<(const vector<T, Alloc>& lhs, const vector <T, Alloc>& rhs);
+
+	template <class T, class Alloc>
+		bool	operator<=(const vector<T, Alloc>& lhs, const vector <T, Alloc>& rhs);
+
+	template <class T, class Alloc>
+		bool	operator>(const vector<T, Alloc>& lhs, const vector <T, Alloc>& rhs);
+
+	template <class T, class Alloc>
+		bool	operator>=(const vector<T, Alloc>& lhs, const vector <T, Alloc>& rhs);
+
 	template <class T, class Alloc>
 		void	swap(vector<T, Alloc>& x, vector<T, Alloc>& y)
 		{
