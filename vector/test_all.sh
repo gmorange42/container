@@ -5,5 +5,6 @@
 ./test_modifier.sh
 ./test_operation.sh
 ./test_swap.sh
+./test_relational_operator.sh
 rm mine
 rm real

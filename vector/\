@@ -56,9 +56,8 @@ namespace ft
 
 			explicit vector(const allocator_type& alloc = allocator_type()) : _arr(0), _alloc(alloc), _size(0), _capacity(0) {}
 
-			explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : _alloc(alloc), _size(0), _capacity(0), _arr(NULL)
+			explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : _alloc(alloc), _size(n), _capacity(n)
 			{
-//				_arr = _alloc.allocate(n);
 				assign(n, val);
 //				_arr = _alloc.allocate(n);
 //				for (size_type i = 0; i < _size; ++i)
@@ -66,22 +65,20 @@ namespace ft
 			}
 
 			template <class InputIterator>
-				vector (/*typename ft::enable_if<!ft::is_integral<InputIterator>::value, */InputIterator/*>::type */first,
+				vector (typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type first,
 						InputIterator last, const allocator_type& alloc = allocator_type()) :
 					_alloc(alloc),
-					_size(0),
-					_capacity(0),
-					_arr(NULL)
+					_size(last - first),
+					_capacity(_size)
 			{
-				assign(first, last);
-//				_arr = _alloc.allocate(_size);
-//				int i = 0;
-//				while (first != last)
-//				{
-//					_alloc.construct(_arr + i, *first);
-//					++first;
-//					++i;
-//				}
+				_arr = _alloc.allocate(_size);
+				int i = 0;
+				while (first != last)
+				{
+					_alloc.construct(_arr + i, *first);
+					++first;
+					++i;
+				}
 			}
 
 			vector(const vector& x)
@@ -276,7 +273,8 @@ namespace ft
 
 			void assign (size_type n, const value_type& val)
 			{
-				if (n > _capacity || !_arr)
+				std::cout << "----------1---------" << std::endl;
+				if (n > _capacity)
 					reserve(n);
 				else
 					clear();
@@ -474,8 +472,6 @@ namespace ft
 
 			void	clear(void)
 			{
-//				if (!_arr)
-//					return ;
 				for (size_type i = 0; i < _size; ++i)
 					_alloc.destroy(_arr + i);
 				_size = 0;
