@@ -3,7 +3,6 @@
 
 int	main(void)
 {
-	unsigned int i;
 	NAMESPACE::vector<int> foo(3, 100);
 	NAMESPACE::vector<int> bar(5, 200);
 

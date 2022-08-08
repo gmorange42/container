@@ -6,5 +6,6 @@
 ./test_operation.sh
 ./test_swap.sh
 ./test_relational_operator.sh
+./test_double_vector.sh
 rm mine
 rm real

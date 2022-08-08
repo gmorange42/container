@@ -56,32 +56,20 @@ namespace ft
 
 			explicit vector(const allocator_type& alloc = allocator_type()) : _arr(0), _alloc(alloc), _size(0), _capacity(0) {}
 
-			explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : _alloc(alloc), _size(0), _capacity(0), _arr(NULL)
+			explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : _arr(NULL), _alloc(alloc), _size(0), _capacity(0)
 			{
-//				_arr = _alloc.allocate(n);
 				assign(n, val);
-//				_arr = _alloc.allocate(n);
-//				for (size_type i = 0; i < _size; ++i)
-//					_alloc.construct(_arr + i, val);
 			}
 
 			template <class InputIterator>
-				vector (/*typename ft::enable_if<!ft::is_integral<InputIterator>::value, */InputIterator/*>::type */first,
+				vector (InputIterator first,
 						InputIterator last, const allocator_type& alloc = allocator_type()) :
+					_arr(NULL),
 					_alloc(alloc),
 					_size(0),
-					_capacity(0),
-					_arr(NULL)
+					_capacity(0)
 			{
 				assign(first, last);
-//				_arr = _alloc.allocate(_size);
-//				int i = 0;
-//				while (first != last)
-//				{
-//					_alloc.construct(_arr + i, *first);
-//					++first;
-//					++i;
-//				}
 			}
 
 			vector(const vector& x)
@@ -265,7 +253,7 @@ namespace ft
 			template<class InputIterator>
 				void assign (typename ft::enable_if<!ft::is_integral<InputIterator>::value, InputIterator>::type first, InputIterator last)
 				{
-					if (last - first > _capacity)
+					if (static_cast<size_type>(last - first) > _capacity)
 						reserve(last - first);
 					else
 						clear();
@@ -335,7 +323,6 @@ namespace ft
 				{
 					size_type	i = 0;
 					value_type*	temp_arr = _alloc.allocate(_capacity + 1);
-					iterator it = begin();
 					for (iterator it = begin(); it < position; ++it)
 					{
 						_alloc.construct(temp_arr + i, *it);
@@ -395,8 +382,7 @@ namespace ft
 			{
 				if (position == end() - 1)
 				{
-					_alloc.destroy(&position);
-					--_size;
+					pop_back();
 					return(position);
 				}
 				else
@@ -425,11 +411,8 @@ namespace ft
 			{
 				if (last == end())
 				{
-					_size -= last - first;
-					for (const_iterator it = begin(); it < end(); ++it)
-					{
-						_alloc.destroy(&it);
-					}
+					for (size_type i = last - first; i > 0; --i)
+						pop_back();
 					return (end());
 				}
 				else
@@ -474,8 +457,6 @@ namespace ft
 
 			void	clear(void)
 			{
-//				if (!_arr)
-//					return ;
 				for (size_type i = 0; i < _size; ++i)
 					_alloc.destroy(_arr + i);
 				_size = 0;

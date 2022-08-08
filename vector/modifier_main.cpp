@@ -92,7 +92,6 @@ int	main(void)
 	NAMESPACE::vector<std::string>::const_iterator scit = fourth.begin();
 	NAMESPACE::vector<std::string>::const_iterator scite = fourth.end();
 	NAMESPACE::vector<std::string>::iterator sit = fourth.begin();
-	NAMESPACE::vector<std::string>::iterator site = fourth.end();
 	fifth.assign(scit, scite);
 	print(fifth, "fifth");
 
@@ -125,7 +124,6 @@ int	main(void)
 
 	std::cout << "--INSERT--" << std::endl;
 	NAMESPACE::vector<int>::iterator	it = first.begin();
-	NAMESPACE::vector<int>::iterator	ite = first.begin();
 	it = first.begin();
 
 	std::cout << "-----1-----" << std::endl;
