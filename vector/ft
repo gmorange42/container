@@ -1,0 +1,72 @@
+vct : 21
+vct : 18
+vct : 15
+vct : 12
+vct : 9
+vct : 6
+vct : 3
+[SIZE 7] [CAPACITY 7] [MAX_SIZE 2305843009213693951]
+
+
+vct_two : 20
+vct_two : 15
+vct_two : 10
+vct_two : 5
+[SIZE 4] [CAPACITY 4] [MAX_SIZE 2305843009213693951]
+
+
+	### After assign(): ###
+	### After assign(): ###
+vct : 20
+vct : 15
+vct : 10
+vct : 5
+[SIZE 4] [CAPACITY 7] [MAX_SIZE 2305843009213693951]
+
+
+vct_two : 42
+vct_two : 42
+[SIZE 2] [CAPACITY 4] [MAX_SIZE 2305843009213693951]
+
+
+vct_three : 21
+vct_three : 18
+vct_three : 15
+vct_three : 12
+vct_three : 9
+vct_three : 6
+vct_three : 3
+[SIZE 7] [CAPACITY 7] [MAX_SIZE 2305843009213693951]
+
+
+vct_four : 21
+vct_four : 21
+vct_four : 21
+vct_four : 21
+[SIZE 4] [CAPACITY 4] [MAX_SIZE 2305843009213693951]
+
+
+vct_four : 84
+vct_four : 84
+vct_four : 84
+vct_four : 84
+vct_four : 84
+vct_four : 84
+[SIZE 6] [CAPACITY 6] [MAX_SIZE 2305843009213693951]
+
+
+	### assign() on enough capacity and low size: ###
+vct : 53
+vct : 53
+vct : 53
+vct : 53
+vct : 53
+[SIZE 5] [CAPACITY 7] [MAX_SIZE 2305843009213693951]
+
+
+vct_two : 21
+vct_two : 18
+vct_two : 15
+[SIZE 3] [CAPACITY 4] [MAX_SIZE 2305843009213693951]
+
+
