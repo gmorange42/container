@@ -1,72 +1,629 @@
-vct : 21
-vct : 18
-vct : 15
-vct : 12
-vct : 9
-vct : 6
-vct : 3
-[SIZE 7] [CAPACITY 7] [MAX_SIZE 2305843009213693951]
+--PUSH_BACK-&&-POP_BACK--
+
+first : 9
+[SIZE 1] [CAPACITY 1] [MAX_SIZE 2305843009213693951]
 
 
-vct_two : 20
-vct_two : 15
-vct_two : 10
-vct_two : 5
+first : 9
+first : 7
+[SIZE 2] [CAPACITY 2] [MAX_SIZE 2305843009213693951]
+
+
+first : 9
+first : 7
+first : 5
+[SIZE 3] [CAPACITY 4] [MAX_SIZE 2305843009213693951]
+
+
+first : 9
+first : 7
+first : 5
+first : 3
 [SIZE 4] [CAPACITY 4] [MAX_SIZE 2305843009213693951]
 
 
-	### After assign(): ###
-	### After assign(): ###
-vct : 20
-vct : 15
-vct : 10
-vct : 5
+first : 9
+first : 7
+first : 5
+first : 3
+first : 4
+[SIZE 5] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
+
+
+first : 9
+first : 7
+first : 5
+first : 3
+[SIZE 4] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
+
+
+first : 9
+first : 7
+first : 5
+[SIZE 3] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
+
+
+first : 9
+first : 7
+[SIZE 2] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
+
+
+first : 9
+[SIZE 1] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
+
+
+
+first : 6
+[SIZE 1] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
+
+
+first : 6
+first : 66
+[SIZE 2] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
+
+
+first : 6
+first : 66
+first : 666
+[SIZE 3] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
+
+
+first : 6
+first : 66
+first : 666
+first : 6666
+[SIZE 4] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
+
+
+--ASSIGN--
+-----1-----
+first : 100
+first : 100
+first : 100
+first : 100
+first : 100
+first : 100
+first : 100
+[SIZE 7] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
+
+
+second : 100
+second : 100
+second : 100
+second : 100
+second : 100
+second : 100
+second : 100
+[SIZE 7] [CAPACITY 7] [MAX_SIZE 2305843009213693951]
+
+
+-----2-----
+second : 100
+second : 9
+second : 100
+second : 100
+second : 100
+second : 100
+second : 100
+[SIZE 7] [CAPACITY 7] [MAX_SIZE 2305843009213693951]
+
+
+first : 100
+first : 9
+[SIZE 2] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
+
+
+-----3-----
+first : 10
+first : 10
+first : 10
+first : 10
+[SIZE 4] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
+
+
+-----4-----
+Size of third : 0
+Size of third : 5 5
+
+second : 100
+second : 9
+second : 100
+second : 100
+second : 100
+second : 100
+second : 100
+[SIZE 7] [CAPACITY 7] [MAX_SIZE 2305843009213693951]
+
+
+third : 1
+third : 2
+third : 3
+third : 4
+third : 5
+[SIZE 5] [CAPACITY 5] [MAX_SIZE 2305843009213693951]
+
+
+-----5-----
+fourth : Hello !
+fourth : Hello !
+fourth : Hello !
+[SIZE 3] [CAPACITY 3] [MAX_SIZE 288230376151711743]
+
+
+-----6-----
+fifth : Hello !
+fifth : Hello !
+fifth : Hello !
+[SIZE 3] [CAPACITY 3] [MAX_SIZE 288230376151711743]
+
+
+-----7-----
+fifth : HIHI
+fifth : Hello !
+fifth : Hello !
+[SIZE 3] [CAPACITY 3] [MAX_SIZE 288230376151711743]
+
+
+-----8-----
+first : 100
+first : 100
+first : 100
+first : 100
+first : 100
+first : 100
+first : 100
+[SIZE 7] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
+
+
+-----9-----
+second : 100
+second : 100
+second : 100
+second : 100
 [SIZE 4] [CAPACITY 7] [MAX_SIZE 2305843009213693951]
 
 
-vct_two : 42
-vct_two : 42
-[SIZE 2] [CAPACITY 4] [MAX_SIZE 2305843009213693951]
+-----10----
+third : 1
+third : 2
+third : 3
+third : 4
+third : 5
+[SIZE 5] [CAPACITY 5] [MAX_SIZE 2305843009213693951]
 
 
-vct_three : 21
-vct_three : 18
-vct_three : 15
-vct_three : 12
-vct_three : 9
-vct_three : 6
-vct_three : 3
-[SIZE 7] [CAPACITY 7] [MAX_SIZE 2305843009213693951]
+-----11----
+first : 1
+first : 2
+[SIZE 2] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
 
 
-vct_four : 21
-vct_four : 21
-vct_four : 21
-vct_four : 21
-[SIZE 4] [CAPACITY 4] [MAX_SIZE 2305843009213693951]
+-----12----
+third : 1
+third : 2
+[SIZE 2] [CAPACITY 5] [MAX_SIZE 2305843009213693951]
 
 
-vct_four : 84
-vct_four : 84
-vct_four : 84
-vct_four : 84
-vct_four : 84
-vct_four : 84
-[SIZE 6] [CAPACITY 6] [MAX_SIZE 2305843009213693951]
+--INSERT--
+-----1-----
+IT 100
+first : 1
+first : 2
+first : 100
+[SIZE 3] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
 
 
-	### assign() on enough capacity and low size: ###
-vct : 53
-vct : 53
-vct : 53
-vct : 53
-vct : 53
-[SIZE 5] [CAPACITY 7] [MAX_SIZE 2305843009213693951]
+MIT 100
+-----2-----
+IT 200
+first : 200
+first : 1
+first : 2
+first : 100
+[SIZE 4] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
 
 
-vct_two : 21
-vct_two : 18
-vct_two : 15
-[SIZE 3] [CAPACITY 4] [MAX_SIZE 2305843009213693951]
+MIT 200
+-----3-----
+IT 300
+first : 200
+first : 1
+first : 300
+first : 2
+first : 100
+[SIZE 5] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
+
+
+MIT 300
+-----4-----
+IT 400
+first : 200
+first : 1
+first : 400
+first : 300
+first : 2
+first : 100
+[SIZE 6] [CAPACITY 8] [MAX_SIZE 2305843009213693951]
+
+
+MIT 400
+-----5-----
+first : 600
+first : 600
+first : 600
+first : 200
+first : 1
+first : 400
+first : 300
+first : 2
+first : 100
+[SIZE 9] [CAPACITY 12] [MAX_SIZE 2305843009213693951]
+
+
+-----6-----
+first : 600
+first : 600
+first : 600
+first : 700
+first : 700
+first : 700
+first : 200
+first : 1
+first : 400
+first : 300
+first : 2
+first : 100
+[SIZE 12] [CAPACITY 12] [MAX_SIZE 2305843009213693951]
+
+
+-----7-----
+first : 600
+first : 600
+first : 600
+first : 700
+first : 700
+first : 700
+first : 200
+first : 1
+first : 400
+first : 300
+first : 2
+first : 100
+first : 800
+first : 800
+first : 800
+[SIZE 15] [CAPACITY 24] [MAX_SIZE 2305843009213693951]
+
+
+-----8-----
+first : 100
+first : 100
+first : 100
+first : 100
+first : 0
+first : 1
+first : 2
+first : 600
+first : 600
+first : 600
+first : 700
+first : 700
+first : 700
+first : 200
+first : 1
+first : 400
+first : 300
+first : 2
+first : 100
+first : 800
+first : 800
+first : 800
+[SIZE 22] [CAPACITY 24] [MAX_SIZE 2305843009213693951]
+
+
+-----9-----
+first : 100
+first : 100
+first : 100
+first : 3
+first : 4
+first : 5
+first : 100
+first : 0
+first : 1
+first : 2
+first : 600
+first : 600
+first : 600
+first : 700
+first : 700
+first : 700
+first : 200
+first : 1
+first : 400
+first : 300
+first : 2
+first : 100
+first : 800
+first : 800
+first : 800
+[SIZE 25] [CAPACITY 44] [MAX_SIZE 2305843009213693951]
+
+
+-----10----
+first : 100
+first : 100
+first : 100
+first : 3
+first : 4
+first : 5
+first : 100
+first : 0
+first : 1
+first : 2
+first : 600
+first : 600
+first : 600
+first : 700
+first : 700
+first : 700
+first : 200
+first : 1
+first : 400
+first : 300
+first : 2
+first : 100
+first : 800
+first : 800
+first : 800
+first : 6
+first : 7
+first : 8
+[SIZE 28] [CAPACITY 44] [MAX_SIZE 2305843009213693951]
+
+
+-----11----
+first : 501
+first : 502
+first : 503
+first : 100
+first : 100
+first : 100
+first : 3
+first : 4
+first : 5
+first : 100
+first : 0
+first : 1
+first : 2
+first : 600
+first : 600
+first : 600
+first : 700
+first : 700
+first : 700
+first : 200
+first : 1
+first : 400
+first : 300
+first : 2
+first : 100
+first : 800
+first : 800
+first : 800
+first : 6
+first : 7
+first : 8
+[SIZE 31] [CAPACITY 44] [MAX_SIZE 2305843009213693951]
+
+
+-----12----
+vector::_M_range_insert
+--ERASE--
+first : 501
+first : 502
+first : 503
+first : 100
+first : 100
+first : 100
+first : 3
+first : 4
+first : 5
+first : 100
+first : 0
+first : 1
+first : 2
+first : 600
+first : 600
+first : 600
+first : 700
+first : 700
+first : 700
+first : 200
+first : 1
+first : 400
+first : 300
+first : 2
+first : 100
+first : 800
+first : 800
+first : 800
+first : 6
+first : 7
+first : 8
+[SIZE 31] [CAPACITY 44] [MAX_SIZE 2305843009213693951]
+
+
+1
+TEST 502
+first : 502
+first : 503
+first : 100
+first : 100
+first : 100
+first : 3
+first : 4
+first : 5
+first : 100
+first : 0
+first : 1
+first : 2
+first : 600
+first : 600
+first : 600
+first : 700
+first : 700
+first : 700
+first : 200
+first : 1
+first : 400
+first : 300
+first : 2
+first : 100
+first : 800
+first : 800
+first : 800
+first : 6
+first : 7
+first : 8
+[SIZE 30] [CAPACITY 44] [MAX_SIZE 2305843009213693951]
+
+
+2
+TEST 8
+first : 502
+first : 503
+first : 100
+first : 100
+first : 100
+first : 3
+first : 4
+first : 5
+first : 100
+first : 0
+first : 1
+first : 2
+first : 600
+first : 600
+first : 600
+first : 700
+first : 700
+first : 700
+first : 200
+first : 1
+first : 400
+first : 300
+first : 2
+first : 100
+first : 800
+first : 800
+first : 800
+first : 6
+first : 7
+[SIZE 29] [CAPACITY 44] [MAX_SIZE 2305843009213693951]
+
+
+3
+TEST 100
+first : 502
+first : 503
+first : 100
+first : 100
+first : 3
+first : 4
+first : 5
+first : 100
+first : 0
+first : 1
+first : 2
+first : 600
+first : 600
+first : 600
+first : 700
+first : 700
+first : 700
+first : 200
+first : 1
+first : 400
+first : 300
+first : 2
+first : 100
+first : 800
+first : 800
+first : 800
+first : 6
+first : 7
+[SIZE 28] [CAPACITY 44] [MAX_SIZE 2305843009213693951]
+
+
+4
+TEST 100
+first : 502
+first : 503
+first : 100
+first : 100
+first : 3
+first : 4
+first : 5
+[SIZE 7] [CAPACITY 44] [MAX_SIZE 2305843009213693951]
+
+
+5
+TEST 100
+first : 100
+first : 3
+first : 4
+first : 5
+[SIZE 4] [CAPACITY 44] [MAX_SIZE 2305843009213693951]
+
+
+6
+TEST 3
+first : 100
+first : 3
+first : 4
+first : 5
+[SIZE 4] [CAPACITY 44] [MAX_SIZE 2305843009213693951]
+
+
+7
+TEST 100
+first : 100
+first : 3
+first : 4
+first : 100
+first : 3
+first : 4
+first : 5
+[SIZE 7] [CAPACITY 44] [MAX_SIZE 2305843009213693951]
+
+
+--SWAP--
+first : 6
+first : 7
+first : 8
+[SIZE 3] [CAPACITY 7] [MAX_SIZE 2305843009213693951]
+
+
+second : 100
+second : 3
+second : 4
+second : 100
+second : 3
+second : 4
+second : 5
+[SIZE 7] [CAPACITY 44] [MAX_SIZE 2305843009213693951]
+
+
+fourth : HIHI
+fourth : Hello !
+fourth : Hello !
+[SIZE 3] [CAPACITY 3] [MAX_SIZE 288230376151711743]
+
+
+fifth : Hello !
+fifth : Hello !
+fifth : Hello !
+[SIZE 3] [CAPACITY 3] [MAX_SIZE 288230376151711743]
 
 

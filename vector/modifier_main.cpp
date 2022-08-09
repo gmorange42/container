@@ -192,11 +192,13 @@ int	main(void)
 
 	int	array [] = {501, 502, 503};
 
+	std::cout << "-----11----" << std::endl;
 	first.insert(first.begin(), array, array + 3);
 	print(first, "first");
 
 	try
 	{
+	std::cout << "-----12----" << std::endl;
 		first.insert(first.end(), array + 3, array + 2);
 		print(first, "first");
 	}
