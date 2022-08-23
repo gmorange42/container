@@ -6,6 +6,8 @@
 #include <vector>
 #include "../is_integral/is_integral.hpp"
 #include "../enable_if/enable_if.hpp"
+//#include "../../Oly/random_access_iterator.hpp"
+#include "../iterator/iterator.hpp"
 #include "distance.cpp"
 
 namespace ft
@@ -22,18 +24,16 @@ namespace ft
 			typedef typename allocator_type::const_pointer          const_pointer;
 //			typedef typename std::random_access_iterator_tag        iterator;
 //			typedef typename std::random_access_iterator_tag        const const_iterator;
-			typedef typename std::vector<T>::iterator	        iterator;
-			typedef typename std::vector<T>::const_iterator         const_iterator;
+//			typedef typename ft::random_access_iterator<value_type>	iterator;
+//			typedef typename ft::random_access_iterator<const value_type>	const_iterator;
+			typedef typename ft::VectorIterator<value_type>		iterator;
+			typedef typename ft::VectorIterator<const value_type>	const_iterator;
 			typedef typename std::reverse_iterator<iterator>        reverse_iterator;
 			typedef typename std::reverse_iterator<const_iterator>  const_reverse_iterator;
 			typedef std::ptrdiff_t                                  difference_type;
 			typedef size_t                                          size_type;
 
-			public:
-			value_type*	_arr;
-			allocator_type	_alloc;
-			size_type	_size;
-			size_type	_capacity;
+//			public:
 
 			//	pointer		_begin;
 			//	pointer		_end;
@@ -55,6 +55,7 @@ namespace ft
 
 			//----------------------CONTRUCTORS----------------------
 
+			public:
 			explicit vector(const allocator_type& alloc = allocator_type()) : _arr(0), _alloc(alloc), _size(0), _capacity(0) {}
 
 			explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : _arr(NULL), _alloc(alloc), _size(0), _capacity(0)
@@ -467,6 +468,10 @@ namespace ft
 			
 
 			private:
+			value_type*	_arr;
+			allocator_type	_alloc;
+			size_type	_size;
+			size_type	_capacity;
 
 			void	ft_reallocate(void)
 			{
