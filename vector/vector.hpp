@@ -8,6 +8,7 @@
 #include "../enable_if/enable_if.hpp"
 //#include "../../Oly/random_access_iterator.hpp"
 #include "../iterator/iterator.hpp"
+#include "../reverse_iterator.hpp"
 #include "distance.cpp"
 
 namespace ft
@@ -28,8 +29,8 @@ namespace ft
 //			typedef typename ft::random_access_iterator<const value_type>	const_iterator;
 			typedef typename ft::VectorIterator<value_type>		iterator;
 			typedef typename ft::VectorIterator<const value_type>	const_iterator;
-			typedef typename std::reverse_iterator<iterator>        reverse_iterator;
-			typedef typename std::reverse_iterator<const_iterator>  const_reverse_iterator;
+			typedef typename ft::reverse_iterator<iterator>        reverse_iterator;
+			typedef typename ft::reverse_iterator<const_iterator>  const_reverse_iterator;
 			typedef std::ptrdiff_t                                  difference_type;
 			typedef size_t                                          size_type;
 

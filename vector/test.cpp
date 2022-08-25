@@ -1,10 +1,8 @@
 #include "vector.hpp"
-//#include "print.cpp"
+#include "print.cpp"
 
-int main(void)
+int		main(void)
 {
-//	std::cout << "HERE" << std::endl;
-	ft::vector<std::string> first(0, "pouet");;
-//	ft::vector<int> first(3,3);;
-//	print(first, "pouet");
+	NAMESPACE::vector<int>	pouet(3, 5);
+	return (0);
 }
