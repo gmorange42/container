@@ -1,7 +1,4 @@
-#include <vector>
-#include <iostream>
-#include "../../includes/vector.hpp"
-#include <list>
+#include "vector_test.hpp"
 
 #define TESTED_TYPE int
 
@@ -12,12 +9,12 @@ void	bidirect_it_test(void)
 	for (int i = 1; i < 5; ++i)
 		lst.push_back(i * 3);
 
-	ft::distance(lst.begin(), lst.end());
-	NAMESPACE::vector<TESTED_TYPE> vct(lst.begin(), lst.end());
+	std::distance(lst.begin(), lst.end());
+	std::vector<TESTED_TYPE> vct(lst.begin(), lst.end());
 	print(vct, "vct");
 
 	lst_it = lst.begin();
-	ft::distance(vct.begin(), vct.end());
+	std::distance(vct.begin(), vct.end());
 	for (int i = 1; lst_it != lst.end(); ++i)
 		*lst_it++ = i * 5;
 	vct.assign(lst.begin(), lst.end());

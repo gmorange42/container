@@ -1,18 +1,16 @@
-#include <vector>
-#include <iostream>
-#include "../../includes/vector.hpp"
+#include "vector_test.hpp"
 
 void	capacity_test(void)
 {
 	std::cout << "-----1-----" << std::endl;
-	NAMESPACE::vector<std::string>		string_test(5, "chaton");
+	ft::vector<std::string>		string_test(5, "chaton");
 	print(string_test, "string_test");
 	string_test.push_back("PONEY");
 	print(string_test, "string_test");
 
 	std::cout << "-----2-----" << std::endl;
-	NAMESPACE::vector<int>		int_test;
-	for (NAMESPACE::vector<int>::size_type i = 0; i < 10; ++i)
+	ft::vector<int>		int_test;
+	for (ft::vector<int>::size_type i = 0; i < 10; ++i)
 		int_test.push_back(i);
 	print(int_test, "int_test");
 

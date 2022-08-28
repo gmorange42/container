@@ -1,11 +1,9 @@
-#include <vector>
-#include <iostream>
-#include "../../includes/vector.hpp"
+#include "vector_test.hpp"
 
 void	swap_test(void)
 {
-	NAMESPACE::vector<int> foo(3, 100);
-	NAMESPACE::vector<int> bar(5, 200);
+	std::vector<int> foo(3, 100);
+	std::vector<int> bar(5, 200);
 
 	swap(foo, bar);
 

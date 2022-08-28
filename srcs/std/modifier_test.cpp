@@ -1,12 +1,10 @@
-#include <vector>
-#include <iostream>
-#include "../../includes/vector.hpp"
+#include "vector_test.hpp"
 
 void	modifier_test(void)
 {
 
 	std::cout << "--PUSH_BACK-&&-POP_BACK--" << std::endl;
-	NAMESPACE::vector<int> first;
+	std::vector<int> first;
 	print(first, "first");
 
 	first.push_back(9);
@@ -53,8 +51,8 @@ void	modifier_test(void)
 
 
 	std::cout << "--ASSIGN--" << std::endl;
-	NAMESPACE::vector<int> second;
-	NAMESPACE::vector<int> third;
+	std::vector<int> second;
+	std::vector<int> third;
 
 	first.assign(7, 100);
 	second.assign(first.begin(), first.end());
@@ -84,15 +82,15 @@ void	modifier_test(void)
 	print(third, "third");
 
 	std::cout <<"-----5-----"<< std::endl;
-	NAMESPACE::vector<std::string>		fourth;
-	NAMESPACE::vector<std::string>		fifth;
+	std::vector<std::string>		fourth;
+	std::vector<std::string>		fifth;
 	fourth.assign(3, "Hello !");
 	print(fourth, "fourth");
 
 	std::cout <<"-----6-----"<< std::endl;
-	NAMESPACE::vector<std::string>::const_iterator scit = fourth.begin();
-	NAMESPACE::vector<std::string>::const_iterator scite = fourth.end();
-	NAMESPACE::vector<std::string>::iterator sit = fourth.begin();
+	std::vector<std::string>::const_iterator scit = fourth.begin();
+	std::vector<std::string>::const_iterator scite = fourth.end();
+	std::vector<std::string>::iterator sit = fourth.begin();
 	fifth.assign(scit, scite);
 	print(fifth, "fifth");
 
@@ -124,7 +122,7 @@ void	modifier_test(void)
 
 
 	std::cout << "--INSERT--" << std::endl;
-	NAMESPACE::vector<int>::iterator	it = first.begin();
+	std::vector<int>::iterator	it = first.begin();
 	it = first.begin();
 
 	std::cout << "-----1-----" << std::endl;
@@ -207,7 +205,7 @@ void	modifier_test(void)
 
 
 	std::cout << "--ERASE--" << std::endl;
-	NAMESPACE::vector<int>::iterator test;
+	std::vector<int>::iterator test;
 
 	print(first, "first");
 

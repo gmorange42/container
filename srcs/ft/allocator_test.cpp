@@ -1,11 +1,8 @@
-#include <vector>
-#include <iostream>
-#include "../../includes/vector.hpp"
-
+#include "vector_test.hpp"
 
 void	allocator_test(void)
 {
-	NAMESPACE::vector<int> real;
+	ft::vector<int> real;
 	int* p;
 	unsigned int i;
 

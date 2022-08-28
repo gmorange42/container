@@ -1,10 +1,8 @@
-#include <vector>
-#include <iostream>
-#include "../../includes/vector.hpp"
+#include "vector_test.hpp"
 
 void	operation_test(void)
 {
-	NAMESPACE::vector<int>		test;
+	ft::vector<int>		test;
 	for (size_t i = 0; i < 4; ++i)
 		test.push_back(i);
 
