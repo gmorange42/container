@@ -28,6 +28,7 @@ namespace ft
 	template <class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<const Key, T> > >
 		class map
 		{
+			//typedef typename ft::map <Key, T, Compare, Allocator> _Base;
 			public:
 				typedef Key								key_type;
 				typedef T								mapped_type;
@@ -59,7 +60,19 @@ namespace ft
 					return (comp(x. first, y.first));
 				}
 			};
-				explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) {}
+//				explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) {}
+				//map(void) : _Base() {};
+
+
+				//_Base&	base(void)
+				//{
+				//	return (*this);
+				//}
+
+				//const _Base&	base(void) const
+				//{
+				//	return (*this);
+				//}
 		};
 }
 
