@@ -16,12 +16,12 @@ namespace ft
 			typedef typename iterator_traits<Iterator>::reference		reference;
 			typedef typename iterator_traits<Iterator>::pointer		pointer;
 
-			reverse_iterator() {/*std::cout << "pouet1" << std::endl;*/}
+			reverse_iterator() {}
 
-			explicit reverse_iterator(Iterator x) : current(x) {/*std::cout << "pouet2" << std::endl;*/}
+			explicit reverse_iterator(Iterator x) : current(x) {}
 
 			template <class U>
-				reverse_iterator(const reverse_iterator<U>& u) : current(u.base()) {/*std::cout << "pouet3" << std::endl;*/}
+				reverse_iterator(const reverse_iterator<U>& u) : current(u.base()) {}
 
 			Iterator base() const
 			{

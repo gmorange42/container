@@ -85,7 +85,7 @@ class bintree
 			}
 		}
 
-		void	browse_prefix(::node<T> * node, void (*f) (T &))
+		void	browse_prefix(::node<T> * node, void (*f) (const T &))
 		{
 			if (node)
 			{
@@ -107,7 +107,7 @@ class bintree
 			}
 		}
 
-		void	browse_infix(::node<T> * node, void (*f) (T &))
+		void	browse_infix(::node<T> * node, void (*f) (const T &))
 		{
 			if (node)
 			{
@@ -129,7 +129,7 @@ class bintree
 			}
 		}
 
-		void	browse_suffix(::node<T> * node, void (*f) (T &))
+		void	browse_suffix(::node<T> * node, void (*f) (const T &))
 		{
 			if (node)
 			{
@@ -254,7 +254,6 @@ class search_tree : public bintree<T>
 		// add a new node to the tree
 		int	add(const T & elem)
 		{
-			std::cout << "add " << elem << std::endl;
 			if (present(elem))
 				return (0);
 
@@ -277,7 +276,6 @@ class search_tree : public bintree<T>
 		// remove a node to the tree
 		int	remove(const T & elem)
 		{
-			std::cout << "remove" << elem << std::endl;
 			::node<T>* node = find_value(elem);
 
 			if (!node)
@@ -349,7 +347,6 @@ class AVL_tree : public search_tree<T>
 		// rotate node to the left
 		void	lrotation(::node<T>* node)
 		{
-			std::cout << "lrotation " << node->data << std::endl;
 			if (!node)
 				return;
 
@@ -378,7 +375,6 @@ class AVL_tree : public search_tree<T>
 		// rotate node to the right
 		void	rrotation(::node<T>* node)
 		{
-			std::cout << "rrotation " << node->data << std::endl;
 			if (!node)
 				return;
 
@@ -415,7 +411,7 @@ class AVL_tree : public search_tree<T>
 			if (::search_tree<T>::add(elem) == 0)
 				return (0);
 
-			balance_tree(search_tree<T>::find_value(elem));
+		balance_tree(search_tree<T>::find_value(elem));
 		return (1);
 		}
 
@@ -433,53 +429,9 @@ class AVL_tree : public search_tree<T>
 
 		::node<T>&	get_root(void) const
 		{
-			return (*this->root);
+			return (this->root);
 		}
 
-		void	print_prefix_order(void)
-		{
-			print_prefix_order(this->root);
-		}
-
-		void	print_prefix_order(::node<T>* node )
-		{
-			if (node)
-			{
-				std::cout << node->data << std::endl;;
-				print_prefix_order(node->lson);
-				print_prefix_order(node->rson);
-			}
-		}
-
-		void	print_infix_order(void)
-		{
-			print_infix_order(this->root);
-		}
-
-		void	print_infix_order(::node<T>* node )
-		{
-			if (node)
-			{
-				print_infix_order(node->lson);
-				std::cout << node->data << std::endl;;
-				print_infix_order(node->rson);
-			}
-		}
-
-		void	print_suffix_order(void)
-		{
-			print_suffix_order(this->root);
-		}
-
-		void	print_suffix_order(::node<T>* node )
-		{
-			if (node)
-			{
-				print_suffix_order(node->lson);
-				print_suffix_order(node->rson);
-				std::cout << node->data << std::endl;;
-			}
-		}
 };
 
 #endif
