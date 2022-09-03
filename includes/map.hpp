@@ -3,6 +3,7 @@
 
 #include "reverse_iterator.hpp"
 #include "pair.hpp"
+#include "AVL_tree.hpp"
 #include <functional>
 #include <map>
 
@@ -28,11 +29,12 @@ namespace ft
 	template <class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<const Key, T> > >
 		class map
 		{
+
 			//typedef typename ft::map <Key, T, Compare, Allocator> _Base;
 			public:
 				typedef Key								key_type;
 				typedef T								mapped_type;
-				typedef std::pair<const Key, mapped_type>				value_type;
+				typedef ft::pair<const Key, mapped_type>				value_type;
 				typedef Compare								key_compare;
 				typedef Allocator							allocator_type;
 				typedef typename Allocator::reference					reference;
@@ -45,7 +47,15 @@ namespace ft
 				typedef typename Allocator::const_pointer				const_pointer;
 				typedef ft::reverse_iterator<iterator>					reverse_iterator;
 				typedef ft::reverse_iterator<const_iterator>				const_reverse_iterator;
+				typedef typename ft::node<value_type>					node_type;
 
+			private:
+				allocator_type	_alloc;
+				key_compare	_comp;
+				size_type	_size;
+				AVL_tree<value_type>	_tree;
+
+			public:
 				class value_compare : binary_function <value_type, value_type, bool>
 			{
 				friend class map;
@@ -60,8 +70,37 @@ namespace ft
 					return (comp(x. first, y.first));
 				}
 			};
-//				explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) {}
+				explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : _alloc(alloc), _comp(comp), _size(0),  _tree() {}
 				//map(void) : _Base() {};
+
+				template <class InputIterator>
+					map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : _alloc(alloc), _comp(comp), _size(0), _tree(0)
+					{
+						while (first != last)
+						{
+							_tree.add(first);
+							++_size;
+							++first;
+						}
+					}
+
+
+				void	print(void)
+				{
+					_tree.print_infix_order();
+				}
+
+				ft::pair<iterator, bool>	insert(const value_type& val)
+				{
+					ft::pair<iterator, bool> ret(NULL, false);
+
+					if (_tree.add(val))
+					{
+						ret.first = _tree.find_value;
+						ret.second = true;
+					}
+					return (ret);
+				}
 
 
 				//_Base&	base(void)
