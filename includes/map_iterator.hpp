@@ -1,0 +1,127 @@
+#ifndef MAP_ITERATOR_HPP
+#define MAP_ITERATOR_HPP
+
+#include "iterator_traits.hpp"
+#include "map.hpp"
+#include "AVL_tree.hpp"
+
+namespace ft
+{
+	template <class T, class Node>
+		class	MapIterator
+		{
+			public:
+				typedef	typename ft::bidirectional_iterator_tag			iterator_category;
+				typedef typename ft::iterator_traits<T*>::value_type		value_type;
+				typedef	typename ft::iterator_traits<T*>::difference_type	difference_type;
+				typedef typename ft::iterator_traits<T*>::pointer		pointer;
+				typedef typename ft::iterator_traits<T*>::reference		reference;
+
+			private:
+				Node*	_node;
+
+			public:
+				MapIterator() : _node(NULL) {}
+
+				MapIterator(const MapIterator & x) : _node(x._node) {}
+
+				MapIterator(Node* x) : _node(x) {}
+
+				MapIterator&	operator=(const MapIterator & x)
+				{
+					_node = x._node;
+					return (*this);
+				}
+
+				virtual	~MapIterator(void) {}
+
+
+				pointer	base(void) const
+				{
+					return (_node);
+				}
+
+				reference	operator*(void) const
+				{
+					return (_node->data);
+				}
+
+				pointer operator->(void) const
+				{
+					return (&_node->data);
+				}
+
+				MapIterator&	operator++(void)
+				{
+					if (_node->rson)
+						_node = _node->rson;
+					else
+					{
+						while (_node->dad && _node->dad->data.first < _node->data.first)
+						{
+							_node = _node->dad;
+							//std::cout << "in while " <<  _node->data.first << std::endl;
+						}
+						if (_node->dad)
+						_node = _node->dad;
+					}
+					return (*this);
+				}
+
+				MapIterator&	operator++(int)
+				{
+					MapIterator temp = *this;
+					if (_node->rson)
+						_node = _node->rson;
+					else
+					{
+						while (_node->dad && _node->dad->data.first < _node->data.first)
+						{
+							_node = _node->dad;
+							//std::cout << "in while " <<  _node->data.first << std::endl;
+						}
+						if (_node->dad)
+						_node = _node->dad;
+					}
+					return (temp);
+				}
+
+				MapIterator&	operator--(void)
+				{
+					if (_node->lson)
+						_node = _node->lson;
+					else
+					{
+						while (_node->dad && _node->dad->data.first > _node->data.first)
+						{
+							_node = _node->dad;
+							//std::cout << "in while " <<  _node->data.first << std::endl;
+						}
+						if (_node->dad)
+						_node = _node->dad;
+					}
+					return (*this);
+				}
+
+				MapIterator&	operator--(int)
+				{
+					MapIterator temp = *this;
+					if (_node->lson)
+						_node = _node->lson;
+					else
+					{
+						while (_node->dad && _node->dad->data.first > _node->data.first)
+						{
+							_node = _node->dad;
+							//std::cout << "in while " <<  _node->data.first << std::endl;
+						}
+						if (_node->dad)
+						_node = _node->dad;
+					}
+					return (temp);
+				}
+
+		};
+}
+
+#endif

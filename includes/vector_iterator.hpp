@@ -19,13 +19,13 @@ namespace ft
 				pointer	_ptr;
 
 			public:
-				VectorIterator() : _ptr(NULL) {};
+				VectorIterator() : _ptr(NULL) {}
 
 				VectorIterator(const VectorIterator & x) : _ptr(x._ptr) {}
 
 				VectorIterator(pointer x) : _ptr(x) {}
 
-				VectorIterator& operator=(const VectorIterator x)
+				VectorIterator& operator=(const VectorIterator & x)
 				{
 					_ptr = x._ptr;
 					return (*this);

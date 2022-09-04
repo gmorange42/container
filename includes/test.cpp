@@ -3,40 +3,56 @@
 #include "pair.hpp"
 #include <utility>
 #include "AVL_tree.hpp"
+#include "map_iterator.hpp"
 
 int main(void)
 {
-//	std::pair<std::map<int, int>::iterator, bool> real_pair;
-//	std::map<int, int> real;
-//	real.insert(std::make_pair(2, 1));
-//	real.insert(std::make_pair(7, 2));
-//	real.insert(std::make_pair(4, 3));
-//	real.insert(std::make_pair(5, 4));
-//	real_pair = real.insert(std::make_pair(9, 5));
-//
-////	std::cout << "real_pair.first : " << real_pair.first << std::endl;
-//	std::cout << "real_pair.second: " << real_pair.second << std::endl;
-//
-//	std::map<int, int>::iterator it = real.begin();
-//	std::map<int, int>::iterator ite = real.end();
-//
-//	std::cout << it->first << std::endl;
-//	std::cout << ite->first << std::endl;
+
+	NAMESPACE::map<int, int> mine;
+
+	mine.insert(NAMESPACE::make_pair(10, -10));
+	mine.insert(NAMESPACE::make_pair(5, -5));
+	mine.insert(NAMESPACE::make_pair(6, -6));
+	mine.insert(NAMESPACE::make_pair(12, -12));
+	mine.insert(NAMESPACE::make_pair(14, -14));
+	mine.insert(NAMESPACE::make_pair(8, -8));
+
+	NAMESPACE::map<int, int>::iterator it = mine.begin();
+
+	std::cout << "it->first : " << it->first << std::endl;
+	std::cout << "it->second : " << it->second << std::endl << std::endl;
+
+	++it;
+
+	std::cout << "it->first : " << it->first << std::endl;
+	std::cout << "it->second : " << it->second << std::endl << std::endl;
+
+	++it;
+
+	std::cout << "it->first : " << it->first << std::endl;
+	std::cout << "it->second : " << it->second << std::endl << std::endl;
+
+	--it;
+
+	std::cout << "it->first : " << it->first << std::endl;
+	std::cout << "it->second : " << it->second << std::endl << std::endl;
+	std::cout << "map.end()->first : " << (--mine.end())->first << std::endl;
+//	std::cout << "map.end()->second: " << (--mine.end())->second << std::endl;
+      std::cout << "map.end()->first : " << mine.end()->first << std::endl;
+//      std::cout << "map.end()->second: " << mine.end()->second << std::endl;
+
+	std::cout << "map.begin()->first : " << (--mine.begin())->first << std::endl;
+//	std::cout << "map.begin()->second: " << (--mine.begin())->second << std::endl;
+      std::cout << "map.begin()->first : " << mine.begin()->first << std::endl;
+//      std::cout << "map.begin()->second: " << mine.begin()->second << std::endl;
+
+      std::cout << "operator++ " << (++mine.begin())->first << ' ' << (++mine.begin())->second << std::endl;
 
 
-	ft::map<int, int> mine;
 
-	mine.insert(ft::make_pair(4, 6));
-	mine.insert(ft::make_pair(1, 4));
-	mine.insert(ft::make_pair(2, 3));
-	mine.insert(ft::make_pair(4, 7));
 
-	mine.print();
 
-	//ft::map<int, int> mine(it, ite);
 
-//	ft::map<int, int> pouet;
-//
 //	ft::pair<int, int> pair = ft::make_pair(4,7);
 //
 //	ft::AVL_tree<ft::pair<int, int> > tree;
@@ -46,7 +62,15 @@ int main(void)
 //	tree.add(ft::make_pair(5,7));
 //	tree.add(ft::make_pair(1,76));
 //	tree.add(ft::make_pair(6,-2));
+//	tree.add(ft::make_pair(7,-4));
+//	tree.add(ft::make_pair(8,-8));
 //
 //	tree.print_infix_order();
+//
+//	std::cout << "HERE " << tree.min(&tree.get_root())->data.first << std::endl;
+//	std::cout << "HERE " << tree.min(&tree.get_root())->data.second<< std::endl;
+//	std::cout << "HERE " << tree.max(&tree.get_root())->data.first << std::endl;
+//	std::cout << "HERE " << tree.max(&tree.get_root())->data.second<< std::endl;
+
 	return (0);
 }

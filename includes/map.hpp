@@ -6,6 +6,7 @@
 #include "AVL_tree.hpp"
 #include <functional>
 #include <map>
+#include "map_iterator.hpp"
 
 namespace ft
 {
@@ -35,19 +36,19 @@ namespace ft
 				typedef Key								key_type;
 				typedef T								mapped_type;
 				typedef ft::pair<const Key, mapped_type>				value_type;
+				typedef typename ft::node<value_type>					node_type;
 				typedef Compare								key_compare;
 				typedef Allocator							allocator_type;
 				typedef typename Allocator::reference					reference;
 				typedef typename Allocator::const_reference				const_reference;
-				typedef typename std::map<key_type, mapped_type>::iterator		iterator;
-				typedef typename std::map<key_type, mapped_type>::const_iterator	const_iterator;
+				typedef typename ft::MapIterator<value_type, node_type >				iterator;
+				typedef typename ft::MapIterator<const value_type, node_type >			const_iterator;
 				typedef typename Allocator::size_type					size_type;
 				typedef typename Allocator::difference_type				difference_type;
 				typedef typename Allocator::pointer					pointer;
 				typedef typename Allocator::const_pointer				const_pointer;
 				typedef ft::reverse_iterator<iterator>					reverse_iterator;
 				typedef ft::reverse_iterator<const_iterator>				const_reverse_iterator;
-				typedef typename ft::node<value_type>					node_type;
 
 			private:
 				allocator_type	_alloc;
@@ -90,16 +91,20 @@ namespace ft
 					_tree.print_infix_order();
 				}
 
-				ft::pair<iterator, bool>	insert(const value_type& val)
-				{
-					ft::pair<iterator, bool> ret(NULL, false);
+	//			ft::pair<iterator, bool>	insert(const value_type& val)
+	//			{
+	//				ft::pair<iterator, bool> ret(NULL, false);
 
-					if (_tree.add(val))
-					{
-						ret.first = _tree.find_value;
-						ret.second = true;
-					}
-					return (ret);
+	//				if (_tree.add(val))
+	//				{
+	//					ret.first = _tree.find_value;
+	//					ret.second = true;
+	//				}
+	//				return (ret);
+	//			}
+				void	insert(const value_type& val)
+				{
+					_tree.add(val);
 				}
 
 
@@ -112,6 +117,57 @@ namespace ft
 				//{
 				//	return (*this);
 				//}
+
+				//////ITERATORS/////
+
+				iterator	begin(void)
+				{
+					iterator it(_tree.min(&_tree.get_root()));
+					return (it);
+				}
+
+				const_iterator	begin(void) const
+				{
+					const_iterator it(_tree.min(&_tree.get_root()));
+					return (it);
+				}
+
+				iterator	end(void)
+				{
+					iterator it(_tree.max(&_tree.get_root()));
+					return (++it);
+				}
+
+				const_iterator	end(void) const
+				{
+					const_iterator it(_tree.max(&_tree.get_root()));
+					return (++it);
+				}
+
+//				reverse_iterator	rbegin(void)
+//				{
+//					reverse_iterator	it(end());
+//					return (it);
+//				}
+//
+//				const_reverse_iterator	rbegin(void) const
+//				{
+//					const_reverse_iterator	it(end());
+//					return (it);
+//				}
+//
+//				reverse_iterator	rend(void)
+//				{
+//					reverse_iterator	it(begin());
+//					return (it);
+//				}
+//
+//				const_reverse_iterator	rend(void) const
+//				{
+//					const_reverse_iterator	it(begin());
+//					return (it);
+//				}
+
 		};
 }
 
