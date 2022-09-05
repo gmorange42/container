@@ -36,7 +36,7 @@ namespace ft
 				virtual	~MapIterator(void) {}
 
 
-				pointer	base(void) const
+				ft::node<T>*	base(void) const
 				{
 					return (_node);
 				}
@@ -58,17 +58,14 @@ namespace ft
 					else
 					{
 						while (_node->dad && _node->dad->data.first < _node->data.first)
-						{
 							_node = _node->dad;
-							//std::cout << "in while " <<  _node->data.first << std::endl;
-						}
 						if (_node->dad)
 						_node = _node->dad;
 					}
 					return (*this);
 				}
 
-				MapIterator&	operator++(int)
+				MapIterator	operator++(int)
 				{
 					MapIterator temp = *this;
 					if (_node->rson)
@@ -76,10 +73,7 @@ namespace ft
 					else
 					{
 						while (_node->dad && _node->dad->data.first < _node->data.first)
-						{
 							_node = _node->dad;
-							//std::cout << "in while " <<  _node->data.first << std::endl;
-						}
 						if (_node->dad)
 						_node = _node->dad;
 					}
@@ -88,40 +82,62 @@ namespace ft
 
 				MapIterator&	operator--(void)
 				{
-					if (_node->lson)
+					if (_node->end)
+						_node = _node->dad;
+					else if (_node->lson)
 						_node = _node->lson;
 					else
 					{
 						while (_node->dad && _node->dad->data.first > _node->data.first)
-						{
 							_node = _node->dad;
-							//std::cout << "in while " <<  _node->data.first << std::endl;
-						}
 						if (_node->dad)
 						_node = _node->dad;
 					}
 					return (*this);
 				}
 
-				MapIterator&	operator--(int)
+				MapIterator	operator--(int)
 				{
 					MapIterator temp = *this;
+					if (_node->end)
+						_node = _node->dad;
 					if (_node->lson)
 						_node = _node->lson;
 					else
 					{
 						while (_node->dad && _node->dad->data.first > _node->data.first)
-						{
 							_node = _node->dad;
-							//std::cout << "in while " <<  _node->data.first << std::endl;
-						}
 						if (_node->dad)
 						_node = _node->dad;
 					}
 					return (temp);
 				}
 
+//		template <class U>
+//			bool	operator==(const MapIterator<U, Node*> & rhs) const
+//			{
+//				return(_node == rhs.base()->_node);
+//			}
+//
+//		template <class U>
+//			bool	operator!=(const MapIterator<U, Node*> & rhs) const
+//			{
+//				return(_node == rhs.base()->_node);
+//			}
 		};
+	template <class T, class U>
+		bool	operator==(const MapIterator<T, ft::node<T> > & lhs, const MapIterator<U, ft::node<U> > & rhs)
+		{
+			return (lhs.base() == rhs.base());
+		}
+
+	template <class T, class U>
+		bool	operator!=(const MapIterator<T, ft::node<T> > & lhs, const MapIterator<U, ft::node<U> > & rhs)
+		{
+			return (lhs.base() != rhs.base());
+		}
+
+
 }
 
 #endif

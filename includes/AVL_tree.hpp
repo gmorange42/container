@@ -14,8 +14,9 @@ namespace ft
 				node*	dad;
 				node*	lson;
 				node*	rson;
+				bool	end;
 
-				node (const T & d ) : data(d), dad(NULL), lson(NULL), rson(NULL)
+				node (const T & d ) : data(d), dad(NULL), lson(NULL), rson(NULL), end(false)
 				{
 //					data = d;
 //					dad = NULL;
@@ -23,7 +24,7 @@ namespace ft
 //					rson = NULL;
 				}
 
-				node(const T &d, node<T> * father) : data(d), dad(father), lson(NULL), rson(NULL)
+				node(const T &d, node<T> * father) : data(d), dad(father), lson(NULL), rson(NULL), end(false)
 				{
 //					data = d;
 //					dad = father;
@@ -38,9 +39,10 @@ namespace ft
 		{
 			protected:
 
-				Alloc	_alloc;
-				ft::node<T>* root;
-				int	nb_node;
+				Alloc		_alloc;
+				ft::node<T>*	root;
+				int		nb_node;
+				ft::node<T>*	_end;
 
 				bintree(const bintree &);
 				bintree&	operator=(const bintree &);
@@ -60,7 +62,7 @@ namespace ft
 				// return the greatest depth since the pointed node
 				int	depth_bintree(const ft::node<T> * node) const
 				{
-					if (!node)
+					if (!node || node->rson == this->root)
 						return(0);
 
 					int	ldepth = depth_bintree(node->lson);
@@ -152,6 +154,10 @@ namespace ft
 				bintree(void)
 				{
 					root = NULL;
+					_end = NULL;
+					_end = _alloc.allocate(1);
+					_alloc.construct(_end, ft::node<T>(ft::make_pair(NULL, NULL), NULL));
+					_end->end = true;
 					nb_node = 0;
 				}
 
@@ -202,7 +208,7 @@ namespace ft
 			{
 				if (!node)
 					return (NULL);
-				while (node->rson)
+				while (node->rson && !node->rson->end)
 					node = node->rson;
 				return (node);
 			}
@@ -276,6 +282,8 @@ namespace ft
 				else
 					dad->rson = child;
 				++this->nb_node;
+//				if (child == max(this->root))
+//					child->rson = this->_end;
 				return (1);
 			}
 
@@ -416,15 +424,23 @@ namespace ft
 			// add a elem and balance tree
 			int	add(const T & elem)
 			{
+				this->_end->dad = NULL;
+				if (this->nb_node > 0)
+				search_tree<T>::max(this->root)->rson = NULL;
 				if (ft::search_tree<T>::add(elem) == 0)
 					return (0);
 
 				balance_tree(search_tree<T>::find_value(elem));
+				this->_end->dad = search_tree<T>::max(this->root);
+				search_tree<T>::max(this->root)->rson = this->_end;
 				return (1);
 			}
 
 			int	remove(const T & elem)
 			{
+				this->_end->dad = NULL;
+				if (this->nb_node > 0)
+				search_tree<T>::max(this->root)->rson = NULL;
 				ft::node<T>* parent = search_tree<T>::find_value(elem);
 				parent = parent->dad;
 
@@ -432,6 +448,8 @@ namespace ft
 					return (0);
 
 				balance_tree(parent);
+				this->_end->dad = search_tree<T>::max(this->root);
+				search_tree<T>::max(this->root)->rson = this->_end;
 				return (1);
 			}
 

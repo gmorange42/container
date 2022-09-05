@@ -72,51 +72,19 @@ namespace ft
 				}
 			};
 				explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : _alloc(alloc), _comp(comp), _size(0),  _tree() {}
-				//map(void) : _Base() {};
 
 				template <class InputIterator>
-					map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : _alloc(alloc), _comp(comp), _size(0), _tree(0)
+					map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : _alloc(alloc), _comp(comp), _size(0), _tree()
 					{
 						while (first != last)
 						{
-							_tree.add(first);
+							std::cout << "WHILE" << first->first << std::endl;
+						//	_tree.add(first->first);
 							++_size;
 							++first;
 						}
 					}
 
-
-				void	print(void)
-				{
-					_tree.print_infix_order();
-				}
-
-	//			ft::pair<iterator, bool>	insert(const value_type& val)
-	//			{
-	//				ft::pair<iterator, bool> ret(NULL, false);
-
-	//				if (_tree.add(val))
-	//				{
-	//					ret.first = _tree.find_value;
-	//					ret.second = true;
-	//				}
-	//				return (ret);
-	//			}
-				void	insert(const value_type& val)
-				{
-					_tree.add(val);
-				}
-
-
-				//_Base&	base(void)
-				//{
-				//	return (*this);
-				//}
-
-				//const _Base&	base(void) const
-				//{
-				//	return (*this);
-				//}
 
 				//////ITERATORS/////
 
@@ -144,29 +112,45 @@ namespace ft
 					return (++it);
 				}
 
-//				reverse_iterator	rbegin(void)
-//				{
-//					reverse_iterator	it(end());
-//					return (it);
-//				}
-//
-//				const_reverse_iterator	rbegin(void) const
-//				{
-//					const_reverse_iterator	it(end());
-//					return (it);
-//				}
-//
-//				reverse_iterator	rend(void)
-//				{
-//					reverse_iterator	it(begin());
-//					return (it);
-//				}
-//
-//				const_reverse_iterator	rend(void) const
-//				{
-//					const_reverse_iterator	it(begin());
-//					return (it);
-//				}
+				reverse_iterator	rbegin(void)
+				{
+					reverse_iterator	it(end());
+					return (it);
+				}
+
+				const_reverse_iterator	rbegin(void) const
+				{
+					const_reverse_iterator	it(end());
+					return (it);
+				}
+
+				reverse_iterator	rend(void)
+				{
+					reverse_iterator	it(begin());
+					return (it);
+				}
+
+				const_reverse_iterator	rend(void) const
+				{
+					const_reverse_iterator	it(begin());
+					return (it);
+				}
+
+
+				/////MODIFIERS/////
+
+				ft::pair<iterator, bool>	insert(const value_type& val)
+				{
+					ft::pair<iterator, bool> ret(NULL, false);
+
+					if (_tree.add(val))
+					{
+						iterator it = _tree.find_value(val);
+						ret.first = it;
+						ret.second = true;
+					}
+					return (ret);
+				}
 
 		};
 }
