@@ -36,7 +36,7 @@ namespace ft
 				virtual	~MapIterator(void) {}
 
 
-				ft::node<T>*	base(void) const
+				Node*	base(void) const
 				{
 					return (_node);
 				}
@@ -60,7 +60,7 @@ namespace ft
 						while (_node->dad && _node->dad->data.first < _node->data.first)
 							_node = _node->dad;
 						if (_node->dad)
-						_node = _node->dad;
+							_node = _node->dad;
 					}
 					return (*this);
 				}
@@ -75,7 +75,7 @@ namespace ft
 						while (_node->dad && _node->dad->data.first < _node->data.first)
 							_node = _node->dad;
 						if (_node->dad)
-						_node = _node->dad;
+							_node = _node->dad;
 					}
 					return (temp);
 				}
@@ -91,7 +91,7 @@ namespace ft
 						while (_node->dad && _node->dad->data.first > _node->data.first)
 							_node = _node->dad;
 						if (_node->dad)
-						_node = _node->dad;
+							_node = _node->dad;
 					}
 					return (*this);
 				}
@@ -108,31 +108,44 @@ namespace ft
 						while (_node->dad && _node->dad->data.first > _node->data.first)
 							_node = _node->dad;
 						if (_node->dad)
-						_node = _node->dad;
+							_node = _node->dad;
 					}
 					return (temp);
 				}
 
-//		template <class U>
-//			bool	operator==(const MapIterator<U, Node*> & rhs) const
-//			{
-//				return(_node == rhs.base()->_node);
-//			}
+				operator MapIterator<const T, Node>(void) const
+				{
+					return (MapIterator<const T, Node>(_node));
+				}
+
+//					bool	operator==(const MapIterator<T, ft::node<T> > & rhs) const
+//					{
+//						return(this->base() == rhs.base());
+//					}
 //
-//		template <class U>
-//			bool	operator!=(const MapIterator<U, Node*> & rhs) const
-//			{
-//				return(_node == rhs.base()->_node);
-//			}
+//					bool	operator!=(const MapIterator<T, ft::node<T> > & rhs) const
+//					{
+//						return(this->base() == rhs.base());
+//					}
+//
+//					bool	operator==(MapIterator<T, ft::node<T> > & rhs) const
+//					{
+//						return(this->base() == rhs.base());
+//					}
+//
+//					bool	operator!=(MapIterator<T, ft::node<T> > & rhs) const
+//					{
+//						return(this->base() == rhs.base());
+//					}
 		};
-	template <class T, class U>
-		bool	operator==(const MapIterator<T, ft::node<T> > & lhs, const MapIterator<U, ft::node<U> > & rhs)
+	template <class T, class U, class Node>
+		bool	operator==(const MapIterator<T, Node> & lhs, const MapIterator<U, Node> & rhs)
 		{
 			return (lhs.base() == rhs.base());
 		}
 
-	template <class T, class U>
-		bool	operator!=(const MapIterator<T, ft::node<T> > & lhs, const MapIterator<U, ft::node<U> > & rhs)
+	template <class T, class U, class Node>
+		bool	operator!=(const MapIterator<T, Node> & lhs, const MapIterator<U, Node> & rhs)
 		{
 			return (lhs.base() != rhs.base());
 		}

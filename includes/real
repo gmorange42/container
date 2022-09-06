@@ -1,0 +1,24 @@
+ret.first->first 8
+it->first 5 it->second -5
+ite->first 14 ite->second -14
+rit->first 14 rit->second -14
+rite->first 5 rite->second -5
+5
+6
+8
+10
+12
+14
+here : 5
+Range : 5 -5
+Range : 6 -6
+Range : 8 -8
+Range : 10 -10
+Range : 12 -12
+Range : 14 -14
+Copy : 5 -5
+Copy : 6 -6
+Copy : 8 -8
+Copy : 10 -10
+Copy : 12 -12
+Copy : 14 -14

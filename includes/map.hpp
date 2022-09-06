@@ -78,12 +78,34 @@ namespace ft
 					{
 						while (first != last)
 						{
-							std::cout << "WHILE" << first->first << std::endl;
-						//	_tree.add(first->first);
+							_tree.add(ft::make_pair(first->first, first->second));
 							++_size;
 							++first;
 						}
 					}
+
+				map(const map& x) : _alloc(x._alloc), _comp(x._comp), _size(0), _tree()
+				{
+					*this = x;
+				}
+
+				map&	operator=(const map & rhs)
+				{
+					if (this != &rhs)
+					{
+						_tree.delete_tree();
+						const_iterator cit = rhs.begin();
+						const_iterator cite = rhs.end();
+						while (cit != cite)
+						{
+					//		std::cout << "In while operator= : " << cit->first << std::endl;
+							_tree.add(ft::make_pair(cit->first, cit->second));
+							++cit;
+						}
+					}
+						
+					return (*this);
+				}
 
 
 				//////ITERATORS/////
@@ -152,6 +174,10 @@ namespace ft
 					return (ret);
 				}
 
+				void	print_tree(void)
+				{
+					_tree.print_infix_order();
+				}
 		};
 }
 

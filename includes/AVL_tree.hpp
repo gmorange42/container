@@ -17,20 +17,20 @@ namespace ft
 				bool	end;
 
 				node (const T & d ) : data(d), dad(NULL), lson(NULL), rson(NULL), end(false)
-				{
-//					data = d;
-//					dad = NULL;
-//					lson = NULL;
-//					rson = NULL;
-				}
+			{
+				//					data = d;
+				//					dad = NULL;
+				//					lson = NULL;
+				//					rson = NULL;
+			}
 
 				node(const T &d, node<T> * father) : data(d), dad(father), lson(NULL), rson(NULL), end(false)
-				{
-//					data = d;
-//					dad = father;
-//					lson = NULL;
-//					rson = NULL;
-				}
+			{
+				//					data = d;
+				//					dad = father;
+				//					lson = NULL;
+				//					rson = NULL;
+			}
 		};
 
 
@@ -56,6 +56,7 @@ namespace ft
 						delete_bintree(node->rson);
 						this->_alloc.destroy(node);
 						this->_alloc.deallocate(node, 1);
+						node = NULL;
 					}
 				}
 
@@ -147,9 +148,9 @@ namespace ft
 				}
 
 			public:
-//				virtual	int	add(const T &) = 0;
+				//				virtual	int	add(const T &) = 0;
 
-//				virtual int	remove(const T &) = 0;
+				//				virtual int	remove(const T &) = 0;
 
 				bintree(void)
 				{
@@ -163,13 +164,8 @@ namespace ft
 
 				virtual ~bintree(void)
 				{
-					if (nb_node > 0)
-					{
-						delete_bintree(root->lson);
-						delete_bintree(root->rson);
-						this->_alloc.destroy(root);
-						this->_alloc.deallocate(root, 1);
-					}
+					if (root)
+						delete_bintree(this->root);
 				}
 
 				int	size(void) const
@@ -282,8 +278,8 @@ namespace ft
 				else
 					dad->rson = child;
 				++this->nb_node;
-//				if (child == max(this->root))
-//					child->rson = this->_end;
+				//				if (child == max(this->root))
+				//					child->rson = this->_end;
 				return (1);
 			}
 
@@ -424,23 +420,28 @@ namespace ft
 			// add a elem and balance tree
 			int	add(const T & elem)
 			{
-				this->_end->dad = NULL;
+				if (this->_end)
+					this->_end->dad = NULL;
 				if (this->nb_node > 0)
-				search_tree<T>::max(this->root)->rson = NULL;
+					search_tree<T>::max(this->root)->rson = NULL;
 				if (ft::search_tree<T>::add(elem) == 0)
 					return (0);
 
 				balance_tree(search_tree<T>::find_value(elem));
-				this->_end->dad = search_tree<T>::max(this->root);
-				search_tree<T>::max(this->root)->rson = this->_end;
+				if (this->_end && this->root)
+				{
+					this->_end->dad = search_tree<T>::max(this->root);
+					search_tree<T>::max(this->root)->rson = this->_end;
+				}
 				return (1);
 			}
 
 			int	remove(const T & elem)
 			{
-				this->_end->dad = NULL;
+				if (this->_end)
+					this->_end->dad = NULL;
 				if (this->nb_node > 0)
-				search_tree<T>::max(this->root)->rson = NULL;
+					search_tree<T>::max(this->root)->rson = NULL;
 				ft::node<T>* parent = search_tree<T>::find_value(elem);
 				parent = parent->dad;
 
@@ -448,14 +449,26 @@ namespace ft
 					return (0);
 
 				balance_tree(parent);
-				this->_end->dad = search_tree<T>::max(this->root);
-				search_tree<T>::max(this->root)->rson = this->_end;
+				if (this->_end && this->root)
+				{
+					this->_end->dad = search_tree<T>::max(this->root);
+					search_tree<T>::max(this->root)->rson = this->_end;
+				}
 				return (1);
 			}
 
 			ft::node<T>&	get_root(void) const
 			{
 				return (*this->root);
+			}
+
+			void	delete_tree(void)
+			{
+				bintree<T>::delete_bintree(this->root);
+				this->root = NULL;
+//				this->_end = NULL;
+				this->nb_node = 0;
+
 			}
 
 			void	print_prefix_order(void)
