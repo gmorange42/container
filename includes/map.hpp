@@ -41,8 +41,8 @@ namespace ft
 				typedef Allocator							allocator_type;
 				typedef typename Allocator::reference					reference;
 				typedef typename Allocator::const_reference				const_reference;
-				typedef typename ft::MapIterator<value_type, node_type >				iterator;
-				typedef typename ft::MapIterator<const value_type, node_type >			const_iterator;
+				typedef typename ft::MapIterator<value_type, node_type >		iterator;
+				typedef typename ft::MapIterator<const value_type, node_type >		const_iterator;
 				typedef typename Allocator::size_type					size_type;
 				typedef typename Allocator::difference_type				difference_type;
 				typedef typename Allocator::pointer					pointer;
@@ -75,19 +75,19 @@ namespace ft
 
 				template <class InputIterator>
 					map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : _alloc(alloc), _comp(comp), _size(0), _tree()
+				{
+					while (first != last)
 					{
-						while (first != last)
-						{
-							_tree.add(ft::make_pair(first->first, first->second));
-							++_size;
-							++first;
-						}
+						_tree.add(ft::make_pair(first->first, first->second));
+						++_size;
+						++first;
 					}
+				}
 
 				map(const map& x) : _alloc(x._alloc), _comp(x._comp), _size(0), _tree()
-				{
-					*this = x;
-				}
+			{
+				*this = x;
+			}
 
 				map&	operator=(const map & rhs)
 				{
@@ -96,41 +96,43 @@ namespace ft
 						_tree.delete_tree();
 						const_iterator cit = rhs.begin();
 						const_iterator cite = rhs.end();
-						while (cit != cite)
-						{
-					//		std::cout << "In while operator= : " << cit->first << std::endl;
-							_tree.add(ft::make_pair(cit->first, cit->second));
-							++cit;
-						}
+						insert(cit, cite);
+					//	while (cit != cite)
+					//	{
+					//		//		std::cout << "In while operator= : " << cit->first << std::endl;
+					//		_tree.add(ft::make_pair(cit->first, cit->second));
+					//		++cit;
+					//	}
 					}
-						
+
 					return (*this);
 				}
 
+				~map(void) {};
 
 				//////ITERATORS/////
 
 				iterator	begin(void)
 				{
-					iterator it(_tree.min(&_tree.get_root()));
+					iterator it(_tree.get_min());
 					return (it);
 				}
 
 				const_iterator	begin(void) const
 				{
-					const_iterator it(_tree.min(&_tree.get_root()));
+					const_iterator it(_tree.get_min());
 					return (it);
 				}
 
 				iterator	end(void)
 				{
-					iterator it(_tree.max(&_tree.get_root()));
+					iterator it(_tree.get_max());
 					return (++it);
 				}
 
 				const_iterator	end(void) const
 				{
-					const_iterator it(_tree.max(&_tree.get_root()));
+					const_iterator it(_tree.get_max());
 					return (++it);
 				}
 
@@ -167,6 +169,7 @@ namespace ft
 
 					if (_tree.add(val))
 					{
+						//	std::cout << "pouet : " << val.first << std::endl;
 						iterator it = _tree.find_value(val);
 						ret.first = it;
 						ret.second = true;
@@ -174,9 +177,33 @@ namespace ft
 					return (ret);
 				}
 
-				void	print_tree(void)
+				iterator	insert(iterator position, const value_type& val)
 				{
-					_tree.print_infix_order();
+					(void) position;
+					iterator	it = insert(val).first;
+					return (it);
+				}
+
+				template <class InputIterator>
+					void	insert(InputIterator first, InputIterator last)
+					{
+						while (first != last)
+						{
+							_tree.add(ft::make_pair(first->first, first->second));
+							++first;
+						}
+					}
+
+				/////OTHER/////
+
+				void	print_tree(char c)
+				{
+					if (c == 'p')
+						_tree.print_prefix_order();
+					if (c == 'i')
+						_tree.print_infix_order();
+					if (c == 's')
+						_tree.print_suffix_order();
 				}
 		};
 }

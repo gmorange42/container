@@ -54,7 +54,11 @@ namespace ft
 				MapIterator&	operator++(void)
 				{
 					if (_node->rson)
+					{
 						_node = _node->rson;
+						while (_node->lson)
+							_node = _node->lson;
+					}
 					else
 					{
 						while (_node->dad && _node->dad->data.first < _node->data.first)
@@ -69,7 +73,11 @@ namespace ft
 				{
 					MapIterator temp = *this;
 					if (_node->rson)
+					{
 						_node = _node->rson;
+						while (_node->lson)
+							_node = _node->lson;
+					}
 					else
 					{
 						while (_node->dad && _node->dad->data.first < _node->data.first)
@@ -84,6 +92,12 @@ namespace ft
 				{
 					if (_node->end)
 						_node = _node->dad;
+					else if (_node->lson)
+					{
+						_node = _node->lson;
+						while (_node->rson)
+							_node = _node->rson;
+					}
 					else if (_node->lson)
 						_node = _node->lson;
 					else
@@ -101,8 +115,12 @@ namespace ft
 					MapIterator temp = *this;
 					if (_node->end)
 						_node = _node->dad;
-					if (_node->lson)
+					else if (_node->lson)
+					{
 						_node = _node->lson;
+						while (_node->rson)
+							_node = _node->rson;
+					}
 					else
 					{
 						while (_node->dad && _node->dad->data.first > _node->data.first)

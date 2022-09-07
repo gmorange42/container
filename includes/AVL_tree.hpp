@@ -190,6 +190,8 @@ namespace ft
 	{
 		protected:
 
+			ft::node<T>*	min_val;
+			ft::node<T>*	max_val;
 			search_tree(const search_tree &);
 			search_tree&	operator=(const search_tree &);
 
@@ -272,14 +274,24 @@ namespace ft
 					return (0);
 
 				if (!dad)
+				{
 					this->root = child;
+					max_val = child;
+					min_val = child;
+				}
 				else if (elem < dad->data)
+				{
 					dad->lson = child;
+					if (dad == min_val)
+						min_val = child;
+				}
 				else
+				{
 					dad->rson = child;
+					if (dad == max_val)
+						max_val = child;
+				}
 				++this->nb_node;
-				//				if (child == max(this->root))
-				//					child->rson = this->_end;
 				return (1);
 			}
 
@@ -293,6 +305,10 @@ namespace ft
 				// find the biggest of the smallest
 				ft::node<T>* substitute = max(node->lson);
 
+				if (node == min_val)
+					min_val = node->dad;
+				if (node == max_val)
+					max_val = node->dad;
 				if (!substitute)
 				{
 					if (node == this->root)
@@ -320,6 +336,27 @@ namespace ft
 				--this->nb_node;
 				return (1);
 			}
+
+			ft::node<T>*	get_min(void)
+			{
+				return (min_val);
+			}
+
+			ft::node<T>*	get_max(void)
+			{
+				return (max_val);
+			}
+
+			ft::node<T>*	get_min(void) const
+			{
+				return (min_val);
+			}
+
+			ft::node<T>*	get_max(void) const
+			{
+				return (max_val);
+			}
+
 	};
 
 
@@ -412,6 +449,15 @@ namespace ft
 					this->root = lson;
 			}
 
+			void	replace_end(void)
+			{
+				if (this->_end && this->root)
+				{
+					this->_end->dad = this->max_val;
+					this->max_val->rson = this->_end;
+				}
+			}
+
 		public:
 			AVL_tree() {}
 
@@ -425,14 +471,13 @@ namespace ft
 				if (this->nb_node > 0)
 					search_tree<T>::max(this->root)->rson = NULL;
 				if (ft::search_tree<T>::add(elem) == 0)
+				{
+					replace_end();
 					return (0);
+				}
 
 				balance_tree(search_tree<T>::find_value(elem));
-				if (this->_end && this->root)
-				{
-					this->_end->dad = search_tree<T>::max(this->root);
-					search_tree<T>::max(this->root)->rson = this->_end;
-				}
+				replace_end();
 				return (1);
 			}
 
@@ -449,11 +494,7 @@ namespace ft
 					return (0);
 
 				balance_tree(parent);
-				if (this->_end && this->root)
-				{
-					this->_end->dad = search_tree<T>::max(this->root);
-					search_tree<T>::max(this->root)->rson = this->_end;
-				}
+				replace_end();
 				return (1);
 			}
 
