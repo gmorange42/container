@@ -94,15 +94,7 @@ namespace ft
 					if (this != &rhs)
 					{
 						_tree.delete_tree();
-						const_iterator cit = rhs.begin();
-						const_iterator cite = rhs.end();
-						insert(cit, cite);
-					//	while (cit != cite)
-					//	{
-					//		//		std::cout << "In while operator= : " << cit->first << std::endl;
-					//		_tree.add(ft::make_pair(cit->first, cit->second));
-					//		++cit;
-					//	}
+						insert(rhs.begin(), rhs.end());
 					}
 
 					return (*this);
@@ -161,6 +153,58 @@ namespace ft
 				}
 
 
+				/////CAPACITY/////
+
+				bool	empty(void) const
+				{
+					if (_tree.size() == 0)
+						return (true);
+					return (false);
+				}
+
+				size_type	size(void) const
+				{
+					return (_tree.size());
+				}
+
+				size_t	max_size(void) const
+				{
+					return (_tree.max_size());
+				}
+
+
+				/////ELEMENT ACCESS/////
+				
+				mapped_type&	operator[](const key_type & k)
+				{
+					ft::pair<T, mapped_type>	p = ft::make_pair(k, NULL);
+					ft::node<value_type>*	node = _tree.find_value(p);
+					if (!node)
+					{
+						_tree.add(p);
+						return (_tree.find_value(p)->data.second);
+					}
+					return (node->data.second);
+				}
+
+				mapped_type&	at(const key_type& k)
+				{
+					ft::pair<T, mapped_type>	p = ft::make_pair(k, NULL);
+					ft::node<value_type>*	node = _tree.find_value(p);
+					if (!node)
+						throw(std::out_of_range("map:at"));
+					return (node->data.second);
+				}
+
+				const mapped_type&	at(const key_type& k) const
+				{
+					ft::pair<T, mapped_type>	p = ft::make_pair(k, NULL);
+					ft::node<value_type>*	node = _tree.find_value(p);
+					if (!node)
+						throw(std::out_of_range("map:at"));
+					return (node->data.second);
+				}
+
 				/////MODIFIERS/////
 
 				ft::pair<iterator, bool>	insert(const value_type& val)
@@ -193,6 +237,32 @@ namespace ft
 							++first;
 						}
 					}
+
+				void	erase(iterator position)
+				{
+					_tree.remove(*position);
+				}
+
+				size_type	erase(const key_type& k)
+				{
+					ft::pair<T, mapped_type>	p = ft::make_pair(k, NULL);
+					ft::node<value_type>*	node = _tree.find_value(p);
+
+					if (node)
+					{
+						return (_tree.remove(node->data));
+					}
+
+					return (0);
+				}
+
+				void	erase(iterator first, iterator last)
+				{
+					T	min = first->first;
+					T	max = last->first;
+					while (
+				}
+
 
 				/////OTHER/////
 

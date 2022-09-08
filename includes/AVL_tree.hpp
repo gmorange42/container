@@ -182,6 +182,12 @@ namespace ft
 				{
 					return (depth_bintree(root));
 				}
+
+				size_t	max_size(void) const
+				{
+					return (_alloc.max_size());
+				}
+
 		};
 
 
@@ -303,13 +309,13 @@ namespace ft
 				if (!node)
 					return (0);
 				// find the biggest of the smallest
-				ft::node<T>* substitute = max(node->lson);
+				ft::node<T>* sub = max(node->lson);
 
 				if (node == min_val)
 					min_val = node->dad;
 				if (node == max_val)
 					max_val = node->dad;
-				if (!substitute)
+				if (!sub)
 				{
 					if (node == this->root)
 						this->root = node->rson;
@@ -322,14 +328,46 @@ namespace ft
 				}
 				else
 				{
-					node->data = substitute->data;
-					if (substitute->dad->lson == substitute)
-						substitute->dad->lson = substitute->lson;
+					if (sub->dad->rson == sub)
+						sub->dad->rson = NULL;
 					else
-						substitute->dad->rson = substitute->lson;
-					if (substitute->lson)
-						substitute->lson->dad = substitute->dad;
-					node = substitute;
+						sub->dad->lson = NULL;
+
+					sub->dad = node->dad;
+
+					if (node->dad)
+					{
+						if (node->dad->lson == node)
+							node->dad->lson = sub;
+						else
+							node->dad->rson = sub;
+					}
+					else
+						this->root = sub;
+					sub->rson = node->rson;
+					sub->lson = node->lson;
+					sub->rson->dad = sub;
+					if(sub->rson)
+						sub->rson->dad = sub;
+					if(sub->lson)
+						sub->lson->dad = sub;
+
+//
+//					//ft::node<T>*	temp = sub;
+//					node->data = sub->data;
+//					if (sub->dad->lson == sub)
+//					{
+//						sub->dad->lson = sub->lson;
+//					}
+//					else
+//					{
+//						sub->dad->rson = sub->lson;
+//					}
+//					if (sub->lson)
+//					{
+//						sub->lson->dad = sub->dad;
+//					}
+//					node = sub;
 				}
 				this->_alloc.destroy(node);
 				this->_alloc.deallocate(node, 1);
@@ -485,13 +523,18 @@ namespace ft
 			{
 				if (this->_end)
 					this->_end->dad = NULL;
-				if (this->nb_node > 0)
-					search_tree<T>::max(this->root)->rson = NULL;
+//				if (this->nb_node > 0)
+//					this->max_val = NULL;
 				ft::node<T>* parent = search_tree<T>::find_value(elem);
+				if (!parent)
+					return(0);
 				parent = parent->dad;
 
 				if (ft::search_tree<T>::remove(elem) == 0)
+				{
+					balance_tree(parent);
 					return (0);
+				}
 
 				balance_tree(parent);
 				replace_end();
