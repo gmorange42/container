@@ -118,14 +118,14 @@ namespace ft
 
 				iterator	end(void)
 				{
-					iterator it(_tree.get_max());
-					return (++it);
+					iterator it(_tree.get_end());
+					return (it);
 				}
 
 				const_iterator	end(void) const
 				{
-					const_iterator it(_tree.get_max());
-					return (++it);
+					const_iterator it(_tree.get_end());
+					return (it);
 				}
 
 				reverse_iterator	rbegin(void)

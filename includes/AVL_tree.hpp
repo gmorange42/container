@@ -54,7 +54,6 @@ namespace ft
 					{
 						delete_bintree(node->lson);
 						delete_bintree(node->rson);
-					//	std::cout << "In delete_bintree " << node->data.first << std::endl;
 						this->_alloc.destroy(node);
 						this->_alloc.deallocate(node, 1);
 						node = NULL;
@@ -405,6 +404,17 @@ namespace ft
 				return (max_val);
 			}
 
+			ft::node<T>*	get_end(void)
+			{
+				return (this->_end);
+			}
+
+			ft::node<T>*	get_end(void) const
+			{
+				return (this->_end);
+			}
+
+
 	};
 
 
@@ -533,15 +543,11 @@ namespace ft
 			void	delete_tree(void)
 			{
 				bintree<T>::delete_bintree(this->root);
-				this->root = NULL;
-//				this->_end = NULL;
-				this->nb_node = 0;
-//				if (this->_end)
-//				{
-//					this->_alloc.destroy(this->_end);
-//					this->_alloc.deallocate(this->_end, 1);
-//				}
 
+				this->root = this->_end;
+				this->min_val = this->root;
+				this->max_val = this->root;
+				this->nb_node = 0;
 			}
 
 			void	print_prefix_order(void) const

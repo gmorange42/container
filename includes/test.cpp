@@ -53,7 +53,7 @@ int main(void)
 	std::cout << "is empty : " << mine.empty() << std::endl;
 	std::cout << "size : " << mine.size() << std::endl;
 	std::cout << "max_size : " << mine.max_size() << std::endl;
-//	std::cout << "ret.first->first " << ret.first->first << std::endl;
+	std::cout << "ret.first->first " << ret.first->first << std::endl;
 
 	it = mine.begin();
 	ite = mine.end();
@@ -246,7 +246,6 @@ int main(void)
 	std::cout << "print" << std::endl;
 //	erase.print_tree('i');
 
-//	erase.erase(erase.begin(), erase.end());
 
 	for(it = erase.begin(); it != erase.end();++it)
 		std::cout << "Erase : " << it->first << ' ' << it->second << std::endl;
@@ -278,9 +277,42 @@ int main(void)
 	std::cout << "max_size : " << access.max_size() << std::endl;
 	std::cout << std::endl;
 
-//
-//	std::cout << "print" << std::endl;
+	erase.erase(erase.begin(), erase.end());
 //	erase.print_tree('i');
+
+	for(it = erase.begin(); it != erase.end();++it)
+		std::cout << "Erase : " << it->first << ' ' << it->second << std::endl;
+	std::cout << "is empty : " << erase.empty() << std::endl;
+	std::cout << "size : " << erase.size() << std::endl;
+	std::cout << "max_size : " << erase.max_size() << std::endl;
+	std::cout << std::endl;
+	for(it = access.begin(); it != access.end();++it)
+		std::cout << "Access : " << it->first << ' ' << it->second << std::endl;
+	std::cout << "is empty : " << access.empty() << std::endl;
+	std::cout << "size : " << access.size() << std::endl;
+	std::cout << "max_size : " << access.max_size() << std::endl;
+	std::cout << std::endl;
+
+	erase.swap(access);
+
+	std::cout << "Erase" << std::endl;
+	for(it = erase.begin(); it != erase.end();++it)
+		std::cout << "Erase : " << it->first << ' ' << it->second << std::endl;
+	std::cout << "is empty : " << erase.empty() << std::endl;
+	std::cout << "size : " << erase.size() << std::endl;
+	std::cout << "max_size : " << erase.max_size() << std::endl;
+	std::cout << std::endl;
+	std::cout << "Access" << std::endl;
+//	access.print_tree('i');
+	std::cout << "Erase" << std::endl;
+//	erase.print_tree('i');
+	for(it = access.begin(); it != access.end();++it)
+		std::cout << "Access : " << it->first << ' ' << it->second << std::endl;
+	std::cout << "is empty : " << access.empty() << std::endl;
+	std::cout << "size : " << access.size() << std::endl;
+	std::cout << "max_size : " << access.max_size() << std::endl;
+	std::cout << std::endl;
+
 
 
 
