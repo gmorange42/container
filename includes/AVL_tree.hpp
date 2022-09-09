@@ -50,10 +50,11 @@ namespace ft
 				// delete the bintree since the pointed node
 				void	delete_bintree(ft::node<T> * node)
 				{
-					if (node)
+					if (node && !node->end)
 					{
 						delete_bintree(node->lson);
 						delete_bintree(node->rson);
+					//	std::cout << "In delete_bintree " << node->data.first << std::endl;
 						this->_alloc.destroy(node);
 						this->_alloc.deallocate(node, 1);
 						node = NULL;
@@ -63,7 +64,7 @@ namespace ft
 				// return the greatest depth since the pointed node
 				int	depth_bintree(const ft::node<T> * node) const
 				{
-					if (!node || node->rson == this->root)
+					if (!node || node->rson == this->root || node->end) // verifier deuxieme condition
 						return(0);
 
 					int	ldepth = depth_bintree(node->lson);
@@ -148,9 +149,6 @@ namespace ft
 				}
 
 			public:
-				//				virtual	int	add(const T &) = 0;
-
-				//				virtual int	remove(const T &) = 0;
 
 				bintree(void)
 				{
@@ -160,12 +158,15 @@ namespace ft
 					_alloc.construct(_end, ft::node<T>(ft::make_pair(NULL, NULL), NULL));
 					_end->end = true;
 					nb_node = 0;
+					root = _end;
 				}
 
 				virtual ~bintree(void)
 				{
 					if (root)
 						delete_bintree(this->root);
+					this->_alloc.destroy(this->_end);
+					this->_alloc.deallocate(this->_end, 1);
 				}
 
 				int	size(void) const
@@ -253,9 +254,9 @@ namespace ft
 
 				do
 				{
-					if (elem < dad->data && dad->lson)
+					if (elem < dad->data && dad->lson && !dad->lson->end)
 						dad = dad->lson;
-					else if (elem > dad->data && dad->rson)
+					else if (elem > dad->data && dad->rson && !dad->rson->end)
 						dad = dad->rson;
 					else
 						dad_is_found = 1;
@@ -263,7 +264,11 @@ namespace ft
 				return (dad);
 			}
 
-			search_tree(void) {}
+			search_tree(void)
+			{
+				min_val = this->root;
+				max_val = this->root;
+			}
 			virtual ~search_tree(void) {}
 
 			// add a new node to the tree
@@ -282,6 +287,8 @@ namespace ft
 				if (!dad)
 				{
 					this->root = child;
+					child->rson = this->_end;
+					this->_end->dad = child;
 					max_val = child;
 					min_val = child;
 				}
@@ -295,7 +302,11 @@ namespace ft
 				{
 					dad->rson = child;
 					if (dad == max_val)
+					{
+						this->_end->dad = child;
+						child->rson = this->_end;
 						max_val = child;
+					}
 				}
 				++this->nb_node;
 				return (1);
@@ -311,10 +322,23 @@ namespace ft
 				// find the biggest of the smallest
 				ft::node<T>* sub = max(node->lson);
 
-				if (node == min_val)
+				if (node == this->root && this->size() == 1)
+				{
+					this->min_val = this->_end;
+					this->max_val = this->_end;
+				}
+				else if (node == min_val)
+				{
 					min_val = node->dad;
-				if (node == max_val)
+					if (!min_val)
+						min_val = node->rson;
+				}
+				else if (node == max_val)
+				{
 					max_val = node->dad;
+					if (!max_val)
+						max_val = node->lson;
+				}
 				if (!sub)
 				{
 					if (node == this->root)
@@ -346,29 +370,15 @@ namespace ft
 						this->root = sub;
 					sub->rson = node->rson;
 					sub->lson = node->lson;
-					sub->rson->dad = sub;
 					if(sub->rson)
 						sub->rson->dad = sub;
 					if(sub->lson)
 						sub->lson->dad = sub;
-
-//
-//					//ft::node<T>*	temp = sub;
-//					node->data = sub->data;
-//					if (sub->dad->lson == sub)
-//					{
-//						sub->dad->lson = sub->lson;
-//					}
-//					else
-//					{
-//						sub->dad->rson = sub->lson;
-//					}
-//					if (sub->lson)
-//					{
-//						sub->lson->dad = sub->dad;
-//					}
-//					node = sub;
 				}
+				this->max_val->rson = this->_end;
+				this->_end->dad = this->max_val;
+				this->_end->lson = NULL;
+				this->_end->rson = NULL;
 				this->_alloc.destroy(node);
 				this->_alloc.deallocate(node, 1);
 				--this->nb_node;
@@ -403,7 +413,6 @@ namespace ft
 	{
 		private:
 			AVL_tree(const AVL_tree &);
-			AVL_tree&	operator=(const AVL_tree &);
 
 			// launch rotations if the depth of lson and rson have a difference equal to 2
 			void	balance_tree(ft::node<T> * node)
@@ -487,57 +496,32 @@ namespace ft
 					this->root = lson;
 			}
 
-			void	replace_end(void)
-			{
-				if (this->_end && this->root)
-				{
-					this->_end->dad = this->max_val;
-					this->max_val->rson = this->_end;
-				}
-			}
-
 		public:
 			AVL_tree() {}
 
 			~AVL_tree() {}
 
+			AVL_tree&	operator=(const AVL_tree &);
+
 			// add a elem and balance tree
 			int	add(const T & elem)
 			{
-				if (this->_end)
-					this->_end->dad = NULL;
-				if (this->nb_node > 0)
-					search_tree<T>::max(this->root)->rson = NULL;
 				if (ft::search_tree<T>::add(elem) == 0)
-				{
-					replace_end();
 					return (0);
-				}
-
 				balance_tree(search_tree<T>::find_value(elem));
-				replace_end();
 				return (1);
 			}
 
 			int	remove(const T & elem)
 			{
-				if (this->_end)
-					this->_end->dad = NULL;
-//				if (this->nb_node > 0)
-//					this->max_val = NULL;
 				ft::node<T>* parent = search_tree<T>::find_value(elem);
 				if (!parent)
 					return(0);
 				parent = parent->dad;
 
 				if (ft::search_tree<T>::remove(elem) == 0)
-				{
-					balance_tree(parent);
 					return (0);
-				}
-
 				balance_tree(parent);
-				replace_end();
 				return (1);
 			}
 
@@ -552,15 +536,20 @@ namespace ft
 				this->root = NULL;
 //				this->_end = NULL;
 				this->nb_node = 0;
+//				if (this->_end)
+//				{
+//					this->_alloc.destroy(this->_end);
+//					this->_alloc.deallocate(this->_end, 1);
+//				}
 
 			}
 
-			void	print_prefix_order(void)
+			void	print_prefix_order(void) const
 			{
 				print_prefix_order(this->root);
 			}
 
-			void	print_prefix_order(ft::node<T>* node )
+			void	print_prefix_order(ft::node<T>* node ) const
 			{
 				if (node)
 				{
@@ -570,12 +559,12 @@ namespace ft
 				}
 			}
 
-			void	print_infix_order(void)
+			void	print_infix_order(void) const
 			{
 				print_infix_order(this->root);
 			}
 
-			void	print_infix_order(ft::node<T>* node )
+			void	print_infix_order(ft::node<T>* node ) const
 			{
 				if (node)
 				{
@@ -585,12 +574,12 @@ namespace ft
 				}
 			}
 
-			void	print_suffix_order(void)
+			void	print_suffix_order(void) const
 			{
 				print_suffix_order(this->root);
 			}
 
-			void	print_suffix_order(ft::node<T>* node )
+			void	print_suffix_order(ft::node<T>* node ) const
 			{
 				if (node)
 				{

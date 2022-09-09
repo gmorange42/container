@@ -8,183 +8,192 @@
 int main(void)
 {
 
-//	NAMESPACE::map<int, int> mine;
-//
-//	NAMESPACE::pair<NAMESPACE::map<int, int>::iterator, bool> ret;
-//
-//	std::cout << "is empty : " << mine.empty() << std::endl;
-//	std::cout << "size : " << mine.size() << std::endl;
-//	std::cout << "max_size : " << mine.max_size() << std::endl;
-//
-//	mine.insert(NAMESPACE::make_pair(10, -10));
-//	std::cout << "is empty : " << mine.empty() << std::endl;
-//	std::cout << "size : " << mine.size() << std::endl;
-//	std::cout << "max_size : " << mine.max_size() << std::endl;
-//	mine.insert(NAMESPACE::make_pair(5, -5));
-//	mine.insert(NAMESPACE::make_pair(6, -6));
-//	mine.insert(NAMESPACE::make_pair(12, -12));
-//	mine.insert(NAMESPACE::make_pair(14, -14));
-//	ret = mine.insert(NAMESPACE::make_pair(8, -8));
-//	mine.insert(NAMESPACE::make_pair(17, -17));
-//	mine.insert(NAMESPACE::make_pair(19, -19));
-//	mine.insert(NAMESPACE::make_pair(21, -21));
-//	mine.insert(NAMESPACE::make_pair(20, -20));
-//	mine.insert(NAMESPACE::make_pair(3, -3));
-//	mine.insert(NAMESPACE::make_pair(13, -13));
-//	mine.insert(NAMESPACE::make_pair(11, -11));
-//	mine.insert(NAMESPACE::make_pair(15, -15));
-//	mine.insert(NAMESPACE::make_pair(1, -1));
-//////	mine.insert(NAMESPACE::make_pair(0, -0));
-//	mine.insert(NAMESPACE::make_pair(16, -16));
-//	mine.insert(NAMESPACE::make_pair(22, -22));
-//	mine.insert(NAMESPACE::make_pair(9, -9));
-//	mine.insert(NAMESPACE::make_pair(2, -2));
-//	mine.insert(NAMESPACE::make_pair(4, -4));
-//	mine.insert(NAMESPACE::make_pair(18, -18));
-//	mine.insert(NAMESPACE::make_pair(13, -13));
-//
-//	std::cout << "is empty : " << mine.empty() << std::endl;
-//	std::cout << "size : " << mine.size() << std::endl;
-//	std::cout << "max_size : " << mine.max_size() << std::endl;
+	NAMESPACE::map<int, int> mine;
+
+	NAMESPACE::map<int, int>::iterator it;
+	NAMESPACE::map<int, int>::iterator ite;
+	NAMESPACE::map<int, int>::reverse_iterator rit;
+	NAMESPACE::map<int, int>::reverse_iterator rite;
+
+	NAMESPACE::pair<NAMESPACE::map<int, int>::iterator, bool> ret;
+
+	std::cout << "is empty : " << mine.empty() << std::endl;
+	std::cout << "size : " << mine.size() << std::endl;
+	std::cout << "max_size : " << mine.max_size() << std::endl;
+
+	mine.insert(NAMESPACE::make_pair(10, -10));
+	std::cout << "is empty : " << mine.empty() << std::endl;
+	std::cout << "size : " << mine.size() << std::endl;
+	std::cout << "max_size : " << mine.max_size() << std::endl;
+	mine.insert(NAMESPACE::make_pair(5, -5));
+	mine.insert(NAMESPACE::make_pair(6, -6));
+	mine.insert(NAMESPACE::make_pair(12, -12));
+	mine.insert(NAMESPACE::make_pair(14, -14));
+	ret = mine.insert(NAMESPACE::make_pair(8, -8));
+	mine.insert(NAMESPACE::make_pair(17, -17));
+	mine.insert(NAMESPACE::make_pair(19, -19));
+	mine.insert(NAMESPACE::make_pair(21, -21));
+	mine.insert(NAMESPACE::make_pair(20, -20));
+	mine.insert(NAMESPACE::make_pair(3, -3));
+	mine.insert(NAMESPACE::make_pair(13, -13));
+	mine.insert(NAMESPACE::make_pair(11, -11));
+	mine.insert(NAMESPACE::make_pair(7, -7));
+	mine.insert(NAMESPACE::make_pair(15, -15));
+	mine.insert(NAMESPACE::make_pair(1, -1));
+////	mine.insert(NAMESPACE::make_pair(0, -0));
+	mine.insert(NAMESPACE::make_pair(16, -16));
+	mine.insert(NAMESPACE::make_pair(22, -22));
+	mine.insert(NAMESPACE::make_pair(9, -9));
+	mine.insert(NAMESPACE::make_pair(2, -2));
+	mine.insert(NAMESPACE::make_pair(4, -4));
+	mine.insert(NAMESPACE::make_pair(18, -18));
+	mine.insert(NAMESPACE::make_pair(13, -13));
+
+//	mine.print_tree('i');
+	std::cout << "is empty : " << mine.empty() << std::endl;
+	std::cout << "size : " << mine.size() << std::endl;
+	std::cout << "max_size : " << mine.max_size() << std::endl;
 //	std::cout << "ret.first->first " << ret.first->first << std::endl;
-//
-//	NAMESPACE::map<int, int>::iterator it = mine.begin();
-//	NAMESPACE::map<int, int>::iterator ite = mine.end();
-//	NAMESPACE::map<int, int>::reverse_iterator rit = mine.rbegin();
-//	NAMESPACE::map<int, int>::reverse_iterator rite = mine.rend();
-//
-//	std::cout << "it->first " << it->first << " it->second " << it->second << std::endl;
-//	--ite;
-//	std::cout << "ite->first " << ite->first << " ite->second " << ite->second << std::endl;
-//	std::cout << "rit->first " << rit->first <<  " rit->second " << rit->second << std::endl;
-//	--rite;
-//	std::cout << "rite->first " << rite->first <<  " rite->second " << rite->second << std::endl;
-//
-//
-//
-//	ite = mine.end();
-//	while (it != ite)
-//	{
-//		std::cout << it->first << std::endl;
-//		++it;
-//	}
-//
-////	mine.print_tree('i');
-//
-//	std::cout << std::endl;
-//
-//	NAMESPACE::map<int, int> range(mine.begin(), mine.end());
-//	std::cout << "is empty : " << mine.empty() << std::endl;
-//	std::cout << "size : " << mine.size() << std::endl;
-//	std::cout << "max_size : " << mine.max_size() << std::endl;
-//
-//
-//	for (it = range.begin(); it != range.end(); ++it)
-//		std::cout << "Range : " << it->first << ' ' << it->second << std::endl;
-//	std::cout << std::endl;
-//
-//	
-//	NAMESPACE::map<int, int>copy(range);
-//	std::cout << "is empty : " << mine.empty() << std::endl;
-//	std::cout << "size : " << mine.size() << std::endl;
-//	std::cout << "max_size : " << mine.max_size() << std::endl;
-//
-//	NAMESPACE::map<int, int>::const_iterator cit = copy.begin();
-//	NAMESPACE::map<int, int>::const_iterator cite = copy.end();
-//	while (cit != cite)
-//	{
-//		std::cout << "Copy : " << cit->first << ' ' << cit->second << std::endl;
-//		++cit;
-//	}
-//	std::cout << std::endl;
-//
-//	it = copy.begin();
-//	it = copy.insert(it, NAMESPACE::make_pair(7, -7));
-//	std::cout << "it->first after insert postion : " << it->first << std::endl;
-//
-//	for(cit = copy.begin(); cit != cite; ++cit)
-//		std::cout << "Copy : " << cit->first << ' ' << cit->second << std::endl;
-//	std::cout << std::endl;
-//
-//	cit = copy.begin();
-//	for(cite = --(copy.end()); cit != cite; --cite)
-//		std::cout << "Copy : " << cite->first << ' ' << cite->second << std::endl;
-//	std::cout << std::endl;
-//
-//
-//	NAMESPACE::map<int, int>	insert_range;
-//	std::cout << "is empty : " << mine.empty() << std::endl;
-//	std::cout << "size : " << mine.size() << std::endl;
-//	std::cout << "max_size : " << mine.max_size() << std::endl;
-//
-//	insert_range.insert(NAMESPACE::make_pair(-4, -4));
-//	insert_range.insert(NAMESPACE::make_pair(30, -30));
-//	ite = insert_range.end();
-//	for (it = insert_range.begin(); it != ite; ++it)
-//		std::cout << "insert_range : " << it->first << ' ' << it->second << std::endl;
-//	std::cout << std::endl;
-//
-//	insert_range.insert(copy.begin(), copy.end());
-//
-//	ite = insert_range.end();
-//	for (it = insert_range.begin(); it != ite; ++it)
-//		std::cout << "insert_range : " << it->first << ' ' << it->second << std::endl;
-//	std::cout << std::endl;
+
+	it = mine.begin();
+	ite = mine.end();
+	rit = mine.rbegin();
+	rite = mine.rend();
+
+	std::cout << "it->first " << it->first << " it->second " << it->second << std::endl;
+	--ite;
+	std::cout << "ite->first " << ite->first << " ite->second " << ite->second << std::endl;
+	std::cout << "rit->first " << rit->first <<  " rit->second " << rit->second << std::endl;
+	--rite;
+	std::cout << "rite->first " << rite->first <<  " rite->second " << rite->second << std::endl;
 
 
-//	NAMESPACE::map<int, int>	access;
-//
-//	access.insert(NAMESPACE::make_pair(2, -2));
-//	access.insert(NAMESPACE::make_pair(4, -4));
-//	access.insert(NAMESPACE::make_pair(6, -6));
-//
-//	for(NAMESPACE::map<int, int>::iterator it = access.begin(); it != access.end();++it)
-//		std::cout << "Access : " << it->first << ' ' << it->second << std::endl;
-//	std::cout << "is empty : " << access.empty() << std::endl;
-//	std::cout << "size : " << access.size() << std::endl;
-//	std::cout << "max_size : " << access.max_size() << std::endl;
-//
-//	
-//	std::cout << "access[2] : " << access[2] << std::endl;
-//	
-//	int	n = access[2];
-//	std::cout << "int n : " << n << std::endl;
-//
-//	access[2] = 8;
-//	std::cout << "access[2] : " << access[2] << std::endl;
-//	std::cout << "is empty : " << access.empty() << std::endl;
-//	std::cout << "size : " << access.size() << std::endl;
-//	std::cout << "max_size : " << access.max_size() << std::endl;
-//	
-//	access[1] = 1;
-//	std::cout << "access[1] : " << access[1] << std::endl;
-//	std::cout << "size : " << access.size() << std::endl;
-//
-//
-//	access[3];
-//	std::cout << "access[3] : " << access[3] << std::endl;
-//	std::cout << "size : " << access.size() << std::endl;
-//
-//	try
-//	{
-//		std::cout<< "access.at(2) : " << access.at(2) << std::endl;
-//		std::cout<< "access.at(3) : " << access.at(3) << std::endl;
-//		std::cout<< "access.at(5) : " << access.at(5) << std::endl;
-//	}
-//	catch(const std::out_of_range& e)
-//	{
-//		std::cerr << "Out Of Range Error: " << e.what() << std::endl;
-//	}
-//
-//	for(NAMESPACE::map<int, int>::iterator it = access.begin(); it != access.end();++it)
-//		std::cout << "Access : " << it->first << ' ' << it->second << std::endl;
-//	std::cout << "size : " << access.size() << std::endl;
-//
-//	access.erase(++(access.begin()));
-//	
-//	for(NAMESPACE::map<int, int>::iterator it = access.begin(); it != access.end();++it)
-//		std::cout << "Access : " << it->first << ' ' << it->second << std::endl;
-//	std::cout << "size : " << access.size() << std::endl;
+
+	it = mine.begin();
+	ite = mine.end();
+	while (it != ite)
+	{
+		std::cout << it->first << std::endl;
+		++it;
+	}
+
+//	mine.print_tree('i');
+
+	std::cout << std::endl;
+
+	NAMESPACE::map<int, int> range(mine.begin(), mine.end());
+	std::cout << "is empty : " << mine.empty() << std::endl;
+	std::cout << "size : " << mine.size() << std::endl;
+	std::cout << "max_size : " << mine.max_size() << std::endl;
+
+
+	for (it = range.begin(); it != range.end(); ++it)
+		std::cout << "Range : " << it->first << ' ' << it->second << std::endl;
+	std::cout << std::endl;
+
+	
+	NAMESPACE::map<int, int>copy(range);
+	std::cout << "is empty : " << mine.empty() << std::endl;
+	std::cout << "size : " << mine.size() << std::endl;
+	std::cout << "max_size : " << mine.max_size() << std::endl;
+
+	NAMESPACE::map<int, int>::const_iterator cit = copy.begin();
+	NAMESPACE::map<int, int>::const_iterator cite = copy.end();
+	while (cit != cite)
+	{
+		std::cout << "Copy : " << cit->first << ' ' << cit->second << std::endl;
+		++cit;
+	}
+	std::cout << std::endl;
+
+	it = copy.begin();
+	std::cout << "it->first before insert postion : " << it->first << std::endl;
+	it = copy.insert(it, NAMESPACE::make_pair(7, -7));
+	std::cout << "it->first after insert postion : " << it->first << std::endl;
+
+	for(cit = copy.begin(); cit != cite; ++cit)
+		std::cout << "Copy : " << cit->first << ' ' << cit->second << std::endl;
+	std::cout << std::endl;
+
+	cit = copy.begin();
+	for(cite = --(copy.end()); cit != cite; --cite)
+		std::cout << "Copy : " << cite->first << ' ' << cite->second << std::endl;
+	std::cout << std::endl;
+
+
+	NAMESPACE::map<int, int>	insert_range;
+	std::cout << "is empty : " << mine.empty() << std::endl;
+	std::cout << "size : " << mine.size() << std::endl;
+	std::cout << "max_size : " << mine.max_size() << std::endl;
+
+	insert_range.insert(NAMESPACE::make_pair(-4, -4));
+	insert_range.insert(NAMESPACE::make_pair(30, -30));
+	ite = insert_range.end();
+	for (it = insert_range.begin(); it != ite; ++it)
+		std::cout << "insert_range : " << it->first << ' ' << it->second << std::endl;
+	std::cout << std::endl;
+
+	insert_range.insert(copy.begin(), copy.end());
+
+	ite = insert_range.end();
+	for (it = insert_range.begin(); it != ite; ++it)
+		std::cout << "insert_range : " << it->first << ' ' << it->second << std::endl;
+	std::cout << std::endl;
+
+
+	NAMESPACE::map<int, int>	access;
+
+	access.insert(NAMESPACE::make_pair(2, -2));
+	access.insert(NAMESPACE::make_pair(4, -4));
+	access.insert(NAMESPACE::make_pair(6, -6));
+
+	for(it = access.begin(); it != access.end();++it)
+		std::cout << "Access : " << it->first << ' ' << it->second << std::endl;
+	std::cout << "is empty : " << access.empty() << std::endl;
+	std::cout << "size : " << access.size() << std::endl;
+	std::cout << "max_size : " << access.max_size() << std::endl;
+
+	
+	std::cout << "access[2] : " << access[2] << std::endl;
+	
+	int	n = access[2];
+	std::cout << "int n : " << n << std::endl;
+
+	access[2] = 8;
+	std::cout << "access[2] : " << access[2] << std::endl;
+	std::cout << "is empty : " << access.empty() << std::endl;
+	std::cout << "size : " << access.size() << std::endl;
+	std::cout << "max_size : " << access.max_size() << std::endl;
+	
+	access[1] = 1;
+	std::cout << "access[1] : " << access[1] << std::endl;
+	std::cout << "size : " << access.size() << std::endl;
+
+
+	access[3];
+	std::cout << "access[3] : " << access[3] << std::endl;
+	std::cout << "size : " << access.size() << std::endl;
+
+	try
+	{
+		std::cout<< "access.at(2) : " << access.at(2) << std::endl;
+		std::cout<< "access.at(3) : " << access.at(3) << std::endl;
+		std::cout<< "access.at(5) : " << access.at(5) << std::endl;
+	}
+	catch(const std::out_of_range& e)
+	{
+		std::cerr << "Out Of Range Error: " << e.what() << std::endl;
+	}
+
+	for(it = access.begin(); it != access.end();++it)
+		std::cout << "Access : " << it->first << ' ' << it->second << std::endl;
+	std::cout << "size : " << access.size() << std::endl;
+
+	access.erase(++(access.begin()));
+	
+	for(it = access.begin(); it != access.end();++it)
+		std::cout << "Access : " << it->first << ' ' << it->second << std::endl;
+	std::cout << "size : " << access.size() << std::endl;
 
 
 
@@ -203,8 +212,6 @@ int main(void)
 	erase.insert(NAMESPACE::make_pair(9, -9));
 	erase.insert(NAMESPACE::make_pair(10, -10));
 	erase.insert(NAMESPACE::make_pair(11, -11));
-
-	NAMESPACE::map<int, int>::iterator  it;
 
 	for(it = erase.begin(); it != erase.end();++it)
 		std::cout << "Erase : " << it->first << ' ' << it->second << std::endl;
@@ -234,7 +241,45 @@ int main(void)
 	for(it = erase.begin(); it != erase.end();++it)
 		std::cout << "Erase : " << it->first << ' ' << it->second << std::endl;
 	std::cout << "size : " << erase.size() << std::endl;
+	std::cout << "erase.begin(), erase.end() " << erase.begin()->first << ' ' << (--(erase.end()))->first << std::endl; 
 
+	std::cout << "print" << std::endl;
+//	erase.print_tree('i');
+
+//	erase.erase(erase.begin(), erase.end());
+
+	for(it = erase.begin(); it != erase.end();++it)
+		std::cout << "Erase : " << it->first << ' ' << it->second << std::endl;
+	std::cout << "is empty : " << erase.empty() << std::endl;
+	std::cout << "size : " << erase.size() << std::endl;
+	std::cout << "max_size : " << erase.max_size() << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
+	for(it = access.begin(); it != access.end();++it)
+		std::cout << "Access : " << it->first << ' ' << it->second << std::endl;
+	std::cout << "is empty : " << access.empty() << std::endl;
+	std::cout << "size : " << access.size() << std::endl;
+	std::cout << "max_size : " << access.max_size() << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
+
+	erase.swap(access);
+
+	for(it = erase.begin(); it != erase.end();++it)
+		std::cout << "Erase : " << it->first << ' ' << it->second << std::endl;
+	std::cout << "is empty : " << erase.empty() << std::endl;
+	std::cout << "size : " << erase.size() << std::endl;
+	std::cout << "max_size : " << erase.max_size() << std::endl;
+	std::cout << std::endl;
+	for(it = access.begin(); it != access.end();++it)
+		std::cout << "Access : " << it->first << ' ' << it->second << std::endl;
+	std::cout << "is empty : " << access.empty() << std::endl;
+	std::cout << "size : " << access.size() << std::endl;
+	std::cout << "max_size : " << access.max_size() << std::endl;
+	std::cout << std::endl;
+
+//
+//	std::cout << "print" << std::endl;
 //	erase.print_tree('i');
 
 
@@ -372,5 +417,54 @@ int main(void)
 //	tree.delete_tree();
 //	tree.print_infix_order();
 //	std::cout << "size : " << tree.size() << std::endl;
+	
+//	std::cout << "print1" << std::endl;
+////	mine.print_tree('i');	
+////	std::cout << std::endl;
+////
+//	mine.insert(NAMESPACE::make_pair(10, -10));
+////
+////	std::cout << "print2" << std::endl;
+////	mine.print_tree('i');	
+////	std::cout << std::endl;
+////
+//	mine.insert(NAMESPACE::make_pair(1, -1));
+////
+////	std::cout << "print3" << std::endl;
+////	mine.print_tree('i');	
+////	std::cout << std::endl;
+////
+//	mine.insert(NAMESPACE::make_pair(-9, 9));
+////
+////	std::cout << "print4" << std::endl;
+////	mine.print_tree('i');	
+////	std::cout << std::endl;
+////
+//	mine.erase(++(mine.begin()));
+////		
+//	std::cout << "print5" << std::endl;
+////	mine.print_tree('i');	
+//	std::cout << std::endl;
+//	
+//	std::cout << "mine.begin()->first : " << mine.begin()->first << std::endl;
+////	std::cout << "mine.end()->first : " << mine.end()->first << std::endl;
+//	std::cout << "(--mine.end())->first : " << (--mine.end())->first << std::endl;
+//	std::cout << std::endl;
+//
+//	std::cout << "Before erase --end " << std::endl;
+//	mine.erase(mine.begin(), mine.end());
+//		
+//	std::cout << "print6" << std::endl;
+////	mine.print_tree('i');	
+//	std::cout << std::endl;
+//
+////	for (it = mine.begin(); it != mine.end();++it)
+////		std::cout << it->first << std::endl;
+//
+////	std::cout << "mine.begin()->first : " << mine.begin()->first << std::endl;
+////	std::cout << "mine.end()->first : " << mine.end()->first << std::endl;
+////	std::cout << "(--mine.end())->first : " << (--mine.end())->first << std::endl;
+	
+	std::cout << "Hello ?" << std::endl;
 	return (0);
 }

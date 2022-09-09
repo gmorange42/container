@@ -50,7 +50,7 @@ namespace ft
 				typedef ft::reverse_iterator<iterator>					reverse_iterator;
 				typedef ft::reverse_iterator<const_iterator>				const_reverse_iterator;
 
-			private:
+			protected:
 				allocator_type	_alloc;
 				key_compare	_comp;
 				size_type	_size;
@@ -213,7 +213,6 @@ namespace ft
 
 					if (_tree.add(val))
 					{
-						//	std::cout << "pouet : " << val.first << std::endl;
 						iterator it = _tree.find_value(val);
 						ret.first = it;
 						ret.second = true;
@@ -224,8 +223,12 @@ namespace ft
 				iterator	insert(iterator position, const value_type& val)
 				{
 					(void) position;
-					iterator	it = insert(val).first;
-					return (it);
+					ft::pair<iterator, bool> ret = insert(val);
+					iterator	it;
+					if (ret.second)
+						return (it = ret.first);
+					else
+						return (it = _tree.find_value(val));
 				}
 
 				template <class InputIterator>
@@ -258,15 +261,21 @@ namespace ft
 
 				void	erase(iterator first, iterator last)
 				{
-					T	min = first->first;
-					T	max = last->first;
-					while (
+					while (first != last)
+						erase(first++);
 				}
 
+				void	swap(map& x)
+				{
+					ft::map<key_type, mapped_type>	temp(x);
+
+					x = *this;
+					*this = temp;
+				}
 
 				/////OTHER/////
 
-				void	print_tree(char c)
+				void	print_tree(char c) const
 				{
 					if (c == 'p')
 						_tree.print_prefix_order();
