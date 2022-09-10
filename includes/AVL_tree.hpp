@@ -34,7 +34,7 @@ namespace ft
 		};
 
 
-	template <class T, class Alloc = std::allocator<ft::node<T> > >
+	template <class T, class compare, class Alloc = std::allocator<ft::node<T> > >
 		class bintree
 		{
 			protected:
@@ -43,6 +43,8 @@ namespace ft
 				ft::node<T>*	root;
 				int		nb_node;
 				ft::node<T>*	_end;
+				compare		comp;
+
 
 				bintree(const bintree &);
 				bintree&	operator=(const bintree &);
@@ -68,7 +70,8 @@ namespace ft
 
 					int	ldepth = depth_bintree(node->lson);
 					int	rdepth = depth_bintree(node->rson);
-					return ( 1 + (ldepth > rdepth ? ldepth : rdepth));
+//					return ( 1 + (ldepth > rdepth ? ldepth : rdepth));
+					return ( 1 + (comp(rdepth, ldepth ? ldepth : rdepth)));
 				}
 
 				// return the number of leaf below the pointed node
@@ -191,8 +194,8 @@ namespace ft
 		};
 
 
-	template <class T>
-		class search_tree : public bintree<T>
+	template <class T, class compare>
+		class search_tree : public bintree<T, compare>
 	{
 		protected:
 
@@ -200,6 +203,7 @@ namespace ft
 			ft::node<T>*	max_val;
 			search_tree(const search_tree &);
 			search_tree&	operator=(const search_tree &);
+			compare		comp;
 
 			bool	present(const T & elem) const
 			{
@@ -234,7 +238,8 @@ namespace ft
 
 				while (node && node->data.first != elem.first)
 				{
-					if (elem.first < node->data.first)
+//					if (elem.first < node->data.first)
+					if (comp(elem.first, node->data.first))
 						node = node->lson;
 					else
 						node = node->rson;
@@ -253,9 +258,11 @@ namespace ft
 
 				do
 				{
-					if (elem < dad->data && dad->lson && !dad->lson->end)
+//					if (elem < dad->data && dad->lson && !dad->lson->end)
+					if (this->comp(elem.first, dad->data.first) && dad->lson && !dad->lson->end)
 						dad = dad->lson;
-					else if (elem > dad->data && dad->rson && !dad->rson->end)
+//					else if (elem > dad->data && dad->rson && !dad->rson->end)
+					else if (comp(dad->data.first, elem.first) && dad->rson && !dad->rson->end)
 						dad = dad->rson;
 					else
 						dad_is_found = 1;
@@ -291,7 +298,8 @@ namespace ft
 					max_val = child;
 					min_val = child;
 				}
-				else if (elem < dad->data)
+//				else if (elem < dad->data)
+				else if (this->comp(elem.first, dad->data.first))
 				{
 					dad->lson = child;
 					if (dad == min_val)
@@ -418,8 +426,8 @@ namespace ft
 	};
 
 
-	template <class T>
-		class AVL_tree : public search_tree<T>
+	template <class T, class compare>
+		class AVL_tree : public search_tree<T, compare>
 	{
 		private:
 			AVL_tree(const AVL_tree &);
@@ -430,18 +438,18 @@ namespace ft
 				if (!node)
 					return;
 
-				int	balance_root = bintree<T>::depth_bintree(node->rson) - bintree<T>::depth_bintree(node->lson);
+				int	balance_root = bintree<T, compare>::depth_bintree(node->rson) - bintree<T, compare>::depth_bintree(node->lson);
 
 				if (balance_root == 2)
 				{
-					int	balance_rson = bintree<T>::depth_bintree(node->rson->rson) - bintree<T>::depth_bintree(node->rson->lson);
+					int	balance_rson = bintree<T, compare>::depth_bintree(node->rson->rson) - bintree<T, compare>::depth_bintree(node->rson->lson);
 					if (balance_rson == -1)
 						rrotation(node->rson);
 					lrotation(node);
 				}
 				else if (balance_root == -2)
 				{
-					int balance_lson = bintree<T>::depth_bintree(node->lson->rson) - bintree<T>::depth_bintree(node->lson->lson);
+					int balance_lson = bintree<T, compare>::depth_bintree(node->lson->rson) - bintree<T, compare>::depth_bintree(node->lson->lson);
 					if (balance_lson == 1)
 						lrotation(node->lson);
 					rrotation(node);
@@ -516,20 +524,20 @@ namespace ft
 			// add a elem and balance tree
 			int	add(const T & elem)
 			{
-				if (ft::search_tree<T>::add(elem) == 0)
+				if (ft::search_tree<T, compare>::add(elem) == 0)
 					return (0);
-				balance_tree(search_tree<T>::find_value(elem));
+				balance_tree(search_tree<T, compare>::find_value(elem));
 				return (1);
 			}
 
 			int	remove(const T & elem)
 			{
-				ft::node<T>* parent = search_tree<T>::find_value(elem);
+				ft::node<T>* parent = search_tree<T, compare>::find_value(elem);
 				if (!parent)
 					return(0);
 				parent = parent->dad;
 
-				if (ft::search_tree<T>::remove(elem) == 0)
+				if (ft::search_tree<T, compare>::remove(elem) == 0)
 					return (0);
 				balance_tree(parent);
 				return (1);
@@ -542,7 +550,7 @@ namespace ft
 
 			void	delete_tree(void)
 			{
-				bintree<T>::delete_bintree(this->root);
+				bintree<T, compare>::delete_bintree(this->root);
 
 				this->root = this->_end;
 				this->min_val = this->root;

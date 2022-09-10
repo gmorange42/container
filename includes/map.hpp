@@ -54,7 +54,7 @@ namespace ft
 				allocator_type	_alloc;
 				key_compare	_comp;
 				size_type	_size;
-				AVL_tree<value_type>	_tree;
+				AVL_tree<value_type, key_compare>	_tree;
 
 			public:
 				class value_compare : binary_function <value_type, value_type, bool>
