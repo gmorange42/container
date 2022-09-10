@@ -287,10 +287,91 @@ is empty : 0
 size : 3
 max_size : 230584300921369395
 
-Access
-Erase
 is empty : 1
 size : 0
 max_size : 230584300921369395
 
+mine before clear
+Mine : 1 -1
+Mine : 2 -2
+Mine : 3 -3
+Mine : 4 -4
+Mine : 5 -5
+Mine : 6 -6
+Mine : 7 -7
+Mine : 8 -8
+Mine : 9 -9
+Mine : 10 -10
+Mine : 11 -11
+Mine : 12 -12
+Mine : 13 -13
+Mine : 14 -14
+Mine : 15 -15
+Mine : 16 -16
+Mine : 17 -17
+Mine : 18 -18
+Mine : 19 -19
+Mine : 20 -20
+Mine : 21 -21
+Mine : 22 -22
+is empty : 0
+size : 22
+max_size : 230584300921369395
+
+mine after clear
+is empty : 1
+size : 0
+max_size : 230584300921369395
+
+mine after mine = insert_range
+Mine : -4 -4
+Mine : 1 -1
+Mine : 2 -2
+Mine : 3 -3
+Mine : 4 -4
+Mine : 5 -5
+Mine : 6 -6
+Mine : 7 -7
+Mine : 8 -8
+Mine : 9 -9
+Mine : 10 -10
+Mine : 11 -11
+Mine : 12 -12
+Mine : 13 -13
+Mine : 14 -14
+Mine : 15 -15
+Mine : 16 -16
+Mine : 17 -17
+Mine : 18 -18
+Mine : 19 -19
+Mine : 20 -20
+Mine : 21 -21
+Mine : 22 -22
+Mine : 30 -30
+is empty : 0
+size : 24
+max_size : 230584300921369395
+
+COMP TEST  5 AND 8 : 1
+COMP TEST  8 AND 5 : 0
+COMP TEST  5 AND 5 : 0
+mymap contains:
+x => 1001
+y => 2002
+z => 3003
+FIND
+mine.find(14) : 14 -14
+mine.find(-4) : -4 -4
+COUNT
+mine.count(14) : 1
+LOWER_BOUND
+mine.lower_bound(5)->first : 5
+mine.lower_bound(25)->first : 30
+UPPER_BOUND
+mine.upper_bound(5)->first : 6
+mine.upper_bound(25)->first : 30
+cit = mine.upper_bound(7), cit->first : 8
+EQUAL_RANGE
+(iterator) mine.equal_range(7) : 7 -7
+(const_iterator) mine.equal_range(7) : 7 -7
 Hello ?

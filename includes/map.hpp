@@ -58,19 +58,20 @@ namespace ft
 
 			public:
 				class value_compare : binary_function <value_type, value_type, bool>
-			{
-				friend class map;
-
-				protected:
-				Compare comp;
-				value_compare (Compare c) : comp(c) {}
-
-				public:
-				bool	operator() (const value_type& x, const value_type& y) const
 				{
-					return (comp(x. first, y.first));
-				}
-			};
+					friend class map;
+
+					protected:
+					Compare comp;
+					value_compare (Compare c) : comp(c) {}
+
+					public:
+					bool	operator() (const value_type& x, const value_type& y) const
+					{
+						return (comp(x. first, y.first));
+					}
+				};
+
 				explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : _alloc(alloc), _comp(comp), _size(0),  _tree() {}
 
 				template <class InputIterator>
@@ -271,6 +272,117 @@ namespace ft
 
 					x = *this;
 					*this = temp;
+				}
+
+				void	clear(void)
+				{
+					_tree.delete_tree();
+				}
+
+
+				/////OBSERVERS/////
+
+				key_compare	key_comp(void) const
+				{
+					return(key_compare());
+				}
+				
+				value_compare	value_comp() const
+				{
+					return(value_compare(key_compare()));
+				}
+
+
+				/////Operations/////
+
+				iterator	find(const key_type& k)
+				{
+					iterator	it = begin();
+					while (it != end() && it->first != k)
+						++it;
+					return (it);
+				}
+
+				const_iterator	find(const key_type& k) const
+				{
+					const_iterator	it = begin();
+					while (it != end() && it->first != k)
+						++it;
+					return (it);
+				}
+
+				size_type	count(const key_type& k) const
+				{
+					size_type	ret = 0;
+
+					for(const_iterator cit = begin(); cit != end(); ++cit)
+						if (cit->first == k)
+							++ret;
+
+					return (ret);
+				}
+
+				iterator	lower_bound(const key_type& k)
+				{
+					iterator	it = begin();
+					key_compare	comp = key_comp();
+
+					while (it != end() && comp(it->first, k))
+						++it;
+					return (it);
+				}
+
+				const_iterator	lower_bound(const key_type& k) const
+				{
+					iterator	it = begin();
+					key_compare	comp = key_comp();
+
+					while (it != end() && comp(it->first, k))
+						++it;
+					return (it);
+				}
+
+				iterator	upper_bound(const key_type& k)
+				{
+					iterator	it = begin();
+					key_compare	comp = key_comp();
+
+					while (it != end() && comp(it->first, k))
+						++it;
+					if (it != end() && it->first == k)
+						++it;
+					return (it);
+				}
+
+				const_iterator	upper_bound(const key_type& k) const
+				{
+					const_iterator	it = begin();
+					key_compare	comp = key_comp();
+
+					while (it != end() && comp(it->first, k))
+						++it;
+					if (it != end() && it->first == k)
+						++it;
+					return (it);
+				}
+
+				ft::pair<iterator, iterator>	equal_range(const key_type& k)
+				{
+					return(ft::make_pair(lower_bound(k), upper_bound(k)));
+				}
+
+				ft::pair<const_iterator, const_iterator>	equal_range(const key_type& k) const
+				{
+					return(ft::make_pair(lower_bound(k), upper_bound(k)));
+				}
+
+				
+				/////ALLOCATOR/////
+				
+
+				allocator_type	get_allocator(void) const
+				{
+					return (_alloc);
 				}
 
 				/////OTHER/////

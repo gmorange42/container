@@ -302,10 +302,6 @@ int main(void)
 	std::cout << "size : " << erase.size() << std::endl;
 	std::cout << "max_size : " << erase.max_size() << std::endl;
 	std::cout << std::endl;
-	std::cout << "Access" << std::endl;
-//	access.print_tree('i');
-	std::cout << "Erase" << std::endl;
-//	erase.print_tree('i');
 	for(it = access.begin(); it != access.end();++it)
 		std::cout << "Access : " << it->first << ' ' << it->second << std::endl;
 	std::cout << "is empty : " << access.empty() << std::endl;
@@ -313,8 +309,106 @@ int main(void)
 	std::cout << "max_size : " << access.max_size() << std::endl;
 	std::cout << std::endl;
 
+	std::cout << "mine before clear" << std::endl;
+	for(it = mine.begin(); it != mine.end();++it)
+		std::cout << "Mine : " << it->first << ' ' << it->second << std::endl;
+	std::cout << "is empty : " << mine.empty() << std::endl;
+	std::cout << "size : " << mine.size() << std::endl;
+	std::cout << "max_size : " << mine.max_size() << std::endl;
+//	mine.print_tree('i');
+	std::cout << std::endl;
+
+	mine.clear();
+
+	std::cout << "mine after clear" << std::endl;
+	for(it = mine.begin(); it != mine.end();++it)
+		std::cout << "Mine : " << it->first << ' ' << it->second << std::endl;
+	std::cout << "is empty : " << mine.empty() << std::endl;
+	std::cout << "size : " << mine.size() << std::endl;
+	std::cout << "max_size : " << mine.max_size() << std::endl;
+//	mine.print_tree('i');
+	std::cout << std::endl;
+
+	mine = insert_range;
+
+	std::cout << "mine after mine = insert_range" << std::endl;
+	for(it = mine.begin(); it != mine.end();++it)
+		std::cout << "Mine : " << it->first << ' ' << it->second << std::endl;
+	std::cout << "is empty : " << mine.empty() << std::endl;
+	std::cout << "size : " << mine.size() << std::endl;
+	std::cout << "max_size : " << mine.max_size() << std::endl;
+//	mine.print_tree('i');
+	std::cout << std::endl;
+
+	NAMESPACE::map<int, int>::key_compare	mycomp = mine.key_comp();
+
+	std::cout << "COMP TEST  5 AND 8 : " << mycomp(5, 8) << std::endl;
+	std::cout << "COMP TEST  8 AND 5 : " << mycomp(8, 5) << std::endl;
+	std::cout << "COMP TEST  5 AND 5 : " << mycomp(5, 5) << std::endl;
+
+	NAMESPACE::map<char,int> mymap;
+	
+	mymap['x']=1001;
+	mymap['y']=2002;
+	mymap['z']=3003;
+	
+	std::cout << "mymap contains:\n";
+	
+	NAMESPACE::pair<char,int> highest = *mymap.rbegin();          // last element
+	
+	NAMESPACE::map<char,int>::iterator chit = mymap.begin();
+	do {
+	  std::cout << chit->first << " => " << chit->second << '\n';
+	} while ( mymap.value_comp()(*chit++, highest) );
 
 
+
+
+
+
+	std::cout << "FIND" << std::endl;
+
+	std::cout << "mine.find(14) : " << mine.find(14)->first << ' ' << mine.find(14)->second << std::endl;
+	std::cout << "mine.find(-4) : " << mine.find(-4)->first << ' ' << mine.find(-4)->second << std::endl;
+//	std::cout << "mine.find(543) : " << mine.find(543)->first << ' ' << mine.find(543)->second << std::endl;
+
+
+	std::cout << "COUNT" << std::endl;
+
+	std::cout << "mine.count(14) : " << mine.count(14) << std::endl;
+
+
+
+	std::cout << "LOWER_BOUND" << std::endl;
+
+	std::cout << "mine.lower_bound(5)->first : " << mine.lower_bound(5)->first << std::endl;
+	std::cout << "mine.lower_bound(25)->first : " << mine.lower_bound(25)->first << std::endl;
+//	std::cout << "mine.lower_bound(35)->first : " << mine.lower_bound(35)->first << std::endl;
+
+	
+
+	std::cout << "UPPER_BOUND" << std::endl;
+
+	std::cout << "mine.upper_bound(5)->first : " << mine.upper_bound(5)->first << std::endl;
+	std::cout << "mine.upper_bound(25)->first : " << mine.upper_bound(25)->first << std::endl;
+//	std::cout << "mine.upper_bound(35)->first : " << mine.upper_bound(35)->first << std::endl;
+
+	cit = mine.upper_bound(7);
+	std::cout << "cit = mine.upper_bound(7), cit->first : " << cit->first << std::endl;
+
+
+	std::cout << "EQUAL_RANGE" << std::endl;
+
+	NAMESPACE::pair<NAMESPACE::map<int, int>::iterator, NAMESPACE::map<int, int>::iterator> iterator_pair;
+	NAMESPACE::pair<NAMESPACE::map<int, int>::const_iterator, NAMESPACE::map<int, int>::const_iterator> const_iterator_pair;
+
+	iterator_pair = mine.equal_range(7);
+	for(it = iterator_pair.first; it != iterator_pair.second; ++it)
+		std::cout << "(iterator) mine.equal_range(7) : " << it->first << ' ' << it->second << std::endl;
+
+	const_iterator_pair = mine.equal_range(7);
+	for(cit = const_iterator_pair.first; cit != const_iterator_pair.second; ++cit)
+		std::cout << "(const_iterator) mine.equal_range(7) : " << cit->first << ' ' << cit->second << std::endl;
 
 
 
