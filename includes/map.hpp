@@ -178,11 +178,11 @@ namespace ft
 				
 				mapped_type&	operator[](const key_type & k)
 				{
-					ft::pair<T, mapped_type>	p = ft::make_pair(k, NULL);
+					ft::pair<Key, mapped_type>	p = ft::make_pair(k, mapped_type());
 					ft::node<value_type>*	node = _tree.find_value(p);
 					if (!node)
 					{
-						_tree.add(p);
+						_tree.add(ft::make_pair(k, mapped_type()));
 						return (_tree.find_value(p)->data.second);
 					}
 					return (node->data.second);
@@ -190,7 +190,7 @@ namespace ft
 
 				mapped_type&	at(const key_type& k)
 				{
-					ft::pair<T, mapped_type>	p = ft::make_pair(k, NULL);
+					ft::pair<Key, mapped_type>	p = ft::make_pair(k, mapped_type());
 					ft::node<value_type>*	node = _tree.find_value(p);
 					if (!node)
 						throw(std::out_of_range("map:at"));
@@ -199,7 +199,7 @@ namespace ft
 
 				const mapped_type&	at(const key_type& k) const
 				{
-					ft::pair<T, mapped_type>	p = ft::make_pair(k, NULL);
+					ft::pair<Key, mapped_type>	p = ft::make_pair(k, mapped_type());
 					ft::node<value_type>*	node = _tree.find_value(p);
 					if (!node)
 						throw(std::out_of_range("map:at"));
@@ -249,7 +249,7 @@ namespace ft
 
 				size_type	erase(const key_type& k)
 				{
-					ft::pair<T, mapped_type>	p = ft::make_pair(k, NULL);
+					ft::pair<Key, mapped_type>	p = ft::make_pair(k, mapped_type());
 					ft::node<value_type>*	node = _tree.find_value(p);
 
 					if (node)

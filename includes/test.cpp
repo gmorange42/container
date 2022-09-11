@@ -340,26 +340,28 @@ int main(void)
 //	mine.print_tree('i');
 	std::cout << std::endl;
 
-	NAMESPACE::map<int, int>::key_compare	mycomp = mine.key_comp();
-
-	std::cout << "COMP TEST  5 AND 8 : " << mycomp(5, 8) << std::endl;
-	std::cout << "COMP TEST  8 AND 5 : " << mycomp(8, 5) << std::endl;
-	std::cout << "COMP TEST  5 AND 5 : " << mycomp(5, 5) << std::endl;
-
-	NAMESPACE::map<char,int> mymap;
-	
-	mymap['x']=1001;
-	mymap['y']=2002;
-	mymap['z']=3003;
-	
-	std::cout << "mymap contains:\n";
-	
-	NAMESPACE::pair<char,int> highest = *mymap.rbegin();          // last element
-	
-	NAMESPACE::map<char,int>::iterator chit = mymap.begin();
-	do {
-	  std::cout << chit->first << " => " << chit->second << '\n';
-	} while ( mymap.value_comp()(*chit++, highest) );
+//	NAMESPACE::map<int, int>::key_compare	mycomp = mine.key_comp();
+//
+//	std::cout << "COMP TEST  5 AND 8 : " << mycomp(5, 8) << std::endl;
+//	std::cout << "COMP TEST  8 AND 5 : " << mycomp(8, 5) << std::endl;
+//	std::cout << "COMP TEST  5 AND 5 : " << mycomp(5, 5) << std::endl;
+//
+//	NAMESPACE::map<char,int> mymap;
+//	
+//	mymap['x']=1001;
+//	mymap['y']=2002;
+//	mymap['z']=3003;
+//	
+//	std::cout << "mymap contains:\n";
+//	
+//	NAMESPACE::pair<char,int> highest = *mymap.rbegin();          // last element
+//	
+//	NAMESPACE::map<char, int>:: value_compare	pouet = mymap.value_comp();
+//
+//	NAMESPACE::map<char,int>::iterator chit = mymap.begin();
+//	do {
+//	  std::cout << chit->first << " => " << chit->second << '\n';
+//	} while ( pouet(*chit++, highest) );
 
 
 
@@ -410,6 +412,20 @@ int main(void)
 	for(cit = const_iterator_pair.first; cit != const_iterator_pair.second; ++cit)
 		std::cout << "(const_iterator) mine.equal_range(7) : " << cit->first << ' ' << cit->second << std::endl;
 
+
+	for(it = erase.begin(); it != erase.end();++it)
+		std::cout << "Erase : " << it->first << ' ' << it->second << std::endl;
+	std::cout << "size : " << erase.size() << std::endl;
+//	it = erase.end();
+//	std::cout << "it->first = " << it->first << std::endl;
+
+
+
+
+
+
+
+	NAMESPACE::map<int, std::string>	str_map;
 
 
 //	copy.print_tree('i');

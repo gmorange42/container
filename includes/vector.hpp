@@ -472,8 +472,8 @@ namespace ft
 			{
 				value_type*	new_arr;
 
-				if (_capacity < 0)
-					_capacity *= -1;
+			//	if (_capacity < 0)
+			//		_capacity *= -1;
 				new_arr = _alloc.allocate(_capacity);
 
 				for (size_type i = 0; i < _size; ++i)

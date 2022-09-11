@@ -44,7 +44,8 @@ namespace ft
 				int		nb_node;
 				ft::node<T>*	_end;
 				compare		comp;
-
+				typedef typename T::first_type	first_type;
+				typedef typename T::second_type	second_type;
 
 				bintree(const bintree &);
 				bintree&	operator=(const bintree &);
@@ -157,7 +158,7 @@ namespace ft
 					root = NULL;
 					_end = NULL;
 					_end = _alloc.allocate(1);
-					_alloc.construct(_end, ft::node<T>(ft::make_pair(NULL, NULL), NULL));
+					_alloc.construct(_end, ft::node<T>(ft::make_pair(first_type(), second_type()), NULL));
 					_end->end = true;
 					nb_node = 0;
 					root = _end;
@@ -204,6 +205,8 @@ namespace ft
 			search_tree(const search_tree &);
 			search_tree&	operator=(const search_tree &);
 			compare		comp;
+			typedef typename T::first_type	first_type;
+			typedef typename T::second_type	second_type;
 
 			bool	present(const T & elem) const
 			{
@@ -248,6 +251,21 @@ namespace ft
 			}
 
 			// return a node that will be the father of a future son
+			ft::node<T>*	find_value(const second_type & elem) const
+			{
+				ft::node<T>* node = this->root;
+
+				while (node && node->data.first != elem)
+				{
+//					if (elem.first < node->data.first)
+					if (comp(elem, node->data.first))
+						node = node->lson;
+					else
+						node = node->rson;
+				}
+				return (node);
+			}
+
 			ft::node<T>*	find_dad(const T & elem) const
 			{
 				if (this->nb_node == 0)

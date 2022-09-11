@@ -1,377 +1,2041 @@
-is empty : 1
-size : 0
-max_size : 230584300921369395
-is empty : 0
-size : 1
-max_size : 230584300921369395
-is empty : 0
-size : 22
-max_size : 230584300921369395
-ret.first->first 8
-it->first 1 it->second -1
-ite->first 22 ite->second -22
-rit->first 22 rit->second -22
-rite->first 1 rite->second -1
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
+[1m[35m
+-----------------------------------------------------------------[0m[1m[35m
+----------------------- TESTS FOR VECTOR ------------------------[0m[1m[35m
+-----------------------------------------------------------------[0m
+
+[1m[34m
+----------- TESTS FOR  INT VECTORS -----------[0m
+
+[1m[32m
+---------- vec1 ----------[0m
+
+[33mdefault constructor - Vector.hpp - line 62[0m
+std::vector<int> vec1;[0m
+
+capacity(): 0
+size(): 0
+
+[1m[32m
+---------- vec2 ----------[0m
+
+[33mfill constructor - Vector.hpp - line 69[0m
+std::vector<int> vec2(100, 42);[0m
+
+capacity(): 100
+size(): 100
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mrange constructor - Vector.hpp - line 86[0m
+std::vector<int> vec3(vec2.begin(), vec2.end() - 92);[0m
+
+capacity(): 8
+size(): 8
+
+42
+42
+42
+42
+42
+42
+42
+42
+[1m[32m
+---------- vec2 ----------[0m
+
+[33mpop_back() - Vector.hpp - line 354[0m
+vec2.pop_back();[0m
+
+capacity(): 100
+size(): 99
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mpop_back() - Vector.hpp - line 354[0m
+vec3.pop_back();[0m
+
+capacity(): 8
+size(): 7
+[1m[32m
+---------- vec4 ----------[0m
+
+[33mcopy constructor - Vector.hpp - line 114[0m
+std::vector<int> vec4(vec2);[0m
+
+vec2.capacity(): 100
+vec2.size(): 99
+vec4.capacity(): 99
+vec4.size(): 99
+[1m[32m
+---------- vec5 ----------[0m
+
+[33moperator= - Vector.hpp - line 138[0m
+std::vector<int> vec5 = vec3;[0m
+
+vec3.capacity(): 8
+vec3.size(): 7
+vec5.capacity(): 7
+vec5.size(): 7
+[1m[32m
+---------- vec2 ----------[0m
+
+[33mpop_back() - Vector.hpp - line 354[0m
+vec2.pop_back();[0m
+
+capacity(): 100
+size(): 98
+[1m[32m
+---------- vec2 ----------[0m
+
+[33merase() // single element - Vector.hpp - line 587[0m
+vec2.erase(vec2.begin());[0m
+
+capacity(): 100
+size(): 97
+[1m[32m
+---------- vec2 ----------[0m
+
+[33merase() // range - Vector.hpp - line 611[0m
+vec2.erase(vec2.begin(), vec2.begin() + 3);[0m
+
+capacity(): 100
+size(): 94
+[1m[32m
+---------- vec2 ----------[0m
+
+[33mresize() - Vector.hpp - line 210[0m
+vec2.resize(60);[0m
+
+capacity(): 100
+size(): 60
+[1m[32m
+---------- vec2 ----------[0m
+
+[33mreserve() - Vector.hpp - line 235[0m
+vec2.reserve(50);[0m
+
+capacity(): 100
+size(): 60
+[1m[32m
+---------- vec2 ----------[0m
+
+[33massign() // range - Vector.hpp - line 305[0m
+vec2.assign(vec3.begin(), vec3.end());[0m
+
+capacity(): 100
+size(): 7
+[1m[32m
+---------- vec2 ----------[0m
+
+[33massign() // fill - Vector.hpp - line 332[0m
+vec2.assign(3, 84);[0m
+
+capacity(): 100
+size(): 3
+[1m[32m
+---------- vec2 ----------[0m
+
+[33mclear() - Vector.hpp - line 661[0m
+vec2.clear();[0m
+
+capacity(): 100
+size(): 0
+[1m[32m
+---------- vec6 ----------[0m
+
+[33mfill constructor - Vector.hpp - line 69[0m
+std::vector<int> vec6(1000000);[0m
+
+capacity(): 1000000
+size(): 1000000
+[1m[32m
+---------- vec6 ----------[0m
+
+[33massign // fill - Vector.hpp - line 332[0m
+vec6.assign(1, 42);[0m
+
+capacity(): 1000000
+size(): 1
+
+42
+[1m[32m
+---------- vec2 ----------[0m
+
+[33mempty() - Vector.hpp - line 228[0m
+vec2.empty()[0m
+
+empty(): 1
+capacity(): 100
+size(): 0
+
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mempty() - Vector.hpp - line 228[0m
+vec3.empty()[0m
+
+empty(): 0
+capacity(): 8
+size(): 7
+
+42
+42
+42
+42
+42
+42
+42
+[1m[32m
+---------- vec3 ----------[0m
+
+capacity(): 7
+size(): 7
+
+42
+42
+42
+42
+42
+42
+42
+[1m[32m
+---------- vec5 ----------[0m
+
+[33mpush_back() - Vector.hpp - line 345[0m
+vec5.push_back(21);[0m
+
+capacity(): 14
+size(): 8
+
+42
+42
+42
+42
+42
+42
+42
 21
-22
+[1m[32m
+---------- vec5 ----------[0m
 
-is empty : 0
-size : 22
-max_size : 230584300921369395
-Range : 1 -1
-Range : 2 -2
-Range : 3 -3
-Range : 4 -4
-Range : 5 -5
-Range : 6 -6
-Range : 7 -7
-Range : 8 -8
-Range : 9 -9
-Range : 10 -10
-Range : 11 -11
-Range : 12 -12
-Range : 13 -13
-Range : 14 -14
-Range : 15 -15
-Range : 16 -16
-Range : 17 -17
-Range : 18 -18
-Range : 19 -19
-Range : 20 -20
-Range : 21 -21
-Range : 22 -22
+[33minsert() // single element - Vector.hpp - line 361[0m
+vec5.insert(vec5.begin(), 84);[0m
 
-is empty : 0
-size : 22
-max_size : 230584300921369395
-Copy : 1 -1
-Copy : 2 -2
-Copy : 3 -3
-Copy : 4 -4
-Copy : 5 -5
-Copy : 6 -6
-Copy : 7 -7
-Copy : 8 -8
-Copy : 9 -9
-Copy : 10 -10
-Copy : 11 -11
-Copy : 12 -12
-Copy : 13 -13
-Copy : 14 -14
-Copy : 15 -15
-Copy : 16 -16
-Copy : 17 -17
-Copy : 18 -18
-Copy : 19 -19
-Copy : 20 -20
-Copy : 21 -21
-Copy : 22 -22
+capacity(): 14
+size(): 9
 
-it->first before insert postion : 1
-it->first after insert postion : 7
-Copy : 1 -1
-Copy : 2 -2
-Copy : 3 -3
-Copy : 4 -4
-Copy : 5 -5
-Copy : 6 -6
-Copy : 7 -7
-Copy : 8 -8
-Copy : 9 -9
-Copy : 10 -10
-Copy : 11 -11
-Copy : 12 -12
-Copy : 13 -13
-Copy : 14 -14
-Copy : 15 -15
-Copy : 16 -16
-Copy : 17 -17
-Copy : 18 -18
-Copy : 19 -19
-Copy : 20 -20
-Copy : 21 -21
-Copy : 22 -22
+84
+42
+42
+42
+42
+42
+42
+42
+21
+[1m[32m
+---------- vec5 ----------[0m
 
-Copy : 22 -22
-Copy : 21 -21
-Copy : 20 -20
-Copy : 19 -19
-Copy : 18 -18
-Copy : 17 -17
-Copy : 16 -16
-Copy : 15 -15
-Copy : 14 -14
-Copy : 13 -13
-Copy : 12 -12
-Copy : 11 -11
-Copy : 10 -10
-Copy : 9 -9
-Copy : 8 -8
-Copy : 7 -7
-Copy : 6 -6
-Copy : 5 -5
-Copy : 4 -4
-Copy : 3 -3
-Copy : 2 -2
+[33minsert() // fill - Vector.hpp - line 425[0m
+vec5.insert(vec5.begin(), 2, 168);[0m
 
-is empty : 0
-size : 22
-max_size : 230584300921369395
-insert_range : -4 -4
-insert_range : 30 -30
+capacity(): 14
+size(): 11
 
-insert_range : -4 -4
-insert_range : 1 -1
-insert_range : 2 -2
-insert_range : 3 -3
-insert_range : 4 -4
-insert_range : 5 -5
-insert_range : 6 -6
-insert_range : 7 -7
-insert_range : 8 -8
-insert_range : 9 -9
-insert_range : 10 -10
-insert_range : 11 -11
-insert_range : 12 -12
-insert_range : 13 -13
-insert_range : 14 -14
-insert_range : 15 -15
-insert_range : 16 -16
-insert_range : 17 -17
-insert_range : 18 -18
-insert_range : 19 -19
-insert_range : 20 -20
-insert_range : 21 -21
-insert_range : 22 -22
-insert_range : 30 -30
+168
+168
+84
+42
+42
+42
+42
+42
+42
+42
+21
+[1m[32m
+---------- vec3 ----------[0m
 
-Access : 2 -2
-Access : 4 -4
-Access : 6 -6
-is empty : 0
-size : 3
-max_size : 230584300921369395
-access[2] : -2
-int n : -2
-access[2] : 8
-is empty : 0
-size : 3
-max_size : 230584300921369395
-access[1] : 1
-size : 4
-access[3] : 0
-size : 5
-access.at(2) : 8
-access.at(3) : 0
-access.at(5) : Access : 1 1
-Access : 2 8
-Access : 3 0
-Access : 4 -4
-Access : 6 -6
-size : 5
-Access : 1 1
-Access : 3 0
-Access : 4 -4
-Access : 6 -6
-size : 4
-Erase : 1 -1
-Erase : 2 -2
-Erase : 3 -3
-Erase : 4 -4
-Erase : 5 -5
-Erase : 6 -6
-Erase : 7 -7
-Erase : 8 -8
-Erase : 9 -9
-Erase : 10 -10
-Erase : 11 -11
-size : 11
-it->first : 4
-Erase : 1 -1
-Erase : 2 -2
-Erase : 3 -3
-Erase : 5 -5
-Erase : 6 -6
-Erase : 7 -7
-Erase : 8 -8
-Erase : 9 -9
-Erase : 10 -10
-Erase : 11 -11
-size : 10
-1
-0
-Erase : 1 -1
-Erase : 2 -2
-Erase : 3 -3
-Erase : 6 -6
-Erase : 7 -7
-Erase : 8 -8
-Erase : 9 -9
-Erase : 10 -10
-Erase : 11 -11
-size : 9
-Erase : 1 -1
-Erase : 10 -10
-Erase : 11 -11
-size : 3
-erase.begin(), erase.end() 1 11
-print
-Erase : 1 -1
-Erase : 10 -10
-Erase : 11 -11
-is empty : 0
-size : 3
-max_size : 230584300921369395
+size(): 7
+
+42
+42
+42
+42
+42
+42
+42
+[1m[32m
+---------- vec5 ----------[0m
+
+[33minsert() // range - Vector.hpp - line 501[0m
+vec5.insert(vec5.begin(), vec3.end() - 3, vec3.end());[0m
+
+capacity(): 14
+size(): 14
+
+42
+42
+42
+168
+168
+84
+42
+42
+42
+42
+42
+42
+42
+21
+[1m[32m
+---------- vec5 ----------[0m
+
+[33minsert() // fill - Vector.hpp - line 425[0m
+vec5.insert(vec5.end(), 15, 168);[0m
+
+capacity(): 29
+size(): 29
+
+42
+42
+42
+168
+168
+84
+42
+42
+42
+42
+42
+42
+42
+21
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+[1m[32m
+------ vec3 && vec5 ------[0m
+
+[33mswap() - Vector.hpp - line 635[0m
+vec5.swap(vec3);[0m
 
 
-Access : 1 1
-Access : 3 0
-Access : 4 -4
-Access : 6 -6
-is empty : 0
-size : 4
-max_size : 230584300921369395
+[1m[34mVEC3 BEFORE: [0m
+vec3.capacity(): 8
+size(): 7
+
+42
+42
+42
+42
+42
+42
+42
+
+[1m[34mVEC5 BEFORE: [0m
+vec5.capacity(): 29
+size(): 29
+
+42
+42
+42
+168
+168
+84
+42
+42
+42
+42
+42
+42
+42
+21
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+
+[1m[34mVEC3 AFTER: [0m
+vec3.capacity(): 29
+size(): 29
+
+42
+42
+42
+168
+168
+84
+42
+42
+42
+42
+42
+42
+42
+21
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+168
+
+[1m[34mVEC5 AFTER: [0m
+vec5.capacity(): 8
+size(): 7
+
+42
+42
+42
+42
+42
+42
+42
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mresize() - Vector.hpp - line 210[0m
+vec3.resize(6);[0m
+
+capacity(): 29
+size(): 6
+
+42
+42
+42
+168
+168
+84
+[1m[32m
+---------- vec3 ----------[0m
+
+[33moperator[] - Vector.hpp - line 259[0m
+vec3[3][0m
+
+vec3[3]: 168
+
+capacity(): 29
+size(): 6
+
+42
+42
+42
+168
+168
+84
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mat() - Vector.hpp - line 269[0m
+vec3.at(5)[0m
+
+vec3.at(5): 84
+
+capacity(): 29
+size(): 6
+
+42
+42
+42
+168
+168
+84
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mfront() - Vector.hpp - line 283[0m
+vec3.front()[0m
+
+vec3.front(): 42
+
+capacity(): 29
+size(): 6
+
+42
+42
+42
+168
+168
+84
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mback() - Vector.hpp - line 293[0m
+vec3.back()[0m
+
+vec3.back(): 84
+
+capacity(): 29
+size(): 6
+
+42
+42
+42
+168
+168
+84
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mrbegin() - Vector.hpp - line 179[0m
+*vec3.rbegin()[0m
+
+*vec3.rbegin(): 84
+
+capacity(): 29
+size(): 6
+
+42
+42
+42
+168
+168
+84
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mrend() - Vector.hpp - line 189[0m
+*(vec3.rend() - 1)[0m
+
+*(vec3.rend() - 1): 42
+
+capacity(): 29
+size(): 6
+
+42
+42
+42
+168
+168
+84
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mmax_size() - Vector.hpp - line 205[0m
+vec3.max_size()[0m
+
+vec3.max_size(): 2305843009213693951
+
+capacity(): 29
+size(): 6
+
+42
+42
+42
+168
+168
+84
+[1m[32m
+---------- vec3 ----------[0m
+
+[33moperator== - Vector.hpp - line 696[0m
+(vec3 == vec5)[0m
+
+(vec3 == vec5): 0
+
+vec3.capacity(): 29
+size(): 6
+
+42
+42
+42
+168
+168
+84
+
+vec5.capacity(): 8
+size(): 7
+
+42
+42
+42
+42
+42
+42
+42
+[1m[32m
+---------- vec3 ----------[0m
+
+[33moperator> - Vector.hpp - line 733[0m
+(vec3 > vec5)[0m
+
+(vec3 > vec5): 1
+
+vec3.capacity(): 29
+size(): 6
+
+42
+42
+42
+168
+168
+84
+
+vec5.capacity(): 8
+size(): 7
+
+42
+42
+42
+42
+42
+42
+42
+[1m[32m
+---------- vec5 ----------[0m
+
+[33moperator= - Vector.hpp - line 138[0m
+vec5 = vec3;[0m
+
+vec3.capacity(): 29
+size(): 6
+
+42
+42
+42
+168
+168
+84
+
+vec5.capacity(): 8
+size(): 6
+
+42
+42
+42
+168
+168
+84
+[1m[32m
+---------- vec3 ----------[0m
+
+[33moperator== - Vector.hpp - line 696[0m
+(vec3 == vec5)[0m
+
+(vec3 == vec5): 1
+
+vec3.capacity(): 29
+size(): 6
+
+42
+42
+42
+168
+168
+84
+
+vec5.capacity(): 8
+size(): 6
+
+42
+42
+42
+168
+168
+84
+[1m[32m
+---------- vec3 ----------[0m
+
+[33moperator<= - Vector.hpp - line 725[0m
+(vec3 <= vec5)[0m
+
+(vec3 <= vec5): 1
+
+vec3.capacity(): 29
+size(): 6
+
+42
+42
+42
+168
+168
+84
+
+vec5.capacity(): 8
+size(): 6
+
+42
+42
+42
+168
+168
+84
+[1m[34m
+
+---------- TESTS FOR STRING VECTORS ----------[0m
+
+[1m[32m
+---------- vec1 ----------[0m
+
+[33mdefault constructor - Vector.hpp - line 62[0m
+std::vector<std::string> vec1;[0m
+
+capacity(): 0
+size(): 0
+
+[1m[32m
+---------- vec2 ----------[0m
+
+[33mfill constructor - Vector.hpp - line 69[0m
+std::vector<std::string> vec2(100, "Forty-two!");[0m
+
+capacity(): 100
+size(): 100
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mrange constructor - Vector.hpp - line 86[0m
+std::vector<std::string> vec3(vec2.begin(), vec2.end() - 92);[0m
+
+capacity(): 8
+size(): 8
+
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+[1m[32m
+---------- vec2 ----------[0m
+
+[33mpop_back() - Vector.hpp - line 354[0m
+vec2.pop_back();[0m
+
+capacity(): 100
+size(): 99
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mpop_back() - Vector.hpp - line 354[0m
+vec3.pop_back();[0m
+
+capacity(): 8
+size(): 7
+[1m[32m
+---------- vec4 ----------[0m
+
+[33mcopy constructor - Vector.hpp - line 114[0m
+std::vector<std::string> vec4(vec2);[0m
+
+vec2.capacity(): 100
+vec2.size(): 99
+vec4.capacity(): 99
+vec4.size(): 99
+[1m[32m
+---------- vec5 ----------[0m
+
+[33moperator= - Vector.hpp - line 138[0m
+std::vector<std::string> vec5 = vec3;[0m
+
+vec3.capacity(): 8
+vec3.size(): 7
+vec5.capacity(): 7
+vec5.size(): 7
+[1m[32m
+---------- vec2 ----------[0m
+
+[33mpop_back() - Vector.hpp - line 354[0m
+vec2.pop_back();[0m
+
+capacity(): 100
+size(): 98
+[1m[32m
+---------- vec2 ----------[0m
+
+[33merase() // single element - Vector.hpp - line 587[0m
+vec2.erase(vec2.begin());[0m
+
+capacity(): 100
+size(): 97
+[1m[32m
+---------- vec2 ----------[0m
+
+[33merase() // range - Vector.hpp - line 611[0m
+vec2.erase(vec2.begin(), vec2.begin() + 3);[0m
+
+capacity(): 100
+size(): 94
+[1m[32m
+---------- vec2 ----------[0m
+
+[33mresize() - Vector.hpp - line 210[0m
+vec2.resize(60);[0m
+
+capacity(): 100
+size(): 60
+[1m[32m
+---------- vec2 ----------[0m
+
+[33mreserve() - Vector.hpp - line 235[0m
+vec2.reserve(50);[0m
+
+capacity(): 100
+size(): 60
+[1m[32m
+---------- vec2 ----------[0m
+
+[33massign() // range - Vector.hpp - line 305[0m
+vec2.assign(vec3.begin(), vec3.end());[0m
+
+capacity(): 100
+size(): 7
+[1m[32m
+---------- vec2 ----------[0m
+
+[33massign() // fill - Vector.hpp - line 332[0m
+vec2.assign(3, "Eighty-four!");[0m
+
+capacity(): 100
+size(): 3
+[1m[32m
+---------- vec2 ----------[0m
+
+[33mclear() - Vector.hpp - line 661[0m
+vec2.clear();[0m
+
+capacity(): 100
+size(): 0
+[1m[32m
+---------- vec6 ----------[0m
+
+[33mfill constructor - Vector.hpp - line 69[0m
+std::vector<std::string> vec6(1000000);[0m
+
+capacity(): 1000000
+size(): 1000000
+[1m[32m
+---------- vec6 ----------[0m
+
+[33massign // fill - Vector.hpp - line 332[0m
+vec6.assign(1, "Twenty-one!");[0m
+
+capacity(): 1000000
+size(): 1
+
+Twenty-one!
+[1m[32m
+---------- vec2 ----------[0m
+
+[33mempty() - Vector.hpp - line 228[0m
+vec2.empty()[0m
+
+empty(): 1
+capacity(): 100
+size(): 0
+
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mempty() - Vector.hpp - line 228[0m
+vec3.empty()[0m
+
+empty(): 0
+capacity(): 8
+size(): 7
+
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+[1m[32m
+---------- vec3 ----------[0m
+
+capacity(): 7
+size(): 7
+
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+[1m[32m
+---------- vec5 ----------[0m
+
+[33mpush_back() - Vector.hpp - line 345[0m
+vec5.push_back("Thirty-six!");[0m
+
+capacity(): 14
+size(): 8
+
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Thirty-six!
+[1m[32m
+---------- vec5 ----------[0m
+
+[33minsert() // single element - Vector.hpp - line 361[0m
+vec5.insert(vec5.begin(), "Twelve!");[0m
+
+capacity(): 14
+size(): 9
+
+Twelve!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Thirty-six!
+[1m[32m
+---------- vec5 ----------[0m
+
+[33minsert() // fill - Vector.hpp - line 425[0m
+vec5.insert(vec5.begin(), 2, "Sixty-eight!");[0m
+
+capacity(): 14
+size(): 11
+
+Sixty-eight!
+Sixty-eight!
+Twelve!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Thirty-six!
+[1m[32m
+---------- vec3 ----------[0m
+
+size(): 7
+
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+[1m[32m
+---------- vec5 ----------[0m
+
+[33minsert() // range - Vector.hpp - line 501[0m
+vec5.insert(vec5.begin(), vec3.end() - 2, vec3.end());[0m
+
+capacity(): 14
+size(): 14
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Thirty-six!
+[1m[32m
+---------- vec5 ----------[0m
+
+[33minsert() // fill - Vector.hpp - line 425[0m
+vec5.insert(vec5.end(), 15, "Six!");[0m
+
+capacity(): 29
+size(): 29
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Thirty-six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+[1m[32m
+------ vec3 && vec5 ------[0m
+
+[33mswap() - Vector.hpp - line 635[0m
+vec5.swap(vec3);[0m
 
 
-Erase : 1 1
-Erase : 3 0
-Erase : 4 -4
-Erase : 6 -6
-is empty : 0
-size : 4
-max_size : 230584300921369395
+[1m[34mVEC3 BEFORE: [0m
+vec3.capacity(): 8
+size(): 7
 
-Access : 1 -1
-Access : 10 -10
-Access : 11 -11
-is empty : 0
-size : 3
-max_size : 230584300921369395
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
 
-is empty : 1
-size : 0
-max_size : 230584300921369395
+[1m[34mVEC5 BEFORE: [0m
+vec5.capacity(): 29
+size(): 29
 
-Access : 1 -1
-Access : 10 -10
-Access : 11 -11
-is empty : 0
-size : 3
-max_size : 230584300921369395
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Thirty-six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
 
-Erase
-Erase : 1 -1
-Erase : 10 -10
-Erase : 11 -11
-is empty : 0
-size : 3
-max_size : 230584300921369395
+[1m[34mVEC3 AFTER: [0m
+vec3.capacity(): 29
+size(): 29
 
-is empty : 1
-size : 0
-max_size : 230584300921369395
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Thirty-six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
+Six!
 
-mine before clear
-Mine : 1 -1
-Mine : 2 -2
-Mine : 3 -3
-Mine : 4 -4
-Mine : 5 -5
-Mine : 6 -6
-Mine : 7 -7
-Mine : 8 -8
-Mine : 9 -9
-Mine : 10 -10
-Mine : 11 -11
-Mine : 12 -12
-Mine : 13 -13
-Mine : 14 -14
-Mine : 15 -15
-Mine : 16 -16
-Mine : 17 -17
-Mine : 18 -18
-Mine : 19 -19
-Mine : 20 -20
-Mine : 21 -21
-Mine : 22 -22
-is empty : 0
-size : 22
-max_size : 230584300921369395
+[1m[34mVEC5 AFTER: [0m
+vec5.capacity(): 8
+size(): 7
 
-mine after clear
-is empty : 1
-size : 0
-max_size : 230584300921369395
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+[1m[32m
+---------- vec3 ----------[0m
 
-mine after mine = insert_range
-Mine : -4 -4
-Mine : 1 -1
-Mine : 2 -2
-Mine : 3 -3
-Mine : 4 -4
-Mine : 5 -5
-Mine : 6 -6
-Mine : 7 -7
-Mine : 8 -8
-Mine : 9 -9
-Mine : 10 -10
-Mine : 11 -11
-Mine : 12 -12
-Mine : 13 -13
-Mine : 14 -14
-Mine : 15 -15
-Mine : 16 -16
-Mine : 17 -17
-Mine : 18 -18
-Mine : 19 -19
-Mine : 20 -20
-Mine : 21 -21
-Mine : 22 -22
-Mine : 30 -30
-is empty : 0
-size : 24
-max_size : 230584300921369395
+[33mresize() - Vector.hpp - line 210[0m
+vec3.resize(6);[0m
 
-COMP TEST  5 AND 8 : 1
-COMP TEST  8 AND 5 : 0
-COMP TEST  5 AND 5 : 0
-mymap contains:
-x => 1001
-y => 2002
-z => 3003
-FIND
-mine.find(14) : 14 -14
-mine.find(-4) : -4 -4
-COUNT
-mine.count(14) : 1
-LOWER_BOUND
-mine.lower_bound(5)->first : 5
-mine.lower_bound(25)->first : 30
-UPPER_BOUND
-mine.upper_bound(5)->first : 6
-mine.upper_bound(25)->first : 30
-cit = mine.upper_bound(7), cit->first : 8
-EQUAL_RANGE
-(iterator) mine.equal_range(7) : 7 -7
-(const_iterator) mine.equal_range(7) : 7 -7
-Hello ?
+capacity(): 29
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+[1m[32m
+---------- vec3 ----------[0m
+
+[33moperator[] - Vector.hpp - line 259[0m
+vec3[3][0m
+
+vec3[3]: Sixty-eight!
+
+capacity(): 29
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mat() - Vector.hpp - line 269[0m
+vec3.at(5)[0m
+
+vec3.at(5): Twelve!
+
+capacity(): 29
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mfront() - Vector.hpp - line 283[0m
+vec3.front()[0m
+
+vec3.front(): Forty-two!
+
+capacity(): 29
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mback() - Vector.hpp - line 293[0m
+vec3.back()[0m
+
+vec3.back(): Twelve!
+
+capacity(): 29
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mrbegin() - Vector.hpp - line 179[0m
+*vec3.rbegin()[0m
+
+*vec3.rbegin(): Twelve!
+
+capacity(): 29
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mrend() - Vector.hpp - line 189[0m
+*(vec3.rend() - 1)[0m
+
+*(vec3.rend() - 1): Forty-two!
+
+capacity(): 29
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+[1m[32m
+---------- vec3 ----------[0m
+
+[33mmax_size() - Vector.hpp - line 205[0m
+vec3.max_size()[0m
+
+vec3.max_size(): 288230376151711743
+
+capacity(): 29
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+[1m[32m
+---------- vec3 ----------[0m
+
+[33moperator== - Vector.hpp - line 696[0m
+(vec3 == vec5)[0m
+
+(vec3 == vec5): 0
+
+vec3.capacity(): 29
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+
+vec5.capacity(): 8
+size(): 7
+
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+[1m[32m
+---------- vec3 ----------[0m
+
+[33moperator> - Vector.hpp - line 733[0m
+(vec3 > vec5)[0m
+
+(vec3 > vec5): 1
+
+vec3.capacity(): 29
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+
+vec5.capacity(): 8
+size(): 7
+
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+Forty-two!
+[1m[32m
+---------- vec5 ----------[0m
+
+[33moperator= - Vector.hpp - line 138[0m
+vec5 = vec3;[0m
+
+vec3.capacity(): 29
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+
+vec5.capacity(): 8
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+[1m[32m
+---------- vec3 ----------[0m
+
+[33moperator== - Vector.hpp - line 696[0m
+(vec3 == vec5)[0m
+
+(vec3 == vec5): 1
+
+vec3.capacity(): 29
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+
+vec5.capacity(): 8
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+[1m[32m
+---------- vec3 ----------[0m
+
+[33moperator<= - Vector.hpp - line 725[0m
+(vec3 <= vec5)[0m
+
+(vec3 <= vec5): 1
+
+vec3.capacity(): 29
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+
+vec5.capacity(): 8
+size(): 6
+
+Forty-two!
+Forty-two!
+Forty-two!
+Sixty-eight!
+Sixty-eight!
+Twelve!
+[1m[35m
+-----------------------------------------------------------------[0m[1m[35m
+------------------------- TESTS  STACK --------------------------[0m[1m[35m
+-----------------------------------------------------------------[0m
+
+[1m[34m
+------------ TESTS FOR INT STACKS ------------[0m
+
+[1m[32m
+---------- stk1 ----------[0m
+
+[33mdefault constructor - Stack.hpp - line 42[0m
+std::stack<int> stk1;[0m
+
+size(): 0
+[1m[32m
+---------- stk1 ----------[0m
+
+[33mempty() - Stack.hpp - line 79[0m
+stk1.empty()[0m
+
+empty(): 1
+size(): 0
+[1m[32m
+---------- stk1 ----------[0m
+
+[33mpush() - Stack.hpp - line 90[0m
+stk1.push(42);[0m
+
+empty(): 0
+size(): 1
+42
+[1m[32m
+---------- stk2 ----------[0m
+
+[33moperator= - Stack.hpp - line 53[0m
+std::stack<int> stk2 = stk1;[0m
+
+stk1.size(): 1
+42
+
+stk2.size(): 1
+42
+[1m[32m
+------ stk3 && stk2 ------[0m
+
+[33mcopy constructor - Stack.hpp - line 48[0m
+std::stack<int> stk3(stk2);[0m
+
+stk2.size(): 1
+42
+
+stk3.size(): 1
+42
+[1m[32m
+---------- stk2 ----------[0m
+
+[33mpush() - Stack.hpp - line 90[0m
+stk2.push(84);[0m
+
+size(): 2
+42
+84
+[1m[32m
+---------- stk2 ----------[0m
+
+[33mpop() - Stack.hpp - line 95[0m
+stk2.pop();[0m
+
+size(): 1
+42
+[1m[32m
+------ stk1 && stk2 ------[0m
+
+[33moperator== - Stack.hpp - line 116[0m
+(stk1 == stk2)[0m
+
+(stk1 == stk2): 1
+
+stk1.size(): 1
+42
+stk2.size(): 1
+42
+[1m[32m
+---------- stk1 ----------[0m
+
+[33mpush() - Stack.hpp - line 90[0m
+stk1.push(16);[0m
+
+size(): 2
+42
+16
+[1m[32m
+------ stk1 && stk2 ------[0m
+
+[33moperator> - Stack.hpp - line 140[0m
+(stk1 > stk2)[0m
+
+(stk1 > stk2): 1
+
+stk1.size(): 2
+42
+16
+stk2.size(): 1
+42
+[1m[32m
+---------- stk1 ----------[0m
+
+[33mtop() - Stack.hpp - line 68[0m
+stk1.top()[0m
+
+top(): 16
+size(): 2
+42
+16
+[1m[34m
+
+----------- TESTS FOR  LIST STACKS -----------[0m
+
+[1m[32m
+-------- stk_lst1 --------[0m
+
+[33mdefault constructor - Stack.hpp - line 42[0m
+std::stack< int, std::list<int> > stk_lst1;[0m
+
+size(): 0
+[1m[32m
+-------- stk_lst1 --------[0m
+
+[33mempty() - Stack.hpp - line 79[0m
+stk_lst1.empty()[0m
+
+empty(): 1
+size(): 0
+[1m[32m
+-------- stk_lst1 --------[0m
+
+[33mpush() - Stack.hpp - line 90[0m
+stk_lst1.push(42);[0m
+
+empty(): 0
+size(): 1
+42
+[1m[32m
+-------- stk_lst2 --------[0m
+
+[33moperator= - Stack.hpp - line 53[0m
+std::stack< int, std::list<int> > stk_lst2 = stk_lst1;[0m
+
+stk_lst1.size(): 1
+42
+
+stk_lst2.size(): 1
+42
+[1m[32m
+------ stk3 && stk2 ------[0m
+
+[33mcopy constructor - Stack.hpp - line 48[0m
+std::stack< int, std::list<int> > stk_lst3(stk_lst2);[0m
+
+stk2.size(): 1
+42
+
+stk3.size(): 1
+42
+[1m[32m
+-------- stk_lst2 --------[0m
+
+[33mpush() - Stack.hpp - line 90[0m
+stk_lst2.push(84);[0m
+
+size(): 2
+42
+84
+[1m[32m
+-------- stk_lst2 --------[0m
+
+[33mpop() - Stack.hpp - line 95[0m
+stk_lst2.pop();[0m
+
+size(): 1
+42
+[1m[32m
+-- stk_lst1 && stk_lst2 --[0m
+
+[33moperator== - Stack.hpp - line 116[0m
+(stk_lst1 == stk_lst2)[0m
+
+(stk_lst1 == stk_lst2): 1
+
+stk_lst1.size(): 1
+42
+stk_lst2.size(): 1
+42
+[1m[32m
+-------- stk_lst1 --------[0m
+
+[33mpush() - Stack.hpp - line 90[0m
+stk_lst1.push(16);[0m
+
+size(): 2
+42
+16
+[1m[32m
+-- stk_lst1 && stk_lst2 --[0m
+
+[33moperator> - Stack.hpp - line 140[0m
+(stk_lst1 > stk_lst2)[0m
+
+(stk_lst1 > stk_lst2): 1
+
+stk_lst1.size(): 2
+42
+16
+stk_lst2.size(): 1
+42
+[1m[32m
+-------- stk_lst1 --------[0m
+
+[33mtop() - Stack.hpp - line 68[0m
+stk_lst1.top()[0m
+
+top(): 16
+size(): 2
+42
+16
+[1m[35m
+-----------------------------------------------------------------[0m[1m[35m
+-------------------------- TESTS  MAP ---------------------------[0m[1m[35m
+-----------------------------------------------------------------[0m
+
+[1m[34m
+------------ TESTS FOR  INT PAIRS ------------[0m
+
+[1m[32m
+----------- p1 -----------[0m
+
+[33minitialization constructor - Pair.hpp - line 50[0m
+std::pair<int, int> p1(42, 41);[0m
+
+p1.first: 42 - p1.second: 41
+[1m[32m
+-------- p2 && p1 --------[0m
+
+[33moperator> - Pair.hpp - line 97[0m
+std::pair<int, int> p2(43, 40);[0m
+
+(p1 > p2)[0m
+
+p1.first: 42 - p1.second: 41
+p2.first: 43 - p2.second: 40
+(p1 > p2): 0
+[1m[32m
+----------- p2 -----------[0m
+
+[33moperator= - Pair.hpp - line 60[0m
+p2 = p1;[0m
+
+p1.first: 42 - p1.second: 41
+p2.first: 42 - p2.second: 41
+[1m[32m
+-------- p2 && p1 --------[0m
+
+[33moperator<= - Pair.hpp - line 91[0m
+(p1 <= p2)[0m
+
+(p1 <= p2): 1
+[1m[34m
+-------- TESTS FOR INT & STRING PAIRS --------[0m
+
+[1m[32m
+----------- p1 -----------[0m
+
+[33minitialization constructor - Pair.hpp - line 50[0m
+std::pair<int, std::string> p1(42, "Quarante-deux!");[0m
+
+p1.first: 42 - p1.second: Quarante-deux!
+[1m[32m
+-------- p2 && p1 --------[0m
+
+[33moperator> - Pair.hpp - line 97[0m
+std::pair<int, std::string> p2(43, "Quarante!");[0m
+
+(p1 > p2)[0m
+
+p1.first: 42 - p1.second: Quarante-deux!
+p2.first: 43 - p2.second: Quarante!
+(p1 > p2): 0
+[1m[32m
+----------- p2 -----------[0m
+
+[33moperator= - Pair.hpp - line 60[0m
+p2 = p1;[0m
+
+p1.first: 42 - p1.second: Quarante-deux!
+p2.first: 42 - p2.second: Quarante-deux!
+[1m[32m
+-------- p2 && p1 --------[0m
+
+[33moperator<= - Pair.hpp - line 91[0m
+(p1 <= p2)[0m
+
+(p1 <= p2): 1
+[1m[34m
+-------- TESTS FOR INT && STRING MAPS --------[0m
+
+[1m[32m
+---------- map1 ----------[0m
+
+[33mdefault constructor - Map.hpp - line 138[0m
+std::map<int, std::string> map1;[0m
+
+
+size(): 0
+
+[1m[32m
+---------- map1 ----------[0m
+
+[33mempty() - Map.hpp - line 246[0m
+map1.empty()[0m
+
+empty(): 1
+
+size(): 0
+
+[1m[32m
+---------- map1 ----------[0m
+
+[33minsert() // single element - Map.hpp - line 298[0m
+std::pair<int, std::string> pair_one = std::make_pair(65, "A");[0m
+std::pair<int, std::string> pair_two = std::make_pair(66, "B");[0m
+std::pair<int, std::string> pair_three = std::make_pair(67, "C");[0m
+map1.insert(pair_one);[0m
+map1.insert(pair_two);[0m
+map1.insert(pair_three);[0m
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+[1m[32m
+---------- map1 ----------[0m
+
+[33mempty() - Map.hpp - line 246[0m
+map1.empty()[0m
+
+empty(): 0
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+[1m[32m
+------ map2 && map1 ------[0m
+
+[33mconstructor range - Map.hpp - line 146[0m
+std::map<int, std::string> map2(map1.begin(), map1.end());[0m
+
+
+map1: 
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+map2: 
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+[1m[32m
+---------- map2 ----------[0m
+
+[33mat() - Map.hpp - line 264[0m
+map2.at(65) = "alpha"[0m
+map2.at(66) = "beta"[0m
+map2.at(67) = "gamma"[0m
+
+
+size(): 3
+
+Key: 65 - Value: alpha
+Key: 66 - Value: beta
+Key: 67 - Value: gamma
+
+[1m[32m
+---------- map2 ----------[0m
+
+[33moperator[] - Map.hpp - line 286[0m
+map2[75] = "ALPHA";[0m
+map2[76] = "BETA";[0m
+map2[77] = "GAMMA";[0m
+
+
+size(): 6
+
+Key: 65 - Value: alpha
+Key: 66 - Value: beta
+Key: 67 - Value: gamma
+Key: 75 - Value: ALPHA
+Key: 76 - Value: BETA
+Key: 77 - Value: GAMMA
+
+[1m[32m
+---------- map2 ----------[0m
+
+[33merase() from key - Map.hpp - line 334[0m
+map2.erase(66);[0m
+
+size(): 5
+
+Key: 65 - Value: alpha
+Key: 67 - Value: gamma
+Key: 75 - Value: ALPHA
+Key: 76 - Value: BETA
+Key: 77 - Value: GAMMA
+
+[1m[32m
+---------- map2 ----------[0m
+
+[33mswap() - Map.hpp - line 354[0m
+map2.swap(map1);[0m
+
+map1 BEFORE: 
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+map2 BEFORE: 
+
+size(): 5
+
+Key: 65 - Value: alpha
+Key: 67 - Value: gamma
+Key: 75 - Value: ALPHA
+Key: 76 - Value: BETA
+Key: 77 - Value: GAMMA
+
+map1 AFTER: 
+
+size(): 5
+
+Key: 65 - Value: alpha
+Key: 67 - Value: gamma
+Key: 75 - Value: ALPHA
+Key: 76 - Value: BETA
+Key: 77 - Value: GAMMA
+
+map2 AFTER: 
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+[1m[32m
+---------- map3 ----------[0m
+
+[33minsert() // range - Map.hpp - line 319[0m
+std::map<int, std::string> map3;[0m
+map3.insert(map2.begin(), --map2.end());[0m
+
+map2: 
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+map3: 
+
+size(): 2
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+
+[1m[32m
+---------- map3 ----------[0m
+
+[33merase() // range - Map.hpp - line 345[0m
+map3.erase(map3.begin(), map3.end());[0m
+
+map3 BEFORE: 
+
+size(): 2
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+
+
+map3 AFTER: 
+
+size(): 0
+
+[1m[32m
+---------- map2 ----------[0m
+
+[33mrbegin() - Map.hpp - line 239[0m
+map2.rbegin()->first[0m
+
+map2.rbegin()->first: 67
+
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+[1m[32m
+---------- map4 ----------[0m
+
+[33mcopy constructor - Map.hpp - line 153[0m
+std::map<int, std::string> map4(map2);[0m
+
+
+map2: 
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+map4: 
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+[1m[32m
+---------- map5 ----------[0m
+
+[33moperator= - Map.hpp - line 164[0m
+std::map<int, std::string> map5 = map4;[0m
+
+
+map4: 
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+
+map5: 
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+[1m[32m
+---------- map4 ----------[0m
+
+[33mclear() - Map.hpp - line 372[0m
+map4.clear()[0m
+
+
+size(): 0
+
+[1m[32m
+---------- map5 ----------[0m
+
+[33mfind() - Map.hpp - line 390[0m
+map5.find(66)->second[0m
+
+map5.find(66)->second: B
+
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+[1m[32m
+---------- map5 ----------[0m
+
+[33mfind() - Map.hpp - line 390[0m
+map5.find(6600)[0m
+
+ptr in iterator null. Value not found.
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+[1m[32m
+---------- map5 ----------[0m
+
+[33mlower_bound() - Map.hpp - line 417[0m
+map5.lower_bound(66)->second[0m
+
+map5.lower_bound(66)->second: B
+
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+[1m[32m
+---------- map5 ----------[0m
+
+[33mupper_bound() - Map.hpp - line 441[0m
+map5.upper_bound(66)->second[0m
+
+map5.upper_bound(66)->second: C
+
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
+[1m[32m
+---------- map5 ----------[0m
+
+[33mequal_range() - Map.hpp - line 469[0m
+(map5.equal_range(66)).first->second[0m
+(map5.equal_range(66)).second->second[0m
+
+(map5.equal_range(66)).first->second: B
+(map5.equal_range(66)).second->second: C
+
+
+size(): 3
+
+Key: 65 - Value: A
+Key: 66 - Value: B
+Key: 67 - Value: C
+
