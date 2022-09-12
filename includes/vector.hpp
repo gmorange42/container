@@ -51,7 +51,7 @@ namespace ft
 			//----------------------CONTRUCTORS----------------------
 
 			public:
-			explicit vector(const allocator_type& alloc = allocator_type()) : _arr(0), _alloc(alloc), _size(0), _capacity(0) {}
+			explicit vector(const allocator_type& alloc = allocator_type()) : _arr(0), _alloc(alloc), _size(0), _capacity(0) {};
 
 			explicit vector(size_type n, const value_type& val = value_type(), const allocator_type& alloc = allocator_type()) : _arr(NULL), _alloc(alloc), _size(0), _capacity(0)
 			{
@@ -69,22 +69,26 @@ namespace ft
 				assign(first, last);
 			}
 
-			vector(const vector& x)
+			vector(const vector& x) : _arr(NULL), _alloc(x._alloc), _size(x._size), _capacity(_size)
 			{
-				*this = x;
+				if (_capacity > 0)
+				_arr = _alloc.allocate(_capacity);
+				for (size_t i = 0; i < _size; ++i)
+					_alloc.construct(_arr + i, x._arr[i]);
 			}
 
 			vector&	operator=(const vector& x)
 			{
-				_size = x._size;
-				_capacity = x._capacity;
-				_alloc = x._alloc;
-				_arr = _alloc.allocate(_capacity);
-				for (size_t i = 0; i < _size; ++i)
-				{
-					_alloc.construct(_arr + i, x._arr[i]);
-				}
-
+				assign(x.begin(), x.end());
+//				for (size_type i = 0; i < _size && i < _capacity; ++i)
+//					_alloc.destroy(_arr + i);
+//				_alloc.deallocate(_arr, _size);
+//				_size = x._size;
+//				_capacity = _size;				
+////				_capacity = x._capacity;
+//				_arr = _alloc.allocate(_capacity);
+//				for (size_t i = 0; i < _size; ++i)
+//					_alloc.construct(_arr + i, x._arr[i]);
 				return (*this);
 			}
 
@@ -472,8 +476,8 @@ namespace ft
 			{
 				value_type*	new_arr;
 
-			//	if (_capacity < 0)
-			//		_capacity *= -1;
+//				if (_capacity < 0)
+//					_capacity *= -1;
 				new_arr = _alloc.allocate(_capacity);
 
 				for (size_type i = 0; i < _size; ++i)

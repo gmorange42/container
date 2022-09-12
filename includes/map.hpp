@@ -334,7 +334,7 @@ namespace ft
 
 				const_iterator	lower_bound(const key_type& k) const
 				{
-					iterator	it = begin();
+					const_iterator	it = begin();
 					key_compare	comp = key_comp();
 
 					while (it != end() && comp(it->first, k))
