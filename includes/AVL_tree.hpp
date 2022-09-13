@@ -192,6 +192,31 @@ namespace ft
 					return (_alloc.max_size());
 				}
 
+				void	swap(ft::bintree<T, compare> & x)
+				{
+					ft::node<T>*	temp_root = root;
+					ft::node<T>*	temp_end = _end;
+
+					root = x.root;
+					_end = x._end;
+
+					x.root = temp_root;
+					x._end = temp_end;
+
+					Alloc	temp_alloc = _alloc;
+					_alloc =  x._alloc;
+					x._alloc = temp_alloc;
+
+					int	tempnb_node = nb_node;
+					nb_node =  x.nb_node;
+					x.nb_node = tempnb_node;
+
+					compare	tempcomp = comp;
+					comp =  x.comp;
+					x.comp = tempcomp;
+
+				}
+
 		};
 
 
@@ -247,6 +272,8 @@ namespace ft
 					else
 						node = node->rson;
 				}
+				if (node && node->end)
+					return (NULL);
 				return (node);
 			}
 

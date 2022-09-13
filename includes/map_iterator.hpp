@@ -7,7 +7,7 @@
 
 namespace ft
 {
-	template <class T, class Node>
+	template <class T, class Node, class Compare>
 		class	MapIterator
 		{
 			public:
@@ -19,6 +19,7 @@ namespace ft
 
 			private:
 				Node*	_node;
+				Compare	comp;
 
 			public:
 				MapIterator() : _node(NULL) {}
@@ -61,7 +62,8 @@ namespace ft
 					}
 					else
 					{
-						while (_node->dad && _node->dad->data.first < _node->data.first)
+						//while (_node->dad && _node->dad->data.first < _node->data.first)
+						while (_node->dad && comp(_node->dad->data.first, _node->data.first))
 							_node = _node->dad;
 						if (_node->dad)
 							_node = _node->dad;
@@ -80,7 +82,8 @@ namespace ft
 					}
 					else
 					{
-						while (_node->dad && _node->dad->data.first < _node->data.first)
+						//while (_node->dad && _node->dad->data.first < _node->data.first)
+						while (_node->dad && comp(_node->dad->data.first, _node->data.first))
 							_node = _node->dad;
 						if (_node->dad)
 							_node = _node->dad;
@@ -102,7 +105,8 @@ namespace ft
 						_node = _node->lson;
 					else
 					{
-						while (_node->dad && _node->dad->data.first > _node->data.first)
+						//while (_node->dad && _node->dad->data.first > _node->data.first)
+						while (_node->dad && comp(_node->data.first, _node->dad->data.first))
 							_node = _node->dad;
 						if (_node->dad)
 							_node = _node->dad;
@@ -123,7 +127,8 @@ namespace ft
 					}
 					else
 					{
-						while (_node->dad && _node->dad->data.first > _node->data.first)
+						//while (_node->dad && _node->dad->data.first > _node->data.first)
+						while (_node->dad && comp(_node->data.first, _node->dad->data.first))
 							_node = _node->dad;
 						if (_node->dad)
 							_node = _node->dad;
@@ -131,9 +136,9 @@ namespace ft
 					return (temp);
 				}
 
-				operator MapIterator<const T, Node>(void) const
+				operator MapIterator<const T, Node, Compare>(void) const
 				{
-					return (MapIterator<const T, Node>(_node));
+					return (MapIterator<const T, Node, Compare>(_node));
 				}
 
 //					bool	operator==(const MapIterator<T, ft::node<T> > & rhs) const
@@ -156,14 +161,14 @@ namespace ft
 //						return(this->base() == rhs.base());
 //					}
 		};
-	template <class T, class U, class Node>
-		bool	operator==(const MapIterator<T, Node> & lhs, const MapIterator<U, Node> & rhs)
+	template <class T, class U, class Node, class Compare>
+		bool	operator==(const MapIterator<T, Node, Compare> & lhs, const MapIterator<U, Node, Compare> & rhs)
 		{
 			return (lhs.base() == rhs.base());
 		}
 
-	template <class T, class U, class Node>
-		bool	operator!=(const MapIterator<T, Node> & lhs, const MapIterator<U, Node> & rhs)
+	template <class T, class U, class Node, class Compare>
+		bool	operator!=(const MapIterator<T, Node, Compare> & lhs, const MapIterator<U, Node, Compare> & rhs)
 		{
 			return (lhs.base() != rhs.base());
 		}
