@@ -44,6 +44,8 @@ namespace ft
 				int		nb_node;
 				ft::node<T>*	_end;
 				compare		comp;
+				ft::node<T>*	min_val;
+				ft::node<T>*	max_val;
 				typedef typename T::first_type	first_type;
 				typedef typename T::second_type	second_type;
 
@@ -71,7 +73,7 @@ namespace ft
 
 					int	ldepth = depth_bintree(node->lson);
 					int	rdepth = depth_bintree(node->rson);
-//					return ( 1 + (ldepth > rdepth ? ldepth : rdepth));
+					//					return ( 1 + (ldepth > rdepth ? ldepth : rdepth));
 					return ( 1 + (comp(rdepth, ldepth ? ldepth : rdepth)));
 				}
 
@@ -192,30 +194,39 @@ namespace ft
 					return (_alloc.max_size());
 				}
 
-				void	swap(ft::bintree<T, compare> & x)
-				{
-					ft::node<T>*	temp_root = root;
-					ft::node<T>*	temp_end = _end;
+			void	swap(ft::bintree<T, compare> & x)
+			{
+				ft::node<T>*	temp_root = root;
+				ft::node<T>*	temp_end = _end;
 
-					root = x.root;
-					_end = x._end;
+				root = x.root;
+				_end = x._end;
 
-					x.root = temp_root;
-					x._end = temp_end;
+				x.root = temp_root;
+				x._end = temp_end;
 
-					Alloc	temp_alloc = _alloc;
-					_alloc =  x._alloc;
-					x._alloc = temp_alloc;
+				ft::node<T>*	temp_min_val = min_val;
+				ft::node<T>*	temp_max_val = max_val;
 
-					int	tempnb_node = nb_node;
-					nb_node =  x.nb_node;
-					x.nb_node = tempnb_node;
+				min_val = x.min_val;
+				max_val = x.max_val;
 
-					compare	tempcomp = comp;
-					comp =  x.comp;
-					x.comp = tempcomp;
+				x.min_val = temp_min_val;
+				x.max_val = temp_max_val;
 
-				}
+				Alloc	temp_alloc = _alloc;
+				_alloc =  x._alloc;
+				x._alloc = temp_alloc;
+
+				int	temp_nb_node = nb_node;
+				nb_node =  x.nb_node;
+				x.nb_node = temp_nb_node;
+
+				compare	tempcomp = comp;
+				comp =  x.comp;
+				x.comp = tempcomp;
+
+			}
 
 		};
 
@@ -225,8 +236,6 @@ namespace ft
 	{
 		protected:
 
-			ft::node<T>*	min_val;
-			ft::node<T>*	max_val;
 			search_tree(const search_tree &);
 			search_tree&	operator=(const search_tree &);
 			compare		comp;
@@ -266,7 +275,7 @@ namespace ft
 
 				while (node && node->data.first != elem.first)
 				{
-//					if (elem.first < node->data.first)
+					//					if (elem.first < node->data.first)
 					if (comp(elem.first, node->data.first))
 						node = node->lson;
 					else
@@ -284,7 +293,7 @@ namespace ft
 
 				while (node && node->data.first != elem)
 				{
-//					if (elem.first < node->data.first)
+					//					if (elem.first < node->data.first)
 					if (comp(elem, node->data.first))
 						node = node->lson;
 					else
@@ -303,10 +312,10 @@ namespace ft
 
 				do
 				{
-//					if (elem < dad->data && dad->lson && !dad->lson->end)
+					//					if (elem < dad->data && dad->lson && !dad->lson->end)
 					if (this->comp(elem.first, dad->data.first) && dad->lson && !dad->lson->end)
 						dad = dad->lson;
-//					else if (elem > dad->data && dad->rson && !dad->rson->end)
+					//					else if (elem > dad->data && dad->rson && !dad->rson->end)
 					else if (comp(dad->data.first, elem.first) && dad->rson && !dad->rson->end)
 						dad = dad->rson;
 					else
@@ -317,8 +326,8 @@ namespace ft
 
 			search_tree(void)
 			{
-				min_val = this->root;
-				max_val = this->root;
+				this->min_val = this->root;
+				this->max_val = this->root;
 			}
 			virtual ~search_tree(void) {}
 
@@ -340,24 +349,24 @@ namespace ft
 					this->root = child;
 					child->rson = this->_end;
 					this->_end->dad = child;
-					max_val = child;
-					min_val = child;
+					this->max_val = child;
+					this->min_val = child;
 				}
-//				else if (elem < dad->data)
+				//				else if (elem < dad->data)
 				else if (this->comp(elem.first, dad->data.first))
 				{
 					dad->lson = child;
-					if (dad == min_val)
-						min_val = child;
+					if (dad == this->min_val)
+						this->min_val = child;
 				}
 				else
 				{
 					dad->rson = child;
-					if (dad == max_val)
+					if (dad == this->max_val)
 					{
 						this->_end->dad = child;
 						child->rson = this->_end;
-						max_val = child;
+						this->max_val = child;
 					}
 				}
 				++this->nb_node;
@@ -379,17 +388,17 @@ namespace ft
 					this->min_val = this->_end;
 					this->max_val = this->_end;
 				}
-				else if (node == min_val)
+				else if (node == this->min_val)
 				{
-					min_val = node->dad;
-					if (!min_val)
-						min_val = node->rson;
+					this->min_val = node->dad;
+					if (!this->min_val)
+						this->min_val = node->rson;
 				}
-				else if (node == max_val)
+				else if (node == this->max_val)
 				{
-					max_val = node->dad;
-					if (!max_val)
-						max_val = node->lson;
+					this->max_val = node->dad;
+					if (!this->max_val)
+						this->max_val = node->lson;
 				}
 				if (!sub)
 				{
@@ -439,22 +448,22 @@ namespace ft
 
 			ft::node<T>*	get_min(void)
 			{
-				return (min_val);
+				return (this->min_val);
 			}
 
 			ft::node<T>*	get_max(void)
 			{
-				return (max_val);
+				return (this->max_val);
 			}
 
 			ft::node<T>*	get_min(void) const
 			{
-				return (min_val);
+				return (this->min_val);
 			}
 
 			ft::node<T>*	get_max(void) const
 			{
-				return (max_val);
+				return (this->max_val);
 			}
 
 			ft::node<T>*	get_end(void)

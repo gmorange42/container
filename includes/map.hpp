@@ -268,10 +268,6 @@ namespace ft
 				void	swap(map& x)
 				{
 					_tree.swap(x._tree);
-//					ft::map<key_type, mapped_type>	temp(x);
-//
-//					x = *this;
-//					*this = temp;
 				}
 
 				void	clear(void)
