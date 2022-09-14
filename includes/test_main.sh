@@ -7,3 +7,4 @@ diff -U 15 real mine > res
 echo -n $0
 cat res
 [ -s res ] && echo " KO" || echo " OK"
+rm res real mine

@@ -1,7 +1,7 @@
 STD_NAME = std_container
 FT_NAME = ft_container
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -pg
 
 STD_SRCS = srcs/std/vector_main.cpp \
 srcs/std/allocator_test.cpp \
