@@ -15,9 +15,9 @@ namespace ft
 				node*	lson;
 				node*	rson;
 				bool	end;
-				int	depth;
+				int	floor;
 
-				node (const T & d ) : data(d), dad(NULL), lson(NULL), rson(NULL), end(false), depth(0)
+				node (const T & d ) : data(d), dad(NULL), lson(NULL), rson(NULL), end(false), floor(0)
 			{
 				//					data = d;
 				//					dad = NULL;
@@ -25,7 +25,7 @@ namespace ft
 				//					rson = NULL;
 			}
 
-				node(const T &d, node<T> * father) : data(d), dad(father), lson(NULL), rson(NULL), end(false), depth(0)
+				node(const T &d, node<T> * father) : data(d), dad(father), lson(NULL), rson(NULL), end(false), floor(0)
 			{
 				//					data = d;
 				//					dad = father;
@@ -67,16 +67,16 @@ namespace ft
 				}
 
 				// return the greatest depth since the pointed node
-				int	depth_bintree(const ft::node<T> * node) const
-				{
-					if (!node || node->rson == this->root || node->end) // verifier deuxieme condition
-						return(0);
-
-					int	ldepth = depth_bintree(node->lson);
-					int	rdepth = depth_bintree(node->rson);
-										return ( 1 + (ldepth > rdepth ? ldepth : rdepth));
-					//return ( 1 + (comp(rdepth, ldepth ? ldepth : rdepth)));
-				}
+//				int	depth_bintree(const ft::node<T> * node) const
+//				{
+//					if (!node || node->rson == this->root || node->end) // verifier deuxieme condition
+//						return(0);
+//
+//					int	ldepth = depth_bintree(node->lson);
+//					int	rdepth = depth_bintree(node->rson);
+//					return ( 1 + (ldepth > rdepth ? ldepth : rdepth));
+//					//return ( 1 + (comp(rdepth, ldepth ? ldepth : rdepth)));
+//				}
 
 				// return the number of leaf below the pointed node
 				int	count_leaf(const node <T> * node) const
@@ -185,49 +185,49 @@ namespace ft
 					return (count_leaf(root));
 				}
 
-				int	depth(void) const
-				{
-					return (depth_bintree(root));
-				}
+				//				int	depth(void) const
+				//				{
+				//					return (depth_bintree(root));
+				//				}
 
 				size_t	max_size(void) const
 				{
 					return (_alloc.max_size());
 				}
 
-			void	swap(ft::bintree<T, compare> & x)
-			{
-				ft::node<T>*	temp_root = root;
-				ft::node<T>*	temp_end = _end;
+				void	swap(ft::bintree<T, compare> & x)
+				{
+					ft::node<T>*	temp_root = root;
+					ft::node<T>*	temp_end = _end;
 
-				root = x.root;
-				_end = x._end;
+					root = x.root;
+					_end = x._end;
 
-				x.root = temp_root;
-				x._end = temp_end;
+					x.root = temp_root;
+					x._end = temp_end;
 
-				ft::node<T>*	temp_min_val = min_val;
-				ft::node<T>*	temp_max_val = max_val;
+					ft::node<T>*	temp_min_val = min_val;
+					ft::node<T>*	temp_max_val = max_val;
 
-				min_val = x.min_val;
-				max_val = x.max_val;
+					min_val = x.min_val;
+					max_val = x.max_val;
 
-				x.min_val = temp_min_val;
-				x.max_val = temp_max_val;
+					x.min_val = temp_min_val;
+					x.max_val = temp_max_val;
 
-				Alloc	temp_alloc = _alloc;
-				_alloc =  x._alloc;
-				x._alloc = temp_alloc;
+					Alloc	temp_alloc = _alloc;
+					_alloc =  x._alloc;
+					x._alloc = temp_alloc;
 
-				int	temp_nb_node = nb_node;
-				nb_node =  x.nb_node;
-				x.nb_node = temp_nb_node;
+					int	temp_nb_node = nb_node;
+					nb_node =  x.nb_node;
+					x.nb_node = temp_nb_node;
 
-				compare	tempcomp = comp;
-				comp =  x.comp;
-				x.comp = tempcomp;
+					compare	tempcomp = comp;
+					comp =  x.comp;
+					x.comp = tempcomp;
 
-			}
+				}
 
 		};
 
@@ -246,6 +246,19 @@ namespace ft
 			bool	present(const T & elem) const
 			{
 				return (find_value(elem) != NULL);
+			}
+
+			void	set_floor(ft::node<T>* node)
+			{
+
+				while (node)
+				{
+					if (node->dad && node->dad->floor == node->floor)
+					{
+						++node->dad->floor;
+					}
+					node = node->dad;
+				}
 			}
 
 		public:
@@ -332,19 +345,6 @@ namespace ft
 			}
 			virtual ~search_tree(void) {}
 
-			void	update_depth(ft::node<T>* node)
-			{
-				while (node)
-				{
-					if (node->lson == node)
-						--node->depth;
-					else
-						++node->depth;
-					std::cout << "Node-> " << node->data.first << " depth : " << node->depth << std::endl;
-					node = node->dad;
-				}
-				std::cout << std::endl;
-			}
 			// add a new node to the tree
 			int	add(const T & elem)
 			{
@@ -383,7 +383,7 @@ namespace ft
 						this->max_val = child;
 					}
 				}
-				update_depth(child);
+				set_floor(child);
 				++this->nb_node;
 				return (1);
 			}
@@ -505,41 +505,57 @@ namespace ft
 		private:
 			AVL_tree(const AVL_tree &);
 
+			int	compare_floor(ft::node<T>* node) const
+			{
+				int	rson_floor = 0;
+				int	lson_floor = 0;
+				if (node->rson)
+					rson_floor = node->rson->floor;
+				if (node->lson)
+					lson_floor = node->lson->floor;
+				if (node->floor == (lson_floor  >  rson_floor ? lson_floor : rson_floor))
+					++node->floor;
+				return (rson_floor - lson_floor);
+			}
 			// launch rotations if the depth of lson and rson have a difference equal to 2
 			void	balance_tree(ft::node<T> * node)
 			{
 				if (!node)
 					return;
 
-				int	balance_root = bintree<T, compare>::depth_bintree(node->rson) - bintree<T, compare>::depth_bintree(node->lson);
+				while (node)
+				{
+					//int	balance_root = bintree<T, compare>::depth_bintree(node->rson) - bintree<T, compare>::depth_bintree(node->lson);
+					int	balance_root = compare_floor(node);
+//					std::cout << "BALANCE_ROOT REAL " << balance_root << " MINE " << compare_floor(node) << std::endl;
 
-//				std::cout << "balance_root: " << node->data.first << ' '<< balance_root << std::endl;
-				if (balance_root == 2)
-				{
-					--node->depth;
-					int	balance_rson = bintree<T, compare>::depth_bintree(node->rson->rson) - bintree<T, compare>::depth_bintree(node->rson->lson);
-//					std::cout << "balance_rson : " << node->data.first << ' '<< balance_rson << std::endl;
-					if (balance_rson == -1)
+					if (balance_root == 2)
 					{
-						++node->rson->depth;
-						rrotation(node->rson);
+						//int	balance_rson = bintree<T, compare>::depth_bintree(node->rson->rson) - bintree<T, compare>::depth_bintree(node->rson->lson);
+						int	balance_rson = compare_floor(node->rson);
+						if (balance_rson == -1)
+						{
+							--node->rson->floor;
+							rrotation(node->rson);
+						}
+						lrotation(node);
+						node->floor -= 2;
 					}
-					lrotation(node);
-				}
-				else if (balance_root == -2)
-				{
-					++node->depth;
-					int balance_lson = bintree<T, compare>::depth_bintree(node->lson->rson) - bintree<T, compare>::depth_bintree(node->lson->lson);
-//					std::cout << "balance_lson : " << node->data.first << ' '<< balance_lson << std::endl;
-					if (balance_lson == 1)
+					else if (balance_root == -2)
 					{
-						--node->lson->depth;
-						lrotation(node->lson);
+						//int balance_lson = bintree<T, compare>::depth_bintree(node->lson->rson) - bintree<T, compare>::depth_bintree(node->lson->lson);
+						int	balance_lson = compare_floor(node->lson);
+						if (balance_lson == 1)
+						{
+							++node->rson->floor;
+							lrotation(node->lson);
+						}
+						rrotation(node);
+						node->floor += 2;
 					}
-					rrotation(node);
+					node = node->dad;
 				}
-//				std::cout << std::endl;
-				balance_tree(node->dad);
+				//				balance_tree(node->dad);
 			}
 
 			// rotate node to the left
@@ -668,7 +684,7 @@ namespace ft
 				if (node)
 				{
 					print_infix_order(node->lson);
-					std::cout << "First[" << node->data.first << "] Second[" << node->data.second << "] depth[" << node->depth << "]" << std::endl;
+					std::cout << "First[" << node->data.first << "] Second[" << node->data.second << "] floor[" << node->floor << "]" << std::endl;
 					print_infix_order(node->rson);
 				}
 			}
