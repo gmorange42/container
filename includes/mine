@@ -1,111 +1,17 @@
-size: 10
-max_size: 128102389400760775
-
-Content is:
-- key: 0 | value: AAAAAAAAAA
-- key: 1 | value: BBBBBBBBB
-- key: 2 | value: CCCCCCCC
-- key: 3 | value: DDDDDDD
-- key: 4 | value: EEEEEE
-- key: 5 | value: FFFFF
-- key: 6 | value: GGGG
-- key: 7 | value: HHH
-- key: 8 | value: II
-- key: 9 | value: J
-###############################################
----0---
-	-- [0] --
-param->first 1
-size: 9
-max_size: 128102389400760775
-
-Content is:
-- key: 0 | value: AAAAAAAAAA
-- key: 2 | value: CCCCCCCC
-- key: 3 | value: DDDDDDD
-- key: 4 | value: EEEEEE
-- key: 5 | value: FFFFF
-- key: 6 | value: GGGG
-- key: 7 | value: HHH
-- key: 8 | value: II
-- key: 9 | value: J
-###############################################
----1---
-	-- [1] --
-param->first 0
-size: 8
-max_size: 128102389400760775
-
-Content is:
-- key: 3 | value: DDDDDDD
-- key: 4 | value: EEEEEE
-- key: 5 | value: FFFFF
-- key: 6 | value: GGGG
-- key: 7 | value: HHH
-- key: 8 | value: II
-- key: 9 | value: J
-###############################################
----2---
-	-- [2] --
-param->first 9
-size: 7
-max_size: 128102389400760775
-
-Content is:
-- key: 3 | value: DDDDDDD
-- key: 4 | value: EEEEEE
-- key: 5 | value: FFFFF
-- key: 6 | value: GGGG
-- key: 7 | value: HHH
-- key: 8 | value: II
-###############################################
 ---3---
-	-- [3] --
-size: 4
-max_size: 128102389400760775
-
-Content is:
-- key: 7 | value: HHH
-- key: 8 | value: II
-###############################################
----4---
-	-- [4] --
-size: 2
-max_size: 128102389400760775
-
-Content is:
-- key: 8 | value: II
-###############################################
-size: 4
-max_size: 128102389400760775
-
-Content is:
-- key: 8 | value: II
-- key: 10 | value: Hello
-- key: 11 | value: Hi there
-###############################################
----5---
-	-- [5] --
-size: 1
-max_size: 128102389400760775
-
-Content is:
-- key: 2 | value: CCCCCCCC
-###############################################
-size: 5
-max_size: 128102389400760775
-
-Content is:
-- key: 2 | value: CCCCCCCC
-- key: 12 | value: ONE
-- key: 13 | value: TWO
-- key: 14 | value: THREE
-- key: 15 | value: FOUR
-###############################################
----6---
-	-- [6] --
-size: 0
-max_size: 128102389400760775
-
-Content is:
-###############################################
+--3-- : 0/1047552
+ROOT : 708592740
+--3-- : 1/1047552
+ROOT : 708592740
+--3-- : 2/1047552
+ROOT : 708592740
+--3-- : 3/1047552
+ROOT : 708592740
+--3-- : 4/1047552
+ROOT : 708592740
+--3-- : 5/1047552
+ROOT : 708592740
+--3-- : 6/1047552
+ROOT : 708592740
+--3-- : 7/1047552
+ROOT : 708592740

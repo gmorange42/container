@@ -38,27 +38,27 @@ int		main(void)
 
 	std::cout << "---1---" << std::endl;
 	ft_erase(mp, mp.begin());
-//	std::cout << "---2---" << std::endl;
-//	ft_erase(mp, --mp.end());
-//
-//	std::cout << "---3---" << std::endl;
-//	ft_erase(mp, mp.begin(), ++(++(++mp.begin())));
-//	std::cout << "---4---" << std::endl;
-//	ft_erase(mp, --(--(--mp.end())), --mp.end());
-//
-//	mp[10] = "Hello";
-//	mp[11] = "Hi there";
-//	printSize(mp);
-//	std::cout << "---5---" << std::endl;
-//	ft_erase(mp, --(--(--mp.end())), mp.end());
-//
-//	mp[12] = "ONE";
-//	mp[13] = "TWO";
-//	mp[14] = "THREE";
-//	mp[15] = "FOUR";
-//	printSize(mp);
-//	std::cout << "---6---" << std::endl;
-//	ft_erase(mp, mp.begin(), mp.end());
+	std::cout << "---2---" << std::endl;
+	ft_erase(mp, --mp.end());
+
+	std::cout << "---3---" << std::endl;
+	ft_erase(mp, mp.begin(), ++(++(++mp.begin())));
+	std::cout << "---4---" << std::endl;
+	ft_erase(mp, --(--(--mp.end())), --mp.end());
+
+	mp[10] = "Hello";
+	mp[11] = "Hi there";
+	printSize(mp);
+	std::cout << "---5---" << std::endl;
+	ft_erase(mp, --(--(--mp.end())), mp.end());
+
+	mp[12] = "ONE";
+	mp[13] = "TWO";
+	mp[14] = "THREE";
+	mp[15] = "FOUR";
+	printSize(mp);
+	std::cout << "---6---" << std::endl;
+	ft_erase(mp, mp.begin(), mp.end());
 
 	return (0);
 }
