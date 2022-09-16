@@ -16,10 +16,12 @@ namespace ft
 				node*	rson;
 				bool	end;
 				int	floor;
+				int	lmax;
+				int	rmax;
 
-				node (const T & d ) : data(d), dad(NULL), lson(NULL), rson(NULL), end(false), floor(0) {}
+				node (const T & d ) : data(d), dad(NULL), lson(NULL), rson(NULL), end(false), floor(0), lmax(0), rmax(0) {}
 
-				node(const T &d, node<T> * father) : data(d), dad(father), lson(NULL), rson(NULL), end(false), floor(0) {}
+				node(const T &d, node<T> * father) : data(d), dad(father), lson(NULL), rson(NULL), end(false), floor(0), lmax(0), rmax(0) {}
 		};
 
 
@@ -236,6 +238,7 @@ namespace ft
 				this->min_val = this->root;
 				this->max_val = this->root;
 			}
+
 			virtual ~search_tree(void) {}
 
 			int	add(const T & elem)
@@ -243,8 +246,6 @@ namespace ft
 				if (present(elem))
 					return (0);
 				ft::node<T>*	dad = find_dad(elem);
-				if (dad)
-				std::cout << "dad " << dad->data.first << std::endl;
 				ft::node<T>*	child = this->_alloc.allocate(1);
 				this->_alloc.construct(child, ft::node<T>(elem, dad));
 
@@ -261,7 +262,6 @@ namespace ft
 				}
 				else if (this->comp(elem.first, dad->data.first))
 				{
-					//std::cout << "in else if elem < dad " << std::endl;
 					dad->lson = child;
 					if (dad == this->min_val)
 						this->min_val = child;
@@ -277,8 +277,6 @@ namespace ft
 					}
 				}
 //				set_floor(child);
-				if (dad)
-				std::cout << "dad " << dad->data.first << std::endl;
 				++this->nb_node;
 				return (1);
 			}
@@ -404,49 +402,26 @@ namespace ft
 				return (rson_floor - lson_floor);
 			}
 
-			void	balance_tree(ft::node<T> * node)
+			void	update_lmax_rmax(ft::node<T>* node)
 			{
-				if (!node)
-					return;
+				if(node->lson && node->lson->lmax >= node->lmax)
+					node->lmax = node->lson->lmax + 1;
 
-				std::cout << "ROOT : " << this->root->data.first << std::endl;
-				while (node)
-				{
-					std::cout << node->data.first << " before balance_root == 2" << " floor " << node->floor << std::endl;
-					int	balance_root = compare_floor(node);
-
-					std::cout << node->data.first << " before balance_root == 2" << " floor " << node->floor << std::endl;
-					if (balance_root == 2)
-					{
-						std::cout << "in balance_root == 2" << std::endl;
-						int	balance_rson = compare_floor(node->rson);
-						if (balance_rson == -1)
-						{
-							std::cout << "in if balance_rson == -1" << std::endl;
-							--node->rson->floor;
-							rrotation(node->rson);
-						}
-						std::cout << "after balance_ron = -1" << std::endl;
-						lrotation(node);
-						node->floor -= 2;
-					}
-					else if (balance_root == -2)
-					{
-						std::cout << "in balance_root == -2" << std::endl;
-						int	balance_lson = compare_floor(node->lson);
-						if (balance_lson == 1)
-						{
-							std::cout << "in balance_lson == 1" << std::endl;
-							++node->lson->floor;
-							lrotation(node->lson);
-						}
-						std::cout << "after balance_lson = 1" << std::endl;
-						rrotation(node);
-						node->floor += 2;
-					}
-					node = node->dad;
-				}
+				if(node->rson && !node->rson->end && node->rson->rmax >= node->rmax)
+					node->rmax = node->rson->rmax + 1;
 			}
+
+			int	update_lmax_rmax_after_rotation(ft::node<T> * node)
+			{
+				if (!node || node->rson == this->root || node->end) // verifier deuxieme condition
+					return(0);
+
+				node->lmax = update_lmax_rmax_after_rotation(node->lson);
+				node->rmax = update_lmax_rmax_after_rotation(node->rson);
+				return ( 1 + (node->lmax > node->rmax ? node->lmax : node->rmax));
+			}
+
+
 //			void	balance_tree(ft::node<T> * node)
 //			{
 //				if (!node)
@@ -454,8 +429,8 @@ namespace ft
 //
 //				while (node)
 //				{
+//					update_lmax_rmax(node);
 //					int	balance_root = bintree<T, compare>::depth_bintree(node->rson) - bintree<T, compare>::depth_bintree(node->lson);
-//					std::cout << "ROOT " << this->root->data.first << std::endl;
 //
 //					if (balance_root == 2)
 //					{
@@ -474,7 +449,75 @@ namespace ft
 //					node = node->dad;
 //				}
 //			}
+			void	balance_tree(ft::node<T> * node)
+			{
+				if (!node)
+					return;
 
+				while (node)
+				{
+					update_lmax_rmax(node);
+					if (node->rmax - node->lmax == 2)
+					{
+						if (node->rson->rmax - node->rson->lmax == -1)
+							rrotation(node->rson);
+						lrotation(node);
+						update_lmax_rmax_after_rotation(node->dad);
+					}
+					else if (node->rmax - node->lmax == -2)
+					{
+						if (node->lson->rmax - node->lson->lmax == 1)
+							lrotation(node->lson);
+						rrotation(node);
+						update_lmax_rmax_after_rotation(node->dad);
+					}
+					node = node->dad;
+				}
+			}
+
+//			void	balance_tree(ft::node<T> * node)
+//			{
+//				if (!node)
+//					return;
+//
+//				std::cout << "ROOT : " << this->root->data.first << std::endl;
+//				while (node)
+//				{
+//					std::cout << node->data.first << " before balance_root == 2" << " floor " << node->floor << std::endl;
+//					int	balance_root = compare_floor(node);
+//
+//					std::cout << node->data.first << " before balance_root == 2" << " floor " << node->floor << std::endl;
+//					if (balance_root == 2)
+//					{
+//						std::cout << "in balance_root == 2" << std::endl;
+//						int	balance_rson = compare_floor(node->rson);
+//						if (balance_rson == -1)
+//						{
+//							std::cout << "in if balance_rson == -1" << std::endl;
+//							--node->rson->floor;
+//							rrotation(node->rson);
+//						}
+//						std::cout << "after balance_ron = -1" << std::endl;
+//						lrotation(node);
+//						node->floor -= 2;
+//					}
+//					else if (balance_root == -2)
+//					{
+//						std::cout << "in balance_root == -2" << std::endl;
+//						int	balance_lson = compare_floor(node->lson);
+//						if (balance_lson == 1)
+//						{
+//							std::cout << "in balance_lson == 1" << std::endl;
+//							++node->lson->floor;
+//							lrotation(node->lson);
+//						}
+//						std::cout << "after balance_lson = 1" << std::endl;
+//						rrotation(node);
+//						node->floor += 2;
+//					}
+//					node = node->dad;
+//				}
+//			}
 			void	lrotation(ft::node<T>* node)
 			{
 				if (!node)
@@ -491,7 +534,6 @@ namespace ft
 						node->dad->lson = rson;
 				}
 				rson->dad = node->dad;
-							std::cout << "HELP" << std::endl;
 
 				if (rson->lson)
 					rson->lson->dad = node;
@@ -540,10 +582,12 @@ namespace ft
 
 			int	add(const T & elem)
 			{
-				std::cout << "ELEM->FIRST " << elem.first << std::endl;
+				//std::cout << "min-> " << this->min_val->data.first << " max-> " << this->max_val->data.first << std::endl;
 				if (ft::search_tree<T, compare>::add(elem) == 0)
 					return (0);
 				balance_tree(search_tree<T, compare>::find_value(elem));
+				//std::cout << "min-> " << this->min_val->data.first << " max-> " << this->max_val->data.first << std::endl;
+				//std::cout << std::endl;
 				return (1);
 			}
 
@@ -600,7 +644,8 @@ namespace ft
 				if (node)
 				{
 					print_infix_order(node->lson);
-					std::cout << "First[" << node->data.first << "] Second[" << node->data.second << "] floor[" << node->floor << "]" << std::endl;
+					//std::cout << "First[" << node->data.first << "] Second[" << node->data.second << "] floor[" << node->floor << "]" << std::endl;
+					std::cout << "First[" << node->data.first << "] Second[" << node->data.second << "] lmax[" << node->lmax << "] rmax [" << node->rmax << "]" << std::endl;
 					print_infix_order(node->rson);
 				}
 			}

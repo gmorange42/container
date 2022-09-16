@@ -153,14 +153,14 @@ int main()
 
 	    std::cout << BOLDGREEN   << std::endl << "---------- vec1 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "default constructor - Vector.hpp - line 62" << RESET << std::endl;
-		std::cout << "std::vector<int> vec1;" << RESET << std::endl << std::endl;
+		std::cout << "::vector<int> vec1;" << RESET << std::endl << std::endl;
 		std::vector<int> vec1;
 		std::cout << "capacity(): " << vec1.capacity() << std::endl;
 		print_vector_int_mine(vec1);
 
 		std::cout << BOLDGREEN   << std::endl << "---------- vec2 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "fill constructor - Vector.hpp - line 69" << RESET << std::endl;
-		std::cout << "std::vector<int> vec2(100, 42);" << RESET << std::endl << std::endl;
+		std::cout << "::vector<int> vec2(100, 42);" << RESET << std::endl << std::endl;
 		std::vector<int> vec2(100, 42);
 		std::cout << "capacity(): " << vec2.capacity() << std::endl;
 		std::cout << "size(): " << vec2.size() << std::endl;
@@ -168,7 +168,7 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "---------- vec3 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "range constructor - Vector.hpp - line 86" << RESET << std::endl;
-		std::cout << "std::vector<int> vec3(vec2.begin(), vec2.end() - 92);" << RESET << std::endl << std::endl;
+		std::cout << "::vector<int> vec3(vec2.begin(), vec2.end() - 92);" << RESET << std::endl << std::endl;
 		std::vector<int> vec3(vec2.begin(), vec2.end() - 92);
 		std::cout << "capacity(): " << vec3.capacity() << std::endl;
 		print_vector_int_mine(vec3);
@@ -189,7 +189,7 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "---------- vec4 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "copy constructor - Vector.hpp - line 114" << RESET << std::endl;
-		std::cout << "std::vector<int> vec4(vec2);" << RESET << std::endl << std::endl;
+		std::cout << "::vector<int> vec4(vec2);" << RESET << std::endl << std::endl;
 		std::vector<int> vec4(vec2);
 		std::cout << "vec2.capacity(): " << vec2.capacity() << std::endl;
 		std::cout << "vec2.size(): " << vec2.size() << std::endl;
@@ -198,7 +198,7 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "---------- vec5 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "operator= - Vector.hpp - line 138" << RESET << std::endl;
-		std::cout << "std::vector<int> vec5 = vec3;" << RESET << std::endl << std::endl;
+		std::cout << "::vector<int> vec5 = vec3;" << RESET << std::endl << std::endl;
 		std::vector<int> vec5 = vec3;
 		std::cout << "vec3.capacity(): " << vec3.capacity() << std::endl;
 		std::cout << "vec3.size(): " << vec3.size() << std::endl;
@@ -263,7 +263,7 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "---------- vec6 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "fill constructor - Vector.hpp - line 69" << RESET << std::endl;
-		std::cout << "std::vector<int> vec6(1000000);" << RESET << std::endl << std::endl;
+		std::cout << "::vector<int> vec6(1000000);" << RESET << std::endl << std::endl;
 		std::vector<int> vec6(1000000);
 		std::cout << "capacity(): " << vec6.capacity() << std::endl;
 		std::cout << "size(): " << vec6.size() << std::endl;
@@ -463,14 +463,14 @@ int main()
 
     	std::cout << BOLDGREEN   << std::endl << "---------- vec1 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "default constructor - Vector.hpp - line 62" << RESET << std::endl;
-		std::cout << "std::vector<std::string> vec1;" << RESET << std::endl << std::endl;
+		std::cout << "::vector<std::string> vec1;" << RESET << std::endl << std::endl;
 		std::vector<std::string> vec1;
 		std::cout << "capacity(): " << vec1.capacity() << std::endl;
 		print_vector_str_mine(vec1);
 
 		std::cout << BOLDGREEN   << std::endl << "---------- vec2 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "fill constructor - Vector.hpp - line 69" << RESET << std::endl;
-		std::cout << "std::vector<std::string> vec2(100, \"Forty-two!\");" << RESET << std::endl << std::endl;
+		std::cout << "::vector<std::string> vec2(100, \"Forty-two!\");" << RESET << std::endl << std::endl;
 		std::vector<std::string> vec2(100, "Forty-two!");
 		std::cout << "capacity(): " << vec2.capacity() << std::endl;
 		std::cout << "size(): " << vec2.size() << std::endl;
@@ -478,7 +478,7 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "---------- vec3 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "range constructor - Vector.hpp - line 86" << RESET << std::endl;
-		std::cout << "std::vector<std::string> vec3(vec2.begin(), vec2.end() - 92);" << RESET << std::endl << std::endl;
+		std::cout << "::vector<std::string> vec3(vec2.begin(), vec2.end() - 92);" << RESET << std::endl << std::endl;
 		std::vector<std::string> vec3(vec2.begin(), vec2.end() - 92);
 		std::cout << "capacity(): " << vec3.capacity() << std::endl;
 		print_vector_str_mine(vec3);
@@ -499,7 +499,7 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "---------- vec4 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "copy constructor - Vector.hpp - line 114" << RESET << std::endl;
-		std::cout << "std::vector<std::string> vec4(vec2);" << RESET << std::endl << std::endl;
+		std::cout << "::vector<std::string> vec4(vec2);" << RESET << std::endl << std::endl;
 		std::vector<std::string> vec4(vec2);
 		std::cout << "vec2.capacity(): " << vec2.capacity() << std::endl;
 		std::cout << "vec2.size(): " << vec2.size() << std::endl;
@@ -508,7 +508,7 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "---------- vec5 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "operator= - Vector.hpp - line 138" << RESET << std::endl;
-		std::cout << "std::vector<std::string> vec5 = vec3;" << RESET << std::endl << std::endl;
+		std::cout << "::vector<std::string> vec5 = vec3;" << RESET << std::endl << std::endl;
 		std::vector<std::string> vec5 = vec3;
 		std::cout << "vec3.capacity(): " << vec3.capacity() << std::endl;
 		std::cout << "vec3.size(): " << vec3.size() << std::endl;
@@ -573,7 +573,7 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "---------- vec6 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "fill constructor - Vector.hpp - line 69" << RESET << std::endl;
-		std::cout << "std::vector<std::string> vec6(1000000);" << RESET << std::endl << std::endl;
+		std::cout << "::vector<std::string> vec6(1000000);" << RESET << std::endl << std::endl;
 		std::vector<std::string> vec6(1000000);
 		std::cout << "capacity(): " << vec6.capacity() << std::endl;
 		std::cout << "size(): " << vec6.size() << std::endl;
@@ -777,7 +777,7 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "---------- stk1 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "default constructor - Stack.hpp - line 42" << RESET << std::endl;
-		std::cout << "std::stack<int> stk1;" << RESET << std::endl << std::endl;
+		std::cout << "::stack<int> stk1;" << RESET << std::endl << std::endl;
 		std::stack<int> stk1;
 		std::cout << "size(): " << stk1.size() << std::endl;
 		print_stack_int_mine(stk1);
@@ -799,7 +799,7 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "---------- stk2 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "operator= - Stack.hpp - line 53" << RESET << std::endl;
-		std::cout << "std::stack<int> stk2 = stk1;" << RESET << std::endl << std::endl;
+		std::cout << "::stack<int> stk2 = stk1;" << RESET << std::endl << std::endl;
 		std::stack<int> stk2 = stk1;
 		std::cout << "stk1.size(): " << stk1.size() << std::endl;
 		print_stack_int_mine(stk1);
@@ -809,7 +809,7 @@ int main()
 	
 		std::cout << BOLDGREEN   << std::endl << "------ stk3 && stk2 ------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "copy constructor - Stack.hpp - line 48" << RESET << std::endl;
-		std::cout << "std::stack<int> stk3(stk2);" << RESET << std::endl << std::endl;
+		std::cout << "::stack<int> stk3(stk2);" << RESET << std::endl << std::endl;
 		std::stack<int> stk3(stk2);
 		std::cout << "stk2.size(): " << stk2.size() << std::endl;
 		print_stack_int_mine(stk2);
@@ -871,7 +871,7 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "-------- stk_lst1 --------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "default constructor - Stack.hpp - line 42" << RESET << std::endl;
-		std::cout << "std::stack< int, std::list<int> > stk_lst1;" << RESET << std::endl << std::endl;
+		std::cout << "::stack< int, std::list<int> > stk_lst1;" << RESET << std::endl << std::endl;
 		std::stack< int, std::list<int> > stk_lst1;
 		std::cout << "size(): " << stk_lst1.size() << std::endl;
 		print_stack_list_mine(stk_lst1);
@@ -893,7 +893,7 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "-------- stk_lst2 --------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "operator= - Stack.hpp - line 53" << RESET << std::endl;
-		std::cout << "std::stack< int, std::list<int> > stk_lst2 = stk_lst1;" << RESET << std::endl << std::endl;
+		std::cout << "::stack< int, std::list<int> > stk_lst2 = stk_lst1;" << RESET << std::endl << std::endl;
 		std::stack< int, std::list<int> > stk_lst2 = stk_lst1;
 		std::cout << "stk_lst1.size(): " << stk_lst1.size() << std::endl;
 		print_stack_list_mine(stk_lst1);
@@ -903,7 +903,7 @@ int main()
 	
 		std::cout << BOLDGREEN   << std::endl << "------ stk3 && stk2 ------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "copy constructor - Stack.hpp - line 48" << RESET << std::endl;
-		std::cout << "std::stack< int, std::list<int> > stk_lst3(stk_lst2);" << RESET << std::endl << std::endl;
+		std::cout << "::stack< int, std::list<int> > stk_lst3(stk_lst2);" << RESET << std::endl << std::endl;
 		std::stack< int, std::list<int> > stk_lst3(stk_lst2);
 		std::cout << "stk2.size(): " << stk_lst2.size() << std::endl;
 		print_stack_list_mine(stk_lst2);
@@ -968,13 +968,13 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "----------- p1 -----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "initialization constructor - Pair.hpp - line 50" << RESET << std::endl;
-		std::cout << "std::pair<int, int> p1(42, 41);" << RESET << std::endl << std::endl;
+		std::cout << "::pair<int, int> p1(42, 41);" << RESET << std::endl << std::endl;
 		std::pair<int, int> p1(42, 41);
 		std::cout << "p1.first: " << p1.first << " - p1.second: " << p1.second << std::endl;
 
 		std::cout << BOLDGREEN   << std::endl << "-------- p2 && p1 --------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "operator> - Pair.hpp - line 97" << RESET << std::endl;
-		std::cout << "std::pair<int, int> p2(43, 40);" << RESET << std::endl << std::endl;
+		std::cout << "::pair<int, int> p2(43, 40);" << RESET << std::endl << std::endl;
 		std::cout << "(p1 > p2)" << RESET << std::endl << std::endl;
 		std::pair<int, int> p2(43, 40);
 		std::cout << "p1.first: " << p1.first << " - p1.second: " << p1.second << std::endl;
@@ -1001,13 +1001,13 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "----------- p1 -----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "initialization constructor - Pair.hpp - line 50" << RESET << std::endl;
-		std::cout << "std::pair<int, std::string> p1(42, \"Quarante-deux!\");" << RESET << std::endl << std::endl;
+		std::cout << "::pair<int, std::string> p1(42, \"Quarante-deux!\");" << RESET << std::endl << std::endl;
 		std::pair<int, std::string> p1(42, "Quarante-deux!");
 		std::cout << "p1.first: " << p1.first << " - p1.second: " << p1.second << std::endl;
 
 		std::cout << BOLDGREEN   << std::endl << "-------- p2 && p1 --------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "operator> - Pair.hpp - line 97" << RESET << std::endl;
-		std::cout << "std::pair<int, std::string> p2(43, \"Quarante!\");" << RESET << std::endl << std::endl;
+		std::cout << "::pair<int, std::string> p2(43, \"Quarante!\");" << RESET << std::endl << std::endl;
 		std::cout << "(p1 > p2)" << RESET << std::endl << std::endl;
 		std::pair<int, std::string> p2(43, "Quarante!");
 		std::cout << "p1.first: " << p1.first << " - p1.second: " << p1.second << std::endl;
@@ -1033,7 +1033,7 @@ int main()
 	{
 		std::cout << BOLDGREEN   << std::endl << "---------- map1 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "default constructor - Map.hpp - line 138" << RESET << std::endl;
-		std::cout << "std::map<int, std::string> map1;" << RESET << std::endl << std::endl;
+		std::cout << "::map<int, std::string> map1;" << RESET << std::endl << std::endl;
 		std::map<int, std::string> map1;
 		// std::cout << std::endl << "map1.max_size(): " << map1.max_size() << std::endl;
 		print_map_int_str_mine(map1);
@@ -1046,16 +1046,16 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "---------- map1 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "insert() // single element - Map.hpp - line 298" << RESET << std::endl;
-		std::cout << "std::pair<int, std::string> pair_one = std::make_pair(65, \"A\");" << RESET << std::endl;
-		std::cout << "std::pair<int, std::string> pair_two = std::make_pair(66, \"B\");" << RESET << std::endl;
-		std::cout << "std::pair<int, std::string> pair_three = std::make_pair(67, \"C\");" << RESET << std::endl;
-		// std::cout << "std::pair<int, std::string> pair_four = std::make_pair(68, \"D\");" << RESET << std::endl;
-		// std::cout << "std::pair<int, std::string> pair_five = std::make_pair(69, \"E\");" << RESET << std::endl;
-		// std::cout << "std::pair<int, std::string> pair_six = std::make_pair(70, \"F\");" << RESET << std::endl;
-		// std::cout << "std::pair<int, std::string> pair_seven = std::make_pair(71, \"G\");" << RESET << std::endl;
-		// std::cout << "std::pair<int, std::string> pair_eight = std::make_pair(72, \"H\");" << RESET << std::endl;
-		// std::cout << "std::pair<int, std::string> pair_nine = std::make_pair(73, \"I\");" << RESET << std::endl;
-		// std::cout << "std::pair<int, std::string> pair_ten = std::make_pair(74, \"J\");" << RESET << std::endl;
+		std::cout << "::pair<int, std::string> pair_one = ::make_pair(65, \"A\");" << RESET << std::endl;
+		std::cout << "::pair<int, std::string> pair_two = ::make_pair(66, \"B\");" << RESET << std::endl;
+		std::cout << "::pair<int, std::string> pair_three = ::make_pair(67, \"C\");" << RESET << std::endl;
+		// std::cout << "::pair<int, std::string> pair_four = std::make_pair(68, \"D\");" << RESET << std::endl;
+		// std::cout << "::pair<int, std::string> pair_five = std::make_pair(69, \"E\");" << RESET << std::endl;
+		// std::cout << "::pair<int, std::string> pair_six = std::make_pair(70, \"F\");" << RESET << std::endl;
+		// std::cout << "::pair<int, std::string> pair_seven = std::make_pair(71, \"G\");" << RESET << std::endl;
+		// std::cout << "::pair<int, std::string> pair_eight = std::make_pair(72, \"H\");" << RESET << std::endl;
+		// std::cout << "::pair<int, std::string> pair_nine = std::make_pair(73, \"I\");" << RESET << std::endl;
+		// std::cout << "::pair<int, std::string> pair_ten = std::make_pair(74, \"J\");" << RESET << std::endl;
 		std::pair<int, std::string> pair_one = std::make_pair(65, "A");
 		std::pair<int, std::string> pair_two = std::make_pair(66, "B");
 		std::pair<int, std::string> pair_three = std::make_pair(67, "C");
@@ -1096,7 +1096,7 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "------ map2 && map1 ------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "constructor range - Map.hpp - line 146" << RESET << std::endl;
-		std::cout << "std::map<int, std::string> map2(map1.begin(), map1.end());" << RESET << std::endl << std::endl;
+		std::cout << "::map<int, std::string> map2(map1.begin(), map1.end());" << RESET << std::endl << std::endl;
 		std::map<int, std::string> map2(map1.begin(), map1.end());
 		std::cout << std::endl << "map1: " << std::endl;
 		print_map_int_str_mine(map1);
@@ -1144,7 +1144,7 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "---------- map3 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "insert() // range - Map.hpp - line 319" << RESET << std::endl;
-		std::cout << "std::map<int, std::string> map3;" << RESET << std::endl;
+		std::cout << "::map<int, std::string> map3;" << RESET << std::endl;
 		std::cout << "map3.insert(map2.begin(), --map2.end());" << RESET << std::endl;
 		std::map<int, std::string> map3;
 		map3.insert(map2.begin(), --map2.end());
@@ -1170,7 +1170,7 @@ int main()
 
 		std::cout << BOLDGREEN   << std::endl << "---------- map4 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "copy constructor - Map.hpp - line 153" << RESET << std::endl;
-		std::cout << "std::map<int, std::string> map4(map2);" << RESET << std::endl << std::endl;
+		std::cout << "::map<int, std::string> map4(map2);" << RESET << std::endl << std::endl;
 		std::map<int, std::string> map4(map2);
 		std::cout << std::endl << "map2: " << std::endl;
 		print_map_int_str_mine(map2);
@@ -1179,7 +1179,7 @@ int main()
 	
 		std::cout << BOLDGREEN   << std::endl << "---------- map5 ----------" << RESET << std::endl << std::endl;
 		std::cout << YELLOW << "operator= - Map.hpp - line 164" << RESET << std::endl;
-		std::cout << "std::map<int, std::string> map5 = map4;" << RESET << std::endl << std::endl;
+		std::cout << "::map<int, std::string> map5 = map4;" << RESET << std::endl << std::endl;
 		std::map<int, std::string> map5 = map4;
 		std::cout << std::endl << "map4: " << std::endl;
 		print_map_int_str_mine(map4);

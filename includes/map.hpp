@@ -236,7 +236,7 @@ namespace ft
 					{
 						while (first != last)
 						{
-							_tree.add(ft::make_pair(first->first, first->second));
+							_tree.add(*first);
 							++first;
 						}
 					}
