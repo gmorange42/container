@@ -28,25 +28,6 @@ namespace ft
 			typedef std::ptrdiff_t                                  difference_type;
 			typedef size_t                                          size_type;
 
-//			public:
-
-			//	pointer		_begin;
-			//	pointer		_end;
-			//	pointer		_capacity;
-			
-			//	size_type	size(void) const
-			//	{
-			//		return (_end - _begin);
-			//	}
-			//	size_type	capacity(void) const
-			//	{
-			//		return (_capacity - _begin);
-			//	}
-			//	bool		empty(void) const
-			//	{
-			//		return (_begin == _end);
-			//	}
-
 
 			//----------------------CONTRUCTORS----------------------
 
@@ -80,15 +61,6 @@ namespace ft
 			vector&	operator=(const vector& x)
 			{
 				assign(x.begin(), x.end());
-//				for (size_type i = 0; i < _size && i < _capacity; ++i)
-//					_alloc.destroy(_arr + i);
-//				_alloc.deallocate(_arr, _size);
-//				_size = x._size;
-//				_capacity = _size;				
-////				_capacity = x._capacity;
-//				_arr = _alloc.allocate(_capacity);
-//				for (size_t i = 0; i < _size; ++i)
-//					_alloc.construct(_arr + i, x._arr[i]);
 				return (*this);
 			}
 
@@ -476,8 +448,6 @@ namespace ft
 			{
 				value_type*	new_arr;
 
-//				if (_capacity < 0)
-//					_capacity *= -1;
 				new_arr = _alloc.allocate(_capacity);
 
 				for (size_type i = 0; i < _size; ++i)

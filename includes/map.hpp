@@ -32,7 +32,6 @@ namespace ft
 		class map
 		{
 
-			//typedef typename ft::map <Key, T, Compare, Allocator> _Base;
 			public:
 				typedef Key								key_type;
 				typedef T								mapped_type;
@@ -289,7 +288,7 @@ namespace ft
 				}
 
 
-				/////Operations/////
+				/////OPERATIONS/////
 
 				iterator	find(const key_type& k)
 				{

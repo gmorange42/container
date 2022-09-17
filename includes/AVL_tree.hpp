@@ -15,13 +15,12 @@ namespace ft
 				node*	lson;
 				node*	rson;
 				bool	end;
-				int	floor;
 				int	lmax;
 				int	rmax;
 
-				node (const T & d ) : data(d), dad(NULL), lson(NULL), rson(NULL), end(false), floor(0), lmax(0), rmax(0) {}
+				node (const T & d ) : data(d), dad(NULL), lson(NULL), rson(NULL), end(false), lmax(0), rmax(0) {}
 
-				node(const T &d, node<T> * father) : data(d), dad(father), lson(NULL), rson(NULL), end(false), floor(0), lmax(0), rmax(0) {}
+				node(const T &d, node<T> * father) : data(d), dad(father), lson(NULL), rson(NULL), end(false), lmax(0), rmax(0) {}
 		};
 
 
@@ -30,7 +29,6 @@ namespace ft
 		{
 			protected:
 
-//				Alloc		_alloc;
 				typedef typename	Alloc::template rebind<ft::node<T> >::other	AllocNode;
 				AllocNode		_alloc;
 				ft::node<T>*	root;
@@ -55,17 +53,6 @@ namespace ft
 						this->_alloc.deallocate(node, 1);
 						node = NULL;
 					}
-				}
-
-				int	depth_bintree(const ft::node<T> * node) const
-				{
-					if (!node || node->rson == this->root || node->end) // verifier deuxieme condition
-						return(0);
-
-					int	ldepth = depth_bintree(node->lson);
-					int	rdepth = depth_bintree(node->rson);
-					return ( 1 + (ldepth > rdepth ? ldepth : rdepth));
-					//return ( 1 + (comp(rdepth, ldepth ? ldepth : rdepth)));
 				}
 
 			public:
@@ -152,20 +139,15 @@ namespace ft
 				return (find_value(elem) != NULL);
 			}
 
-//			void	set_floor(ft::node<T>* node)
-//			{
-//
-//				while (node)
-//				{
-//					if (node->dad && node->dad->floor == node->floor)
-//					{
-//						++node->dad->floor;
-//					}
-//					node = node->dad;
-//				}
-//			}
-//
 		public:
+			search_tree(void)
+			{
+				this->min_val = this->root;
+				this->max_val = this->root;
+			}
+
+			virtual ~search_tree(void) {}
+
 			ft::node<T>*	max(ft::node<T> * node) const
 			{
 				if (!node)
@@ -235,14 +217,6 @@ namespace ft
 				this->min_val = node;
 			}
 
-			search_tree(void)
-			{
-				this->min_val = this->root;
-				this->max_val = this->root;
-			}
-
-			virtual ~search_tree(void) {}
-
 			int	add(const T & elem)
 			{
 				if (present(elem))
@@ -278,7 +252,6 @@ namespace ft
 						this->max_val = child;
 					}
 				}
-//				set_floor(child);
 				++this->nb_node;
 				return (1);
 			}
@@ -343,8 +316,6 @@ namespace ft
 				update_min();
 				this->max_val->rson = this->_end;
 				this->_end->dad = this->max_val;
-				this->_end->lson = NULL;
-				this->_end->rson = NULL;
 				this->_alloc.destroy(node);
 				this->_alloc.deallocate(node, 1);
 				--this->nb_node;
@@ -423,34 +394,6 @@ namespace ft
 				return ( 1 + (node->lmax > node->rmax ? node->lmax : node->rmax));
 			}
 
-
-//			void	balance_tree(ft::node<T> * node)
-//			{
-//				if (!node)
-//					return;
-//
-//				while (node)
-//				{
-//					update_lmax_rmax(node);
-//					int	balance_root = bintree<T, compare, Alloc>::depth_bintree(node->rson) - bintree<T, compare, Alloc>::depth_bintree(node->lson);
-//
-//					if (balance_root == 2)
-//					{
-//						int	balance_rson = bintree<T, compare, Alloc>::depth_bintree(node->rson->rson) - bintree<T, compare, Alloc>::depth_bintree(node->rson->lson);
-//						if (balance_rson == -1)
-//							rrotation(node->rson);
-//						lrotation(node);
-//					}
-//					else if (balance_root == -2)
-//					{
-//						int balance_lson = bintree<T, compare, Alloc>::depth_bintree(node->lson->rson) - bintree<T, compare, Alloc>::depth_bintree(node->lson->lson);
-//						if (balance_lson == 1)
-//							lrotation(node->lson);
-//						rrotation(node);
-//					}
-//					node = node->dad;
-//				}
-//			}
 			void	balance_tree(ft::node<T> * node)
 			{
 				if (!node)
@@ -477,49 +420,6 @@ namespace ft
 				}
 			}
 
-//			void	balance_tree(ft::node<T> * node)
-//			{
-//				if (!node)
-//					return;
-//
-//				std::cout << "ROOT : " << this->root->data.first << std::endl;
-//				while (node)
-//				{
-//					std::cout << node->data.first << " before balance_root == 2" << " floor " << node->floor << std::endl;
-//					int	balance_root = compare_floor(node);
-//
-//					std::cout << node->data.first << " before balance_root == 2" << " floor " << node->floor << std::endl;
-//					if (balance_root == 2)
-//					{
-//						std::cout << "in balance_root == 2" << std::endl;
-//						int	balance_rson = compare_floor(node->rson);
-//						if (balance_rson == -1)
-//						{
-//							std::cout << "in if balance_rson == -1" << std::endl;
-//							--node->rson->floor;
-//							rrotation(node->rson);
-//						}
-//						std::cout << "after balance_ron = -1" << std::endl;
-//						lrotation(node);
-//						node->floor -= 2;
-//					}
-//					else if (balance_root == -2)
-//					{
-//						std::cout << "in balance_root == -2" << std::endl;
-//						int	balance_lson = compare_floor(node->lson);
-//						if (balance_lson == 1)
-//						{
-//							std::cout << "in balance_lson == 1" << std::endl;
-//							++node->lson->floor;
-//							lrotation(node->lson);
-//						}
-//						std::cout << "after balance_lson = 1" << std::endl;
-//						rrotation(node);
-//						node->floor += 2;
-//					}
-//					node = node->dad;
-//				}
-//			}
 			void	lrotation(ft::node<T>* node)
 			{
 				if (!node)
@@ -584,12 +484,9 @@ namespace ft
 
 			int	add(const T & elem)
 			{
-				//std::cout << "min-> " << this->min_val->data.first << " max-> " << this->max_val->data.first << std::endl;
 				if (ft::search_tree<T, compare, Alloc>::add(elem) == 0)
 					return (0);
 				balance_tree(search_tree<T, compare, Alloc>::find_value(elem));
-				//std::cout << "min-> " << this->min_val->data.first << " max-> " << this->max_val->data.first << std::endl;
-				//std::cout << std::endl;
 				return (1);
 			}
 
@@ -619,52 +516,6 @@ namespace ft
 				this->min_val = this->root;
 				this->max_val = this->root;
 				this->nb_node = 0;
-			}
-
-			void	print_prefix_order(void) const
-			{
-				print_prefix_order(this->root);
-			}
-
-			void	print_prefix_order(ft::node<T>* node ) const
-			{
-				if (node)
-				{
-					std::cout << "First[" << node->data.first << "] Second[" << node->data.second << "]" << std::endl;
-					print_prefix_order(node->lson);
-					print_prefix_order(node->rson);
-				}
-			}
-
-			void	print_infix_order(void) const
-			{
-				print_infix_order(this->root);
-			}
-
-			void	print_infix_order(ft::node<T>* node ) const
-			{
-				if (node)
-				{
-					print_infix_order(node->lson);
-					//std::cout << "First[" << node->data.first << "] Second[" << node->data.second << "] floor[" << node->floor << "]" << std::endl;
-					std::cout << "First[" << node->data.first << "] Second[" << node->data.second << "] lmax[" << node->lmax << "] rmax [" << node->rmax << "]" << std::endl;
-					print_infix_order(node->rson);
-				}
-			}
-
-			void	print_suffix_order(void) const
-			{
-				print_suffix_order(this->root);
-			}
-
-			void	print_suffix_order(ft::node<T>* node ) const
-			{
-				if (node)
-				{
-					print_suffix_order(node->lson);
-					print_suffix_order(node->rson);
-					std::cout << "First[" << node->data.first << "] Second[" << node->data.second << "]" << std::endl;
-				}
 			}
 	};
 }

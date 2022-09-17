@@ -62,7 +62,6 @@ namespace ft
 					}
 					else
 					{
-						//while (_node->dad && _node->dad->data.first < _node->data.first)
 						while (_node->dad && comp(_node->dad->data.first, _node->data.first))
 							_node = _node->dad;
 						if (_node->dad)
@@ -82,7 +81,6 @@ namespace ft
 					}
 					else
 					{
-						//while (_node->dad && _node->dad->data.first < _node->data.first)
 						while (_node->dad && comp(_node->dad->data.first, _node->data.first))
 							_node = _node->dad;
 						if (_node->dad)
@@ -105,7 +103,6 @@ namespace ft
 						_node = _node->lson;
 					else
 					{
-						//while (_node->dad && _node->dad->data.first > _node->data.first)
 						while (_node->dad && comp(_node->data.first, _node->dad->data.first))
 							_node = _node->dad;
 						if (_node->dad)
@@ -127,7 +124,6 @@ namespace ft
 					}
 					else
 					{
-						//while (_node->dad && _node->dad->data.first > _node->data.first)
 						while (_node->dad && comp(_node->data.first, _node->dad->data.first))
 							_node = _node->dad;
 						if (_node->dad)
@@ -141,26 +137,8 @@ namespace ft
 					return (MapIterator<const T, Node, Compare>(_node));
 				}
 
-//					bool	operator==(const MapIterator<T, ft::node<T> > & rhs) const
-//					{
-//						return(this->base() == rhs.base());
-//					}
-//
-//					bool	operator!=(const MapIterator<T, ft::node<T> > & rhs) const
-//					{
-//						return(this->base() == rhs.base());
-//					}
-//
-//					bool	operator==(MapIterator<T, ft::node<T> > & rhs) const
-//					{
-//						return(this->base() == rhs.base());
-//					}
-//
-//					bool	operator!=(MapIterator<T, ft::node<T> > & rhs) const
-//					{
-//						return(this->base() == rhs.base());
-//					}
 		};
+
 	template <class T, class U, class Node, class Compare>
 		bool	operator==(const MapIterator<T, Node, Compare> & lhs, const MapIterator<U, Node, Compare> & rhs)
 		{
