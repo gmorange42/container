@@ -25,12 +25,14 @@ namespace ft
 		};
 
 
-	template <class T, class compare, class Alloc = std::allocator<ft::node<T> > >
+	template <class T, class compare, class Alloc>
 		class bintree
 		{
 			protected:
 
-				Alloc		_alloc;
+//				Alloc		_alloc;
+				typedef typename	Alloc::template rebind<ft::node<T> >::other	AllocNode;
+				AllocNode		_alloc;
 				ft::node<T>*	root;
 				int		nb_node;
 				ft::node<T>*	_end;
@@ -98,7 +100,7 @@ namespace ft
 					return (_alloc.max_size());
 				}
 
-				void	swap(ft::bintree<T, compare> & x)
+				void	swap(ft::bintree<T, compare, Alloc> & x)
 				{
 					ft::node<T>*	temp_root = root;
 					ft::node<T>*	temp_end = _end;
@@ -134,8 +136,8 @@ namespace ft
 		};
 
 
-	template <class T, class compare>
-		class search_tree : public bintree<T, compare>
+	template <class T, class compare, class Alloc>
+		class search_tree : public bintree<T, compare, Alloc>
 	{
 		protected:
 
@@ -383,8 +385,8 @@ namespace ft
 	};
 
 
-	template <class T, class compare>
-		class AVL_tree : public search_tree<T, compare>
+	template <class T, class compare, class Alloc = std::allocator<ft::node<T> > >
+		class AVL_tree : public search_tree<T, compare, Alloc>
 	{
 		private:
 			AVL_tree(const AVL_tree &);
@@ -430,18 +432,18 @@ namespace ft
 //				while (node)
 //				{
 //					update_lmax_rmax(node);
-//					int	balance_root = bintree<T, compare>::depth_bintree(node->rson) - bintree<T, compare>::depth_bintree(node->lson);
+//					int	balance_root = bintree<T, compare, Alloc>::depth_bintree(node->rson) - bintree<T, compare, Alloc>::depth_bintree(node->lson);
 //
 //					if (balance_root == 2)
 //					{
-//						int	balance_rson = bintree<T, compare>::depth_bintree(node->rson->rson) - bintree<T, compare>::depth_bintree(node->rson->lson);
+//						int	balance_rson = bintree<T, compare, Alloc>::depth_bintree(node->rson->rson) - bintree<T, compare, Alloc>::depth_bintree(node->rson->lson);
 //						if (balance_rson == -1)
 //							rrotation(node->rson);
 //						lrotation(node);
 //					}
 //					else if (balance_root == -2)
 //					{
-//						int balance_lson = bintree<T, compare>::depth_bintree(node->lson->rson) - bintree<T, compare>::depth_bintree(node->lson->lson);
+//						int balance_lson = bintree<T, compare, Alloc>::depth_bintree(node->lson->rson) - bintree<T, compare, Alloc>::depth_bintree(node->lson->lson);
 //						if (balance_lson == 1)
 //							lrotation(node->lson);
 //						rrotation(node);
@@ -583,9 +585,9 @@ namespace ft
 			int	add(const T & elem)
 			{
 				//std::cout << "min-> " << this->min_val->data.first << " max-> " << this->max_val->data.first << std::endl;
-				if (ft::search_tree<T, compare>::add(elem) == 0)
+				if (ft::search_tree<T, compare, Alloc>::add(elem) == 0)
 					return (0);
-				balance_tree(search_tree<T, compare>::find_value(elem));
+				balance_tree(search_tree<T, compare, Alloc>::find_value(elem));
 				//std::cout << "min-> " << this->min_val->data.first << " max-> " << this->max_val->data.first << std::endl;
 				//std::cout << std::endl;
 				return (1);
@@ -593,12 +595,12 @@ namespace ft
 
 			int	remove(const T & elem)
 			{
-				ft::node<T>* parent = search_tree<T, compare>::find_value(elem);
+				ft::node<T>* parent = search_tree<T, compare, Alloc>::find_value(elem);
 				if (!parent)
 					return(0);
 				parent = parent->dad;
 
-				if (ft::search_tree<T, compare>::remove(elem) == 0)
+				if (ft::search_tree<T, compare, Alloc>::remove(elem) == 0)
 					return (0);
 				balance_tree(parent);
 				return (1);
@@ -611,7 +613,7 @@ namespace ft
 
 			void	delete_tree(void)
 			{
-				bintree<T, compare>::delete_bintree(this->root);
+				bintree<T, compare, Alloc>::delete_bintree(this->root);
 
 				this->root = this->_end;
 				this->min_val = this->root;
