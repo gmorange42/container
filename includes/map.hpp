@@ -266,6 +266,18 @@ namespace ft
 
 				void	swap(map& x)
 				{
+					allocator_type	temp_alloc = x._alloc;
+					key_compare	temp_comp = x._comp;
+					size_type	temp_size = x._size;
+
+					x._alloc = this->_alloc;
+					x._comp = this->_comp;
+					x._size = this->_size;
+
+					this->_alloc = temp_alloc;
+					this->_comp = temp_comp;
+					this->_size = temp_size;
+
 					_tree.swap(x._tree);
 				}
 
@@ -444,6 +456,12 @@ namespace ft
 		bool	operator>=(const ft::map<Key, T, Compare, Alloc> & lhs, const ft::map<Key, T, Compare, Alloc> & rhs)
 		{
 			return (lhs > rhs || lhs == rhs);
+		}
+
+	template<class Key, class T, class Compare, class Alloc>
+		void	swap(ft::map<Key, T, Compare, Alloc>& lhs, ft::map<Key, T, Compare, Alloc>& rhs)
+		{
+			lhs.swap(rhs);
 		}
 }
 

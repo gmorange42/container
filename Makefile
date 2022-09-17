@@ -5,13 +5,13 @@ FT_42_NAME = ft_42_container
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-STD_SRCS = tests/ft_main.cpp
+STD_SRCS = tests/std_main.cpp
 
-FT_SRCS = tests/std_main.cpp
+FT_SRCS = tests/ft_main.cpp
 
-STD_42_SRCS = tests/ft_42_main.cpp
+STD_42_SRCS = tests/std_42_main.cpp
 
-FT_42_SRCS = tests/std_42_main.cpp
+FT_42_SRCS = tests/ft_42_main.cpp
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $(<:.cpp=.o)
