@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_mine.cpp                                      :+:      :+:    :+:   */
+/*   ft_main.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: opacaud <opacaud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 09:44:54 by opacaud           #+#    #+#             */
-/*   Updated: 2022/09/14 13:34:13 by gmorange         ###   ########.fr       */
+/*   Updated: 2022/09/17 10:16:03 by gmorange         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,16 @@
 # include <string>
 # include <utility>
 
-# include "enable_if.hpp"
-//# include "equal.hpp"
-# include "is_integral.hpp"
-# include "iterator_traits.hpp"
+# include "../includes/enable_if.hpp"
+# include "../includes/is_integral.hpp"
+# include "../includes/iterator_traits.hpp"
 # include "../utils/lexicographical_compare.cpp"
-# include "map.hpp"
-# include "pair.hpp"
-# include "vector_iterator.hpp"
-# include "reverse_iterator.hpp"
-# include "stack.hpp"
-# include "vector.hpp"
+# include "../includes/map.hpp"
+# include "../includes/pair.hpp"
+# include "../includes/vector_iterator.hpp"
+# include "../includes/reverse_iterator.hpp"
+# include "../includes/stack.hpp"
+# include "../includes/vector.hpp"
 
 void print_stack_int_mine(ft::stack<int> stack)
 {

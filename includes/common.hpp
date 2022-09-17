@@ -1,6 +1,5 @@
 # include "map.hpp"
 # include <map>
-
 #define _pair TESTED_NAMESPACE::pair
 
 template <typename T>

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_real.cpp                                      :+:      :+:    :+:   */
+/*   std_main.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: opacaud <opacaud@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 09:44:54 by opacaud           #+#    #+#             */
-/*   Updated: 2022/09/14 12:05:37 by gmorange         ###   ########.fr       */
+/*   Updated: 2022/09/17 10:16:19 by gmorange         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,6 @@
 # include <string>
 # include <utility>
 
-# include "enable_if.hpp"
-//# include "equal.hpp"
-# include "is_integral.hpp"
-# include "iterator_traits.hpp"
-# include "../utils/lexicographical_compare.cpp"
 # include <map>
 # include <stack>
 # include <vector>
