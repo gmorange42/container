@@ -40,8 +40,8 @@ namespace ft
 			}
 
 				template <class InputIterator>
-					vector (InputIterator first,
-							InputIterator last, const allocator_type& alloc = allocator_type()) :
+					vector (InputIterator first, InputIterator last,
+							const allocator_type& alloc = allocator_type()) :
 						_arr(NULL),
 						_alloc(alloc),
 						_size(0),
@@ -146,7 +146,7 @@ namespace ft
 							_alloc.destroy(_arr + i);
 						_size = n;
 					}
-					else if (n >= _size)
+					else
 					{
 						if (n >= _capacity)
 						{

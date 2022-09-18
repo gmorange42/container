@@ -28,7 +28,10 @@ namespace ft
 		}
 	};
 
-	template <class Key, class T, class Compare = ft::less<Key>, class Allocator = std::allocator<ft::pair<const Key, T> > >
+	template <class Key,
+		 class T,
+		 class Compare = ft::less<Key>,
+		 class Allocator = std::allocator<ft::pair<const Key, T> > >
 		class map
 		{
 
@@ -53,7 +56,6 @@ namespace ft
 			protected:
 				allocator_type	_alloc;
 				key_compare	_comp;
-				size_type	_size;
 				AVL_tree<value_type, key_compare, allocator_type>	_tree;
 
 			public:
@@ -72,20 +74,28 @@ namespace ft
 					}
 				};
 
-				explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : _alloc(alloc), _comp(comp), _size(0),  _tree() {}
+				explicit map (const key_compare& comp = key_compare(),
+						const allocator_type& alloc = allocator_type()) :
+					_alloc(alloc),
+					_comp(comp),
+					_tree() {}
 
 				template <class InputIterator>
-					map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type()) : _alloc(alloc), _comp(comp), _size(0), _tree()
+					map(InputIterator first, InputIterator last,
+							const key_compare& comp = key_compare(),
+							const allocator_type& alloc = allocator_type()) :
+						_alloc(alloc),
+						_comp(comp),
+						_tree()
 				{
 					while (first != last)
 					{
 						_tree.add(ft::make_pair(first->first, first->second));
-						++_size;
 						++first;
 					}
 				}
 
-				map(const map& x) : _alloc(x._alloc), _comp(x._comp), _size(0), _tree()
+				map(const map& x) : _alloc(x._alloc), _comp(x._comp), _tree()
 			{
 				*this = x;
 			}
@@ -268,15 +278,12 @@ namespace ft
 				{
 					allocator_type	temp_alloc = x._alloc;
 					key_compare	temp_comp = x._comp;
-					size_type	temp_size = x._size;
 
 					x._alloc = this->_alloc;
 					x._comp = this->_comp;
-					x._size = this->_size;
 
 					this->_alloc = temp_alloc;
 					this->_comp = temp_comp;
-					this->_size = temp_size;
 
 					_tree.swap(x._tree);
 				}
@@ -385,23 +392,10 @@ namespace ft
 
 				
 				/////ALLOCATOR/////
-				
 
 				allocator_type	get_allocator(void) const
 				{
 					return (_alloc);
-				}
-
-				/////OTHER/////
-
-				void	print_tree(char c) const
-				{
-					if (c == 'p')
-						_tree.print_prefix_order();
-					if (c == 'i')
-						_tree.print_infix_order();
-					if (c == 's')
-						_tree.print_suffix_order();
 				}
 		};
 

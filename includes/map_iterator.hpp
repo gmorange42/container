@@ -30,7 +30,8 @@ namespace ft
 
 				MapIterator&	operator=(const MapIterator & x)
 				{
-					_node = x._node;
+					if (this != &x)
+						_node = x._node;
 					return (*this);
 				}
 
@@ -99,8 +100,6 @@ namespace ft
 						while (_node->rson)
 							_node = _node->rson;
 					}
-					else if (_node->lson)
-						_node = _node->lson;
 					else
 					{
 						while (_node->dad && comp(_node->data.first, _node->dad->data.first))

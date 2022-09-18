@@ -13,11 +13,10 @@ namespace ft
 
 			pair() : first(), second() {}
 
-			pair(const T1 & x, const T2 & y) : first(x), second(y) {}
+			template<class U, class V>
+				pair(const pair<U, V> &p) : first(p.first), second(p.second) {}
 
-			template<class U, class V> pair(const pair<U, V> &p) : first(p.first), second(p.second) {}
-
-			pair(const first_type& x, second_type& y) : first(x), second(y) {};
+			pair(const first_type& x, const second_type& y) : first(x), second(y) {};
 
 			pair&	operator=(const pair & rhs) {
 				if (this != &rhs)
