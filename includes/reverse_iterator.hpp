@@ -49,7 +49,7 @@ namespace ft
 			{
 				reverse_iterator tmp = *this;
 				--current;
-				return(tmp);
+				return (tmp);
 			}
 
 			reverse_iterator& operator--()
@@ -89,7 +89,7 @@ namespace ft
 
 			reference operator[](difference_type n) const
 			{
-				return(current[-n -1]);
+				return (current[-n -1]);
 			}
 
 			operator	reverse_iterator<Iterator const>(void) const

@@ -298,12 +298,12 @@ namespace ft
 
 				key_compare	key_comp(void) const
 				{
-					return(key_compare());
+					return (key_compare());
 				}
 				
 				value_compare	value_comp() const
 				{
-					return(value_compare(key_compare()));
+					return (value_compare(key_compare()));
 				}
 
 
@@ -382,12 +382,12 @@ namespace ft
 
 				ft::pair<iterator, iterator>	equal_range(const key_type& k)
 				{
-					return(ft::make_pair(lower_bound(k), upper_bound(k)));
+					return (ft::make_pair(lower_bound(k), upper_bound(k)));
 				}
 
 				ft::pair<const_iterator, const_iterator>	equal_range(const key_type& k) const
 				{
-					return(ft::make_pair(lower_bound(k), upper_bound(k)));
+					return (ft::make_pair(lower_bound(k), upper_bound(k)));
 				}
 
 				

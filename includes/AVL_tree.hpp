@@ -54,7 +54,6 @@ namespace ft
 				typedef typename T::second_type	second_type;
 
 				bintree(const bintree &);
-				bintree&	operator=(const bintree &);
 
 				void	delete_bintree(ft::node<T> * node)
 				{
@@ -141,12 +140,11 @@ namespace ft
 		class search_tree : public bintree<T, compare, Alloc>
 	{
 		protected:
-
-			search_tree(const search_tree &);
-			search_tree&	operator=(const search_tree &);
-			compare		_comp;
 			typedef typename T::first_type	first_type;
 			typedef typename T::second_type	second_type;
+
+			search_tree(const search_tree &);
+			compare		_comp;
 
 			bool	present(const T & elem) const
 			{
@@ -171,6 +169,13 @@ namespace ft
 				return (node);
 			}
 
+			void	update_min(void)
+			{
+				ft::node<T>*	node = this->_root;
+				while (node->lson)
+					node = node->lson;
+				this->_min_val = node;
+			}
 
 			ft::node<T>*	find_value(const T & elem) const
 			{
@@ -222,15 +227,6 @@ namespace ft
 						dad_is_found = 1;
 				} while(dad_is_found == 0);
 				return (dad);
-			}
-
-
-			void	update_min(void)
-			{
-				ft::node<T>*	node = this->_root;
-				while (node->lson)
-					node = node->lson;
-				this->_min_val = node;
 			}
 
 			int	add(const T & elem)
@@ -403,7 +399,7 @@ namespace ft
 			int	update_lmax_rmax_after_rotation(ft::node<T> * node)
 			{
 				if (!node || node->end)
-					return(0);
+					return (0);
 
 				node->lmax = update_lmax_rmax_after_rotation(node->lson);
 				node->rmax = update_lmax_rmax_after_rotation(node->rson);
@@ -445,7 +441,6 @@ namespace ft
 
 				if (node->dad)
 				{
-
 					if (node->dad->rson == node)
 						node->dad->rson = rson;
 					else
@@ -508,7 +503,7 @@ namespace ft
 			{
 				ft::node<T>* parent = search_tree<T, compare, Alloc>::find_value(elem);
 				if (!parent)
-					return(0);
+					return (0);
 				parent = parent->dad;
 
 				if (ft::search_tree<T, compare, Alloc>::remove(elem) == 0)

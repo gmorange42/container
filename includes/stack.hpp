@@ -55,11 +55,6 @@ namespace ft
 					return c.pop_back();
 				}
 
-				Container const		getC(void) const
-				{
-					return c;
-				}
-
 			protected:
 				Container	c;
 				template <class T1, class Container1>
@@ -91,42 +86,42 @@ namespace ft
 		bool	operator==(const stack<T1, Container1>& lhs,
 				const stack<T1, Container1> & rhs)
 		{
-			return(lhs.c == rhs.c);
+			return (lhs.c == rhs.c);
 		}
 
 	template <class T1, class Container1>
 		bool	operator!=(const stack<T1, Container1> & lhs,
 				const stack<T1, Container1> & rhs)
 		{
-			return(!(lhs == rhs));
+			return (!(lhs == rhs));
 		}
 
 	template <class T1, class Container1>
 		bool	operator<(const stack<T1, Container1> & lhs,
 				const stack<T1, Container1> & rhs)
 		{
-			return(lhs.c < rhs.c);
+			return (lhs.c < rhs.c);
 		}
 
 	template <class T1, class Container1>
 		bool	operator<=(const stack<T1, Container1> & lhs,
 				const stack<T1, Container1> & rhs)
 		{
-			return(!(lhs > rhs));
+			return (!(lhs > rhs));
 		}
 
 	template <class T1, class Container1>
 		bool	operator>(const stack<T1, Container1> & lhs,
 				const stack<T1, Container1> & rhs)
 		{
-			return(lhs.c > rhs.c);
+			return (lhs.c > rhs.c);
 		}
 
 	template <class T1, class Container1>
 		bool	operator>=(const stack<T1, Container1> & lhs,
 				const stack<T1, Container1> & rhs)
 		{
-			return(!(lhs < rhs));
+			return (!(lhs < rhs));
 		}
 }
 

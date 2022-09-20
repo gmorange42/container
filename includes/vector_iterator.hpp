@@ -52,27 +52,27 @@ namespace ft
 				VectorIterator&	operator++(void)
 				{
 					++_ptr;
-					return(*this);
+					return (*this);
 				}
 
 				VectorIterator	operator++(int)
 				{
 					VectorIterator	temp(*this);
 					++_ptr;
-					return(temp);
+					return (temp);
 				}
 
 				VectorIterator&	operator--(void)
 				{
 					--_ptr;
-					return(*this);
+					return (*this);
 				}
 
 				VectorIterator	operator--(int)
 				{
 					VectorIterator	temp(*this);
 					--_ptr;
-					return(temp);
+					return (temp);
 				}
 
 				VectorIterator	operator+(const difference_type n) const
@@ -95,13 +95,13 @@ namespace ft
 				VectorIterator&	operator+=(const difference_type n)
 				{
 					_ptr += n;
-					return(*this);
+					return (*this);
 				}
 
 				VectorIterator&	operator-=(const difference_type n)
 				{
 					_ptr -= n;
-					return(*this);
+					return (*this);
 				}
 
 				reference	operator[](const difference_type n) const

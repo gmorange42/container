@@ -355,7 +355,7 @@ namespace ft
 					if (position == end() - 1)
 					{
 						pop_back();
-						return(position);
+						return (position);
 					}
 					else
 					{
@@ -375,7 +375,7 @@ namespace ft
 						_alloc.deallocate(_arr, _size);
 						_size = i;
 						_arr = temp_arr;
-						return(begin() + to_ret);
+						return (begin() + to_ret);
 					}
 				}
 
